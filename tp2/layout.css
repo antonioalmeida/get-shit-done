@@ -1,0 +1,27 @@
+body {
+    background-color: #EDEFF0;
+    max-width: 60em;
+    margin: 0 auto;
+    display: grid;
+
+    grid-template-columns: 75% 25%;
+    grid-gap: 0em 1em;
+}
+
+body > header {
+    grid-column-end: span 2;
+    grid-row-end: span 2;
+}
+
+#related {
+    grid-row-end: span 3;
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.item {
+    flex-grow: 1;
+}

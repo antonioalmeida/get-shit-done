@@ -1,0 +1,50 @@
+@media (max-width: 600px) {
+
+    body {
+        grid-template-columns: 100%;
+    }
+
+    #related {
+        display: none;
+    }
+
+    body > header {
+        grid-column-end: span 1;
+    }
+
+    #news {
+        grid-column-end: span 1;
+    }
+}
+
+@media (max-width: 300px) {
+    body > header > h2 {
+        display: none;
+    }
+
+    #menu > input[type=checkbox]:checked + label + ul {
+        display: block;
+    }
+
+    #hamburger + label {
+        display: block;
+        background-color: #2A2F33;
+    }
+
+    .hamburger {
+        height: 2em;
+        display: block;
+    }
+
+    .flex-container {
+        flex-direction: column;
+    }
+
+    #menu > ul {
+        display: none;
+    }
+
+    #menu > ul > li {
+        width: 100%;
+    }
+}
