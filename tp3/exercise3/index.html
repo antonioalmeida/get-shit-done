@@ -1,19 +1,3 @@
-<?php
-  $db = new PDO('sqlite:news.db');
-
-  $stmt = $db->prepare('SELECT news.*, users.*, COUNT(comments.id) AS comments
-                        FROM news JOIN
-                        users USING (username) LEFT JOIN
-                        comments ON comments.news_id = news.id
-                        GROUP BY news.id, users.username
-                        ORDER BY published DESC');
-
-  $stmt->execute();
-  $articles = $stmt->fetchAll();
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
@@ -25,7 +9,7 @@
     <link href="responsive.css" rel="stylesheet">
     <link href="comments.css" rel="stylesheet">
     <link href="forms.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet"> 
   </head>
   <body>
     <header>
@@ -65,26 +49,6 @@
       </article>
     </aside>
     <section id="news">
-        <?php
-        foreach( $articles as $article) {
-            echo '<article><header>';
-            echo '<a href="news_item.php?id=' . $article['id'] . '"><h1>' . $article['title'] . '</h1></a>';
-            echo '</header>';
-            echo '<img src="http://lorempixel.com/600/300/business/" alt="">';
-            echo '<p>' . $article['introduction'] . '</p>';
-            echo '<footer>';
-            echo '<span class="author">' . $article['name'] . '</span>';
-            $tags = explode(',', $article['tags']);
-            echo '<span class="tags">';
-            foreach( $tags as $tag ) {
-                echo '<a href="#index.html">#'. $tag[''] . '</a> ';
-            }
-            echo '</span>';
-            echo '<span class="date">' . date("Y-m-d H:i", $article['published']) . '</span>';
-            echo '<a class="comments" href="item.html#comments">' . $article['comments'] . '</a>';
-            echo '</footer></article>';
-        }
-        ?>
       <article>
         <header>
           <h1><a href="item.html">Quisque a dapibus magna, non scelerisque</a></h1>
