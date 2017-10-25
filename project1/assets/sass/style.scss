@@ -1,0 +1,39 @@
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+$secondary-color: #123456;
+$white-color: #fff;
+$black-color: #000;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+/* Add a black background color to the top navigation */
+.navbar-top {
+    background-color: $primary-color;
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.navbar-top a {
+    float: left;
+    display: block;
+    color: $white-color;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.navbar-top a:hover {
+    background-color: #ddd;
+    color: $black-color;
+}
+
+/* Add a color to the active/current link */
+.navbar-top a.active {
+    background-color: #4CAF50;
+    color: $white-color;
+}
