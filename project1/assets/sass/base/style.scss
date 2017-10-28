@@ -1,0 +1,13 @@
+/* Add a black background color to the top navigation */
+.navbar-top {
+    overflow: hidden;
+}
+
+/* Style the links inside the navigation bar */
+.navbar-top a {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
