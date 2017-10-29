@@ -2,3 +2,4 @@
 node_modules
 project1/assets/css
 project1/assets/.sass-cache
+package-lock.json
