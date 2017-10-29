@@ -1,5 +1,5 @@
 <footer>
-  &copy; Get Shit Done App
+  <p>&copy; Get Shit Done App</p>
 </footer>
 
 </body>
