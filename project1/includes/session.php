@@ -1,3 +1,7 @@
 <?php
- +  session_start();
- +?>
+   session_start();
+   
+   function setCurrentUser($username) {
+     $_SESSION['username'] = $username;
+ }
+ ?>

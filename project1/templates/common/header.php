@@ -22,5 +22,14 @@
       <a href="#news">News</a>
       <a href="#contact">Contact</a>
       <a href="#about">About</a>
+      <div class="nav-right">
+          <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
+              <a href="user.php"><?=$_SESSION['username']?></a>
+              <a href="action_logout.php">Logout</a>
+          <?php } else { ?>
+              <a href="login.php">Login</a>
+              <a href="register.php">Register</a>
+          <?php } ?>
+      </div>
+
     </div>
-    

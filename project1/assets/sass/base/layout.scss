@@ -6,3 +6,21 @@
   padding: 0 20px;
   box-sizing: border-box;
 }
+
+.navbar-top {
+    overflow: hidden;
+}
+
+.navbar-top {
+    a {
+        float: left;
+        display: block;
+        text-align: center;
+        padding: 1.5em 1.5em;
+        text-decoration: none;
+    }
+
+    .nav-right {
+        float: right;
+    }
+}
