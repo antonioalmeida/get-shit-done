@@ -1,5 +1,10 @@
 <?php
   include_once('includes/init.php');
   session_destroy();
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
+  if (isset($_SERVER['HTTP_REFERER'])){
+    $referer = $_SERVER['HTTP_REFERER'];
+  } else{
+    $referer = 'index.php';
+  }
+  header('Location: ' . $referer);
 ?>
