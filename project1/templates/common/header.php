@@ -1,35 +1,41 @@
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Getting Shit Done App</title>
-  <meta name="description" content="The HTML5 Herald">
-  <meta name="author" content="SitePoint">
+    <title>Getting Shit Done App</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
 
-  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" href="/assets/css/main.css">
+    <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/assets/css/main.css">
 
-  <!--[if lt IE 9]>
+    <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
-  <![endif]-->
+    <![endif]-->
 </head>
 
 <body>
 
-    <div class="navbar-top" >
-      <a href="/index.php">Home</a>
-      <a href="#news">News</a>
-      <a href="#contact">Contact</a>
-      <a href="#about">About</a>
-      <div class="nav-right">
-          <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
-              <a href="myprofile.php"><?=$_SESSION['username']?></a>
-              <a href="action_logout.php">Logout</a>
-          <?php } else { ?>
-              <a href="login.php">Login</a>
-              <a href="register.php">Register</a>
-          <?php } ?>
-      </div>
 
-    </div>
+    <div class="navbar" >
+        <img width="7%" class="nav-logo img-responsive" src="/assets/img/sample-logo.png" />
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/lists">Lists</a></li>
+            <li><a href="/projects">Projects</a></li>
+            <li><a href="/cenas">Cenas</a></li>
+            <ul>
+
+                <div class="nav-right">
+                    <ul>
+                        <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
+                            <li><a href="myprofile.php"><?=$_SESSION['username']?></a></li>
+                            <li><a href="action_logout.php">Logout</a></li>
+                        <?php } else { ?>
+                            <li><a href="login.php">Login</a></li>
+                            <li><a href="register.php">Register</a></li>
+                        <?php } ?>
+                    </div>
+
+                </div>
