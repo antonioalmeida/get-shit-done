@@ -8,7 +8,7 @@
     <meta name="author" content="SitePoint">
 
     <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/main.css">
 
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
@@ -19,7 +19,7 @@
 
 
     <div class="navbar" >
-        <img width="7%" class="nav-logo img-responsive" src="assets/img/sample-logo.png" />
+        <img width="7%" class="nav-logo img-responsive" src="/assets/img/sample-logo.png" />
         <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/lists">Lists</a></li>
