@@ -11,10 +11,10 @@ include_once('templates/common/header.php');
             <form action="action_register.php" method="post">
                 <div>
                     <div class="form-element">
-                        <input type="text" name="firstName" required>
+                        <input type="text" name="username" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
-                        <label>Name</label>
+                        <label>Username</label>
                     </div>
 
                     <div class="form-element">

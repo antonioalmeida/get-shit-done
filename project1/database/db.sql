@@ -26,6 +26,7 @@ create table Category(
 create table User(
     username text,
     password text not null,
+    email text not null,
     picture text,
     bio text,
     joinDate date not null,
@@ -71,3 +72,7 @@ create table ItemPrecedence(
     preceeding integer,
     constraint ItemPrecedencePrimaryKey primary key (preceeded, preceeding)
 );
+
+insert INTO User (userName, password, email) VALUES("antonioalmeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
+insert INTO User (userName, password, email) VALUES("diogotorres97", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
+insert INTO User (userName, password, email) VALUES("cyrilico", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");

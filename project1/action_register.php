@@ -3,10 +3,8 @@ include_once('includes/init.php');
 include_once('database/user.php');
 
 
-$firstName = $_POST["firstName"];
-$lastName = $_POST["lastName"];
-$email = $_POST["email"];
 $username = $_POST["username"];
+$email = $_POST["email"];
 $password = $_POST["password"];
 $confirmPassword = $_POST["confirmPassword"];
 
@@ -18,9 +16,7 @@ if (usernameExists($username)) {
 } else if(emailInUse($email)){
   echo "Email address already in use!";
 } else{
-  newUser($username, $password, $firstName, $lastName, $email);
-  session_start();
-  setCurrentUser($username);
+  newUser($username, $password, $email);
 }
 
 if (isset($_SERVER['HTTP_REFERER'])){

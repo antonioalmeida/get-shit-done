@@ -9,6 +9,5 @@ include_once('database/user.php');
   } else{
     $referer = 'index.php';
   }
-
   header('Location: ' . $referer);
 ?>

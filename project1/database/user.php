@@ -21,10 +21,10 @@ function emailInUse($email){
     return ($stmt->fetch() !== false);
 }
 
-function newUser($username, $password, $firstName, $lastName, $email){
+function newUser($username, $password, $email){
     global $dbh;
-    $stmt = $dbh->prepare('INSERT INTO User (userName, password, firstName, lastName, email) values(?, ?, ?, ?, ?)');
-    $stmt->execute(array($username, sha1($password), $firstName, $lastName, $email));
+    $stmt = $dbh->prepare('INSERT INTO User (userName, password, email) values(?, ?, ?)');
+    $stmt->execute(array($username, sha1($password), $email));
 }
 
 
