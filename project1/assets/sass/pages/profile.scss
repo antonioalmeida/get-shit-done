@@ -1,0 +1,21 @@
+.flex-container {
+	display: flex;
+	flex-direction: row;
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+   	flex-direction: row;
+}
+
+.flex-container > * {
+	padding: 10px;
+}
+
+#profile-pic {
+	-webkit-flex: 1 0 0;
+   flex: 1 0 0;
+}
+
+#profile-info {
+	-webkit-flex: 3 0 0;
+   	flex: 3 0 0;
+}
