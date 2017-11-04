@@ -27,5 +27,17 @@ function newUser($username, $password, $email){
     $stmt->execute(array($username, sha1($password), $email));
 }
 
+function getUser($username) {
+  global $dbh;
+  $stmt = $dbh->prepare('SELECT * FROM User WHERE userName = ?');
+  $stmt->execute(array($username));
+  return $stmt->fetch();
+}
+
+function updateUser($username, $picture,$name, $bio) {
+  global $dbh;
+  $stmt = $dbh->prepare('UPDATE User SET picture = ?, name = ?, bio = ? WHERE username = ?');
+  $stmt->execute(array($picture, $name, $bio, $username));
+}
 
 ?>

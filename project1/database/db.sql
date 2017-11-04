@@ -28,6 +28,7 @@ create table User(
     password text not null,
     email text not null,
     picture text,
+    name text,
     bio text,
     joinDate date not null,
     constraint UserPrimaryKey primary key (username)
