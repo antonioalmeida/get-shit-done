@@ -30,8 +30,9 @@ create table User(
     picture text,
     name text,
     bio text,
-    joinDate date not null,
-    constraint UserPrimaryKey primary key (username)
+    joinDate date,
+    constraint UserPrimaryKey primary key (username),
+    constraint UserCheckBio check (length(bio) < 140)
 );
 
 create table List(
@@ -73,6 +74,45 @@ create table ItemPrecedence(
     preceeding integer,
     constraint ItemPrecedencePrimaryKey primary key (preceeded, preceeding)
 );
+
+--guarantees that list creator always stays as admin
+drop trigger if exists removeadmin;
+create trigger removeadmin
+before delete on listadmin
+for each row
+when old.user == (select creator from list where id == old.list)
+begin
+select raise(fail, 'cannot remove admin status to list creator!');
+end;
+
+--checks item precedence when trying to mark it as complete
+drop trigger if exists itemprecedence;
+create trigger itemprecedence
+before update of complete on item
+for each row
+when exists (select * from itemprecedence, item where preceeded = old.id and preceeding == item.id and item.complete == 0)
+begin
+select raise(fail, 'at least one preceeding item to the current one must be completed before this one is!');
+end;
+
+--check item's due date is after the respective list's creation date
+drop trigger if exists itemduedateinsert;
+create trigger itemduedateinsert
+before insert on item
+for each row
+when new.duedate < (select creationdate from list where new.list == list.id)
+begin
+select raise(fail, 'item due date must be after list creation date!');
+end;
+
+drop trigger if exists itemduedateupdate;
+create trigger itemduedateupdate
+before update of duedate on item
+for each row
+when new.duedate < (select creationdate from list where old.list == list.id)
+begin
+select raise(fail, 'item due date must be after list creation date!');
+end;
 
 insert INTO User (userName, password, email) VALUES("antonioalmeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
 insert INTO User (userName, password, email) VALUES("diogotorres97", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
