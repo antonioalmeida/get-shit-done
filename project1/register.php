@@ -25,7 +25,7 @@ include_once('templates/common/header.php');
                     </div>
 
                     <div class="form-element">
-                        <input type="password" name="password" pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[-_?!@#+*$%/()=])[\w\-?!@#+*$%/()=]{8,32}$" title="8 to 32 characters. Must contain a letter, one of the following -_?!@#+*$%/()= and a number" required>
+                        <input type="password" name="password" pattern="^(?=.*\d)(?=.*[a-zA-Z])(?=.*[&quot;-_?!@#+*$%&/()=])[&quot;\w\-?!@#+*$%&/()=]{8,32}$" title="8 to 32 characters. Must contain a letter, one of the following -_?!@#+*$%/()= and a number" required>
                         <span class="highlight"></span>
                         <span class="bar"></span>
                         <label>Password</label>
