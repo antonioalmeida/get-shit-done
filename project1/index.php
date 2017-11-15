@@ -5,7 +5,6 @@
 
 <!-- Typography -->
 <div class="container">
-  <h6>Typography</h6>
   <div>
     <div>
         <h1>Heading <code>&lt;h1&gt;</code> 50rem</span></h1>

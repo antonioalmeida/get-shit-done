@@ -13,7 +13,6 @@
     return ($stmt->fetch() !== false);
 }
 
-
 function emailInUse($email){
     global $dbh;
     $stmt = $dbh->prepare('SELECT * FROM User where email = ?');
