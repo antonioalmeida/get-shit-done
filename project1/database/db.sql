@@ -119,5 +119,7 @@ insert INTO User (userName, password, email) VALUES("diogotorres97", "894ff497ca
 insert INTO User (userName, password, email) VALUES("cyrilico", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");
 
 insert INTO Color VALUES(0xff00000, "Red");
+insert INTO Color VALUES(0xffff00, "Yellow");
 insert INTO Category VALUES(0, "My First Category", 0xff00000);
+insert INTO Category VALUES(1, "My Second Category", 0xffff00);
 insert INTO List VALUES(0, "My First List", "now", 0, "antonioalmeida");

@@ -4,6 +4,7 @@
 	display: -webkit-flex;
 	-webkit-flex-direction: row;
    	flex-direction: row;
+   	flex-wrap: wrap;
 }
 
 .flex-container > * {

@@ -33,7 +33,6 @@ $lists = getUserLists($user['username']);
       <p> <?=$list['title']?></p>
       <p> <?=$list['creationDate']?></p>
       <p> <?=$list['category']?></p>
-      <p> <?=$list['Color']?></p>
   </div>
 
   <?php } ?>      
@@ -55,14 +54,6 @@ $lists = getUserLists($user['username']);
                 <span class="bar"></span>
                 <label>Category</label>
             </div>
-
-            <div class="form-element">
-                <input type="text" name="color" required>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Color</label>
-            </div>
-
         </div>
         <div>
             <input class="button-primary" type="submit" value="Add">
