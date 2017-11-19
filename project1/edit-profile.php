@@ -12,6 +12,7 @@ try {
 }
 
 include_once('templates/common/header.php');
+include_once('templates/common/navbar.php');
 ?>
 
 <div class="container">

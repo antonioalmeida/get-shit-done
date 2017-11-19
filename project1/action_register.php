@@ -2,7 +2,6 @@
 include_once('includes/init.php');
 include_once('database/user.php');
 
-
 $username = $_POST["username"];
 $email = $_POST["email"];
 $password = $_POST["password"];

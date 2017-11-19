@@ -2,18 +2,16 @@
 include_once('includes/init.php');
 include_once('database/user.php');
 include_once('database/lists.php');
-/*
-$username = $_POST["username"];
-$title = $_POST["title"];
+
+$username = antonioalmeida;
+$title = (string) $_GET["title"];
 $creationDate = "now";
-$category = $_POST["category"];
-$color = $_POST["color"];
+$category = $_GET["category"];
+$color = $_GET["color"];
 
-if($confirmPassword != $password)
-  echo 'Password and confirmPassword not match!';
+//addList(antonioalmeida, "Viver em casa dos pais", "now", 0, ff0000);
 
-*/
-addList(antonioalmeida, "Viver em casa dos pais", "now", 0, 0xff0000);
+addList(antonioalmeida, $title, $creationDate, 0, ff0000);
 
 if (isset($_SERVER['HTTP_REFERER'])){
   $referer = $_SERVER['HTTP_REFERER'];
@@ -22,4 +20,5 @@ if (isset($_SERVER['HTTP_REFERER'])){
 }
 
 header('Location: ' . $referer);
+
 ?>
