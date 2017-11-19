@@ -1,0 +1,11 @@
+.flex-container {
+	display: flex;
+	flex-direction: row;
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+   	flex-direction: row;
+}
+
+.flex-container > * {
+	padding: 10px;
+}
