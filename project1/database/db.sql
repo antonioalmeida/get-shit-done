@@ -19,7 +19,9 @@ create table Color(
 create table Category(
     id integer,
     name text not null,
+    color integer,
     constraint CategoryPrimaryKey primary key (id),
+    constraint CategoryForeignKeyColor foreign key (color) references Color(id),
     constraint CategoryUnique unique (name)
 );
 
@@ -40,11 +42,9 @@ create table List(
     title text not null,
     creationDate date not null,
     category integer not null,
-    Color integer not null,
     creator text not null,
     constraint ListPrimaryKey primary key (id),
     constraint ListForeignKeyUser foreign key (creator) references User (username),
-    constraint ListForeignKeyColor foreign key (Color) references Color (id),
     constraint ListForeignKeyCategory foreign key (category) references Category (id)
 );
 
@@ -52,13 +52,13 @@ create table Item(
     id integer,
     description text not null,
     dueDate date not null,
-    complete integer not null default 0,
-    Color integer not null,
+    complete integer default 0,
+    color integer not null,
     assignedUser text, --This one CAN be null
     list integer not null,
     constraint ItemPrimaryKey primary key (id),
     constraint ItemCheck check (complete == 0 or complete == 1),
-    constraint ItemForeignKeyColor foreign key (Color) references Color (id),
+    constraint ItemForeignKeyColor foreign key (color) references Color (id),
     constraint ItemForeignKeyUser foreign key (assignedUser) references User (username),
     constraint ItemForeignKeyList foreign key (list) references List (id)
 );
@@ -118,6 +118,6 @@ insert INTO User (userName, password, email) VALUES("antonioalmeida", "9613c9843
 insert INTO User (userName, password, email) VALUES("diogotorres97", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
 insert INTO User (userName, password, email) VALUES("cyrilico", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");
 
-insert INTO Category VALUES(0, "My First Category");
 insert INTO Color VALUES(0xff00000, "Red");
-insert INTO List VALUES(0, "My First List", "now", 0, 0xff00000, "antonioalmeida");
+insert INTO Category VALUES(0, "My First Category", 0xff00000);
+insert INTO List VALUES(0, "My First List", "now", 0, "antonioalmeida");
