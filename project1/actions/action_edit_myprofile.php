@@ -1,6 +1,6 @@
 <?php
-include_once('includes/init.php');
-include_once('database/user.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/init.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/database/user.php');
 
 try {
   updateUser($_POST['username'], $_POST['picture'], $_POST['name'], $_POST['bio']);
@@ -11,7 +11,7 @@ try {
 if (isset($_SERVER['HTTP_REFERER'])){
   $referer = $_SERVER['HTTP_REFERER'];
 } else{
-  $referer = 'myprofile.php';
+  $referer = '../myprofile.php';
 }
 header('Location: ' . $referer);
 ?>

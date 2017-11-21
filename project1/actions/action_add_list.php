@@ -1,7 +1,7 @@
 <?php
-include_once('includes/init.php');
-include_once('database/user.php');
-include_once('database/lists.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/init.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/database/user.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/database/lists.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
 $username = $_SESSION['username'];

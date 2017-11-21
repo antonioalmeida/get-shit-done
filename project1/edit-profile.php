@@ -18,7 +18,7 @@ include_once('templates/common/navbar.php');
 <div class="container">
     <h4>Edit Profile</h4>
     <div class="form-group">
-        <form action="action_edit_myprofile.php" method="post">
+        <form action="actions/action_edit_myprofile.php" method="post">
             <div>
                 <div class="form-element">
                     <input type="text" name="username" value="<?=$user['username']?>" required>

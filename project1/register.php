@@ -9,7 +9,7 @@ include_once('templates/common/navbar.php');
     <div>
         <h4>Register</h4>
         <div class="form-group">
-            <form action="action_register.php" method="post">
+            <form action="actions/action_register.php" method="post">
                 <div>
                     <div class="form-element">
                         <input type="text" name="username" pattern="^[a-zA-Z][\w-]{1,18}(?![-_])\w$" title="3 to 20 characters. Must start with a letter and end in an alphanumeric character. Can contain - or _ in between" required>
