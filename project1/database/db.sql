@@ -65,8 +65,10 @@ create table Item(
 
 create table ListAdmin(
     list integer,
-    user integer,
-    constraint ListAdminPrimaryKey primary key (list, user)
+    user text,
+    constraint ListAdminPrimaryKey primary key (list, user),
+    constraint ListAdminForeginKeyList foreign key (list) references List (id),
+    constraint ListAdminForeignKeyUser foreign key (user) references User (username)
 );
 
 create table ItemPrecedence(
@@ -114,6 +116,14 @@ begin
 select raise(fail, 'item due date must be after list creation date!');
 end;
 
+--sets list creator automatically as list admin
+drop trigger if exists listcreatoradmin;
+create trigger listcreatoradmin
+after insert on list
+for each row
+begin
+insert into ListAdmin values (New.id, New.creator);
+end;
 
 insert INTO User (userName, password, email) VALUES("antonioalmeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
 insert INTO User (userName, password, email) VALUES("diogotorres97", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
