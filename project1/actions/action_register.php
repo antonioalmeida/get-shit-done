@@ -1,6 +1,6 @@
 <?php
-include_once('includes/init.php');
-include_once('database/user.php');
+include_once(dirname(__DIR__) . '/includes/init.php');
+include_once(dirname(__DIR__) . '/database/user.php');
 
 $username = $_POST["username"];
 $email = $_POST["email"];
@@ -21,7 +21,7 @@ if (usernameExists($username)) {
 if (isset($_SERVER['HTTP_REFERER'])){
   $referer = $_SERVER['HTTP_REFERER'];
 } else{
-  $referer = 'index.php';
+  $referer = '../index.php';
 }
 
 header('Location: ' . $referer);

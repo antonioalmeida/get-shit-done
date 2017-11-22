@@ -11,12 +11,12 @@
         <h4>Login</h4>
         <div>
           <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
-            <form action="action_logout.php" method="post">
+            <form action="/actions/action_logout.php" method="post">
               <a href="register.php"><?=$_SESSION['username']?></a>
               <input type="submit" value="Logout">
             </form>
           <?php } else { ?>
-            <form action="action_login.php" method="post">
+            <form action="actions/action_login.php" method="post">
               <input type="text" placeholder="username" name="username">
               <input type="password" placeholder="password" name="password">
               <div>

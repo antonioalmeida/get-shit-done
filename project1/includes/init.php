@@ -1,4 +1,4 @@
 <?php
-  include_once('includes/session.php');
-  include_once('database/connection.php');
+  include_once(dirname(__DIR__) . '/includes/session.php');
+  include_once(dirname(__DIR__) . '/database/connection.php');
 ?>
