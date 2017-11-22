@@ -5,7 +5,7 @@
         <img width="7%" class="nav-logo img-responsive" src="assets/img/sample-logo.png" />
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/mylists.php">Lists</a></li>
+            <li><a href="mylists.php">Lists</a></li>
             <li><a href="/projects">Projects</a></li>
             <li><a href="/cenas">Cenas</a></li>
             <ul>

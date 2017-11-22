@@ -30,12 +30,13 @@ $lists = getUserLists($user['username']);
 <div class="flex-container">
   <?php foreach ($lists as $list) { ?>
   <div class="list">
-      <p> <?=$list['title']?></p>
+
+      <p> <a href="list.php?id=<?=$list['id']?>"><?=$list['title']?></a></p>
       <p> <?=$list['creationDate']?></p>
       <p> <?=$list['category']?></p>
   </div>
 
-  <?php } ?>      
+  <?php } ?>
 </div>
 
 <div>

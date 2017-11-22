@@ -9,7 +9,7 @@ function addList(event) {
 	let category = document.querySelector('input[name=category]').value;
 
 	let request = new XMLHttpRequest();
-	let DOMString = ($_SERVER['DOCUMENT_ROOT'] .'/actions/action_add_list.php?') + encodeForAjax({'title': listTitle, 'category': category});
+	let DOMString = './actions/action_add_list.php?' + encodeForAjax({'title': listTitle, 'category': category});
 	request.open('get', DOMString, true);
 	request.addEventListener('load', listAdded);
 	request.send();

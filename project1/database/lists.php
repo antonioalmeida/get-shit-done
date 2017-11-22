@@ -17,13 +17,7 @@ function isAdmin($username, $listID) {
 function addList($username, $title, $creationDate, $category) {
     global $dbh;
     $stmt = $dbh->prepare('INSERT INTO List (title, creationDate, category, creator) values(?, ?, ?, ?)');
-
-    try {
-        $stmt->execute(array($title, $creationDate, $category, $username)); 
-    } catch (Exception $e) {
-        print_r($e->errorInfo);
-        return;
-    }
+    $stmt->execute(array($title, $creationDate, $category, $username));
 
     // return added list as JSON
     $newList = getLastList($username);
@@ -38,8 +32,23 @@ function addItem($id_list, $username, $description, $dueDate, $color) {
 
 function getLastList($username) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT List.id, List.title, List.creationDate, List.category FROM List, User WHERE List.creator == ? ORDER BY List.id DESC LIMIT 1'); 
+    $stmt = $dbh->prepare('SELECT List.id, List.title, List.creationDate, List.category FROM List, User WHERE List.creator == ? ORDER BY List.id DESC LIMIT 1');
     $stmt->execute(array($username));
     return $stmt->fetch();
 }
+
+function getUserList($username, $id) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * FROM List WHERE creator = ? AND id =?');
+    $stmt->execute(array($username,$id));
+    return $stmt->fetch();
+}
+
+function getAdminList($id) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * FROM List WHERE creator = ? AND id =?');
+    $stmt->execute(array($username,$id));
+    return $stmt->fetch();
+}
+
 ?>
