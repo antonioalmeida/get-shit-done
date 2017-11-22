@@ -31,7 +31,7 @@ $lists = getUserLists($user['username']);
   <?php foreach ($lists as $list) { ?>
   <div class="list">
 
-      <p> <a href="list.php?id=<?=$list['id']?>"><?=$list['title']?></a></p>
+      <h6> <a href="list.php?id=<?=$list['id']?>"><?=$list['title']?></a></h6>
       <p> <?=$list['creationDate']?></p>
       <p> <?=$list['category']?></p>
   </div>
@@ -39,6 +39,7 @@ $lists = getUserLists($user['username']);
   <?php } ?>
 </div>
 
+<h4>Add a List</h4>
 <div>
     <form id="addListForm">
         <div>

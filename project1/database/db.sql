@@ -114,7 +114,7 @@ for each row
 when new.duedate < (select creationdate from list where old.list == list.id)
 begin
 select raise(fail, 'item due date must be after list creation date!');
-end;
+end ;
 
 --sets list creator automatically as list admin
 drop trigger if exists listcreatoradmin;
@@ -125,12 +125,14 @@ begin
 insert into ListAdmin values (New.id, New.creator);
 end;
 
-insert INTO User (userName, password, email) VALUES("antonioalmeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
-insert INTO User (userName, password, email) VALUES("diogotorres97", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
-insert INTO User (userName, password, email) VALUES("cyrilico", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");
+insert INTO User (userName, name, password, email) VALUES("antonioalmeida", "António Almeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
+insert INTO User (userName, name, password, email) VALUES("diogotorres97", "Diogo Torres", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
+insert INTO User (userName, name, password, email) VALUES("cyrilico", "João Damas", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");
 
 insert INTO Color VALUES(0xff00000, "Red");
 insert INTO Color VALUES(0xffff00, "Yellow");
 insert INTO Category VALUES(0, "My First Category", 0xff00000);
 insert INTO Category VALUES(1, "My Second Category", 0xffff00);
-insert INTO List VALUES(0, "My First List", "now", 0, "antonioalmeida");
+insert INTO List VALUES(0, "My First List", "1-11-2017", 0, "antonioalmeida");
+insert INTO List VALUES(1, "Second List", "4-11-2017", 0, "antonioalmeida");
+

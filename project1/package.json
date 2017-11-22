@@ -12,5 +12,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "grunt-phplint": "^0.1.0"
+  }
 }

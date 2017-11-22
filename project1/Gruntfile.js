@@ -22,10 +22,16 @@ module.exports = function(grunt) {
                     nospawn: true
                 }
             }
+        },
+
+        phplint: {
+            base: ["*.php"],
+            actions: ["actions/*.php"]
         }
     });
 
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.registerTask('default', ['sass', 'watch']);
+    grunt.loadNpmTasks("grunt-phplint");
+    grunt.registerTask('default', ['phplint', 'sass', 'watch']);
 };

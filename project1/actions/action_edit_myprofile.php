@@ -8,10 +8,6 @@ try {
   die($e->getMessage());
 }
 
-if (isset($_SERVER['HTTP_REFERER'])){
-  $referer = $_SERVER['HTTP_REFERER'];
-} else{
-  $referer = '../myprofile.php';
-}
+$referer = '../myprofile.php';
 header('Location: ' . $referer);
 ?>

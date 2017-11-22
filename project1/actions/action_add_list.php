@@ -7,7 +7,7 @@ $isLoggedIn = (isset($_SESSION['username']));
 $username = $_SESSION['username'];
 
 $title = (string) $_GET["title"];
-$creationDate = "now";
+$creationDate = date("d-m-Y");
 $category = $_GET["category"];
 
 addList($username, $title, $creationDate, $category);

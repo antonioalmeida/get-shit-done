@@ -25,7 +25,7 @@ function listAdded() {
 
 	listDiv.classList.add('list');
 	listDiv.innerHTML =
-		'<p>' + newList.title + '</p>' +
+		'<h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
 		'<p>' + newList.creationDate + '</p>' +
 		'<p>' + newList.category + '</p>';
 

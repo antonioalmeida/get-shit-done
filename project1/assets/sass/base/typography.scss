@@ -29,6 +29,12 @@ p {
     margin-top: 0; }
 
 a {
-    color: #secondary-color; }
+    text-decoration: none;
+}
+
+a {
+    color: $primary-color;
+}
 a:hover {
-    color: #third-color; }
+    color: $link-color;
+}
