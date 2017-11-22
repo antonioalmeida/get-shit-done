@@ -17,7 +17,7 @@ function isAdmin($username, $listID) {
 function addList($username, $title, $creationDate, $category) {
     global $dbh;
     $stmt = $dbh->prepare('INSERT INTO List (title, creationDate, category, creator) values(?, ?, ?, ?)');
-    
+
     try {
         $stmt->execute(array($title, $creationDate, $category, $username)); 
     } catch (Exception $e) {
@@ -54,6 +54,13 @@ function getAdminList($id) {
     $stmt = $dbh->prepare('SELECT * FROM List WHERE creator = ? AND id =?');
     $stmt->execute(array($username,$id));
     return $stmt->fetch();
+}
+
+function getListItems($listId) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * FROM Item WHERE list = ?');
+    $stmt->execute(array($listId));
+    return $stmt->fetchAll();
 }
 
 ?>

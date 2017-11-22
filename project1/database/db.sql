@@ -133,6 +133,7 @@ insert INTO Color VALUES(0xff00000, "Red");
 insert INTO Color VALUES(0xffff00, "Yellow");
 insert INTO Category VALUES(0, "My First Category", 0xff00000);
 insert INTO Category VALUES(1, "My Second Category", 0xffff00);
-insert INTO List VALUES(0, "My First List", "1-11-2017", 0, "antonioalmeida");
-insert INTO List VALUES(1, "Second List", "4-11-2017", 0, "antonioalmeida");
+insert INTO List VALUES(0, "My First List", "2017-11-1", 0, "antonioalmeida");
+insert INTO List VALUES(1, "Second List", "2017-11-11", 0, "antonioalmeida");
+insert INTO Item VALUES(0, "Fazer LTW", "2017-12-10", 0, 0xff0000, null, 1);
 
