@@ -17,7 +17,13 @@ function isAdmin($username, $listID) {
 function addList($username, $title, $creationDate, $category) {
     global $dbh;
     $stmt = $dbh->prepare('INSERT INTO List (title, creationDate, category, creator) values(?, ?, ?, ?)');
-    $stmt->execute(array($title, $creationDate, $category, $username));  
+
+    try {
+        $stmt->execute(array($title, $creationDate, $category, $username)); 
+    } catch (Exception $e) {
+        print_r($e->errorInfo);
+        return;
+    }
 
     // return added list as JSON
     $newList = getLastList($username);
