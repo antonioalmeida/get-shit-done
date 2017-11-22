@@ -1,12 +1,7 @@
 <?php
-  include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/init.php');
-  
-  session_destroy();
-  if (isset($_SERVER['HTTP_REFERER'])){
-    $referer = $_SERVER['HTTP_REFERER'];
-  } else{
-    $referer = '../index.php';
-  }
+  include_once(dirname(__DIR__) . '/includes/init.php');
 
-  header('Location: ' . $referer);
+  session_destroy();
+
+  header('Location: ' . '../index.php');
 ?>

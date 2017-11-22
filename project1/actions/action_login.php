@@ -1,6 +1,7 @@
 <?php
-include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/init.php');
-include_once($_SERVER['DOCUMENT_ROOT'] . '/database/user.php');
+include_once(dirname(__DIR__) . '/includes/init.php');
+include_once(dirname(__DIR__) . '/database/user.php');
+
   if (isLoginCorrect($_POST['username'], $_POST['password'])) {
     setCurrentUser($_POST['username']);
   }
