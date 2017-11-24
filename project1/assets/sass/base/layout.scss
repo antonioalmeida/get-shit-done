@@ -1,8 +1,12 @@
 body {
     background-color: $background-color;
+    display: flex;
+    flex-direction: column;
 }
 
-html, body {height:100%;}
+html, body {
+    height: 100%;
+}
 
 .container {
     position: relative;
@@ -13,6 +17,17 @@ html, body {height:100%;}
     box-sizing: border-box;
 }
 
+.container-large {
+    position: relative;
+    width: 100%;
+    max-width: $container-large-width;
+    margin: 0 auto;
+}
+
+.content {
+  flex: 1 0 auto;
+}
+
 img-responsive {
     max-width: 100%;
     height: auto;
@@ -21,30 +36,30 @@ img-responsive {
 
 .navbar {
     overflow: hidden;
-    padding: 10px 10px 10px;
-    background-color: $dark-grey;
+    padding: 0.2em 0.2em 0.2em 0;
+    background-color: $primary-color;
 
     ul {
         list-style-type: none;
 
         li {
             display: inline;
+
             a {
                 float: left;
                 display: block;
                 text-align: center;
                 text-transform: uppercase;
-                font-size: 0.8em;
+                font-size: 1em;
                 font-weight: 600;
-                letter-spacing: 0.05rem;
                 line-height: 3.5rem;
                 padding: 0 1.2em;
-                color: $primary-color;
+                color: $background-color;
                 text-decoration: none;
             }
 
             a:hover {
-                color: darken($primary-color, 20);
+                color: $white-color;
             }
 
         }
@@ -56,9 +71,11 @@ img-responsive {
 }
 
 .footer {
-    margin: 40 0 30 0;
-    padding: 40 0 30 0;
-    text-align: center;
-    background-color: $dark-grey;
-    color: $white-color;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
+  text-align: center;
+  background-color: $primary-color;
+  color: $white-color;
 }

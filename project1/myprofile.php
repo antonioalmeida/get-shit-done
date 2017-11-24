@@ -25,6 +25,7 @@ $user = getUser($username);
        </h4>
        <p><?=$user['bio'] ?></p>
        <a class="button button-primary" href="./edit-profile.php">Edit</a>
+       <a class="button" href="./actions/action_logout.php">Logout</a>
 
 
     <?php } else { ?>
