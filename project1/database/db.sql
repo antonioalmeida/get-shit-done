@@ -113,7 +113,7 @@ before update of duedate on item
 for each row
 when new.duedate < (select creationdate from list where old.list == list.id)
 begin
-select raise(fail, 'item due date must be after list creation date!');
+select raise(fail, 'item due dueDate must be after list creation date!');
 end ;
 
 --sets list creator automatically as list admin
@@ -135,5 +135,5 @@ insert INTO Category VALUES(0, "My First Category", 0xff00000);
 insert INTO Category VALUES(1, "My Second Category", 0xffff00);
 insert INTO List VALUES(0, "My First List", "2017-11-1", 0, "antonioalmeida");
 insert INTO List VALUES(1, "Second List", "2017-11-11", 0, "antonioalmeida");
-insert INTO Item VALUES(0, "Fazer LTW", "2017-12-10", 0, 0xff0000, null, 1);
-
+insert into Item (description, dueDate, color, list) values ('Finish LTW', '2017-12-12', 0xffff00, 0);
+insert into Item (description, dueDate, color, list) values ('Finish LAIG', '2017-12-8', 0xffff00, 0);

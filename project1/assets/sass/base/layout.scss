@@ -2,6 +2,8 @@ body {
     background-color: $background-color;
 }
 
+html, body {height:100%;}
+
 .container {
     position: relative;
     width: 100%;
@@ -53,10 +55,10 @@ img-responsive {
     }
 }
 
-footer {
+.footer {
+    margin: 40 0 30 0;
+    padding: 40 0 30 0;
     text-align: center;
     background-color: $dark-grey;
     color: $white-color;
-    margin: 40 0 30 0;
-    padding: 40 0 30 0;
 }
