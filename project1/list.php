@@ -30,10 +30,11 @@ $items = getListItems($listID);
     <?php } ?>
 
     <?php foreach($items as $item) { ?>
-        <p><?=$item['description']?></p>
-        <p><?=$item['dueDate']?></p>
-        <p>Complete: <?=$item['complete']?></p>
-        <br><br>
+    <div class="item">
+    <input type="checkbox" name="complete">
+        <span><?=$item['description']?></span>
+        <span><?=$item['dueDate']?></span>
+    </div>
     <?php } ?>
 
 </div>

@@ -1,20 +1,25 @@
 * { box-sizing:border-box; }
 
-/* form starting stylings ------------------------------- */
+input {
+  background-color: $background-color;
+}
+
 .form-element {
   position:relative;
   margin-bottom:45px;
 }
 
-input {
-  padding: 10px 10px 10px 5px;
+input[type=text], input[type=password], input[type=email] {
+  padding: 10px 10px 8px 5px;
   display:block;
   width: 300px;
   border: none;
   border-bottom: 1px solid $light-grey;
 }
 
-input:focus {
+input[type=text]:focus,
+input[type=password]:focus,
+input[type=email]:focus {
     outline:none;
     border-bottom: 0.5px solid $light-grey;
 }
@@ -33,7 +38,9 @@ label {
 }
 
 /* active state */
-input:focus ~ label, input:valid ~ label {
+input[type=text]:focus ~ label, input[type=text]:valid ~ label,
+input[type=password]:focus ~ label, input[type=password]:valid ~ label,
+input[type=email]:focus ~ label, input[type=email]:valid ~ label {
   top: -20px;
   font-size: 0.8em;
   color: $primary-color;
@@ -64,6 +71,8 @@ input:focus ~ label, input:valid ~ label {
 }
 
 /* active state */
-input:focus ~ .bar:before, input:focus ~ .bar:after {
+input[type=text]:focus ~ .bar:before, input[type=text]:focus ~ .bar:after,
+input[type=password]:focus ~ .bar:before, input[type=password]:focus ~ .bar:after,
+input[type=email]:focus ~ .bar:before, input[type=email]:focus ~ .bar:after {
   width: 50%;
 }

@@ -1,34 +1,41 @@
 <?php
-    include_once('includes/init.php');
-    include_once('templates/common/header.php');
-    include_once('templates/common/navbar.php');
+include_once('includes/init.php');
+include_once('templates/common/header.php');
+include_once('templates/common/navbar.php');
 ?>
 
 <!-- Typography -->
 <div class="container">
-  <h6>Typography</h6>
-    <div>
-        <h4>Login</h4>
-        <div>
-          <?php if (isset($_SESSION['username']) && $_SESSION['username'] != '') { ?>
-            <form action="/actions/action_logout.php" method="post">
-              <a href="register.php"><?=$_SESSION['username']?></a>
-              <input type="submit" value="Logout">
-            </form>
-          <?php } else { ?>
-            <form action="actions/action_login.php" method="post">
-              <input type="text" placeholder="username" name="username">
-              <input type="password" placeholder="password" name="password">
-              <div>
-                <input type="submit" value="Login">
-                <a href="register.php">Register</a>
-              </div>
-            </form>
-          <?php } ?>
-        </div>     </div>
+  <h4>Login</h4>
+
+  <div class="form-group">
+    <form action="actions/action_login.php" method="post">
+      <div>
+        <div class="form-element">
+          <input type="text" name="username" pattern="^[a-zA-Z][\w-]{1,18}(?![-_])\w$" title="3 to 20 characters. Must start with a letter and end in an alphanumeric character. Can contain - or _ in between" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Username</label>
+        </div>
+
+        <div class="form-element">
+          <input type="password" name="password" required>
+          <span class="highlight"></span>
+          <span class="bar"></span>
+          <label>Password</label>
+        </div>
+      </div>
+      <div>
+        <input class="button-primary" type="submit" value="Login">
+      </div>
+    </form>
   </div>
+
+  <br><br>
+  <h6>Don't have an account? <a href="register.php">Create one now!</a></h6>
+</div>
 
 
 <?php
-    include_once('templates/common/footer.php');
+include_once('templates/common/footer.php');
 ?>
