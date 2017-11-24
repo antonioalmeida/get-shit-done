@@ -36,6 +36,10 @@ $items = getListItems($listID);
         <span><?=$item['dueDate']?></span>
     </div>
     <?php } ?>
+    
+    <div class="item">
+        <span><i class="fa fa-plus"></i> Add a Task</span>
+    </div>
 
 </div>
 
