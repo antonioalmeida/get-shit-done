@@ -1,8 +1,12 @@
 'use strict';
 
 let form = document.querySelector('form');
+let showAddItem = document.querySelector('#showAddItem');
+let cancelAddItem = document.querySelector('#cancelAddItem');
 
 form.addEventListener('submit', addItem);
+showAddItem.addEventListener('click', showAddItemHandler);
+cancelAddItem.addEventListener('click', cancelAddItemHandler);
 
 function addItem(event) {
 	let id_list = document.querySelector('input[name=id]').value;
@@ -18,7 +22,6 @@ function addItem(event) {
 }
 
 function itemAdded() {
-	console.log(this.responseText);
 	let newItem = JSON.parse(this.responseText);
 	let container = document.querySelector('.items');
 	let itemDiv = document.createElement('div');
@@ -30,6 +33,16 @@ function itemAdded() {
 	'<span>' + newItem.dueDate + '</span>';
 
 	container.append(itemDiv);
+}
+
+function showAddItemHandler(event) {
+	form.classList.remove('hidden');
+	showAddItem.classList.add('hidden');
+}
+
+function cancelAddItemHandler(event) {
+	form.classList.add('hidden');
+	showAddItem.classList.remove('hidden');
 }
 
 function encodeForAjax(data) {
