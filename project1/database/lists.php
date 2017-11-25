@@ -19,7 +19,7 @@ function addList($username, $title, $creationDate, $category) {
     $stmt = $dbh->prepare('INSERT INTO List (title, creationDate, category, creator) values(?, ?, ?, ?)');
 
     try {
-        $stmt->execute(array($title, $creationDate, $category, $username)); 
+        $stmt->execute(array($title, $creationDate, $category, $username));
     } catch (Exception $e) {
         print_r($e->errorInfo);
         return;
@@ -29,16 +29,32 @@ function addList($username, $title, $creationDate, $category) {
     echo json_encode($newList);
 }
 
-function addItem($id_list, $username, $description, $dueDate, $color) {
+function addItem($id_list, $description, $dueDate, $color) {
     global $dbh;
     $stmt = $dbh->prepare('INSERT INTO Item (description, dueDate, Color, list) values(?, ?, ?, ?)');
-    $stmt->execute(array($description, $dueDate, $color, $id_list));
+
+    try {
+        $stmt->execute(array($description, $dueDate, $color, $id_list));
+    } catch (Exception $e) {
+        print_r($e->errorInfo);
+        return;
+    }
+    // return added list as JSON
+    $newItem = getLastItem($id_list);
+    echo json_encode($newItem);
 }
 
 function getLastList($username) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT List.id, List.title, List.creationDate, List.category FROM List, User WHERE List.creator == ? ORDER BY List.id DESC LIMIT 1');
     $stmt->execute(array($username));
+    return $stmt->fetch();
+}
+
+function getLastItem($id_list) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * FROM Item WHERE list == ? ORDER BY Item.id DESC LIMIT 1');
+    $stmt->execute(array($id_list));
     return $stmt->fetch();
 }
 

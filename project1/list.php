@@ -18,6 +18,8 @@ $list = getUserList($user['username'], $listID);
 $items = getListItems($listID);
 ?>
 
+<script type="text/javascript" src="scripts/items.js" defer></script>
+
 <div class="container">
     <?php if ($isLoggedIn) { ?>
     <h4>
@@ -28,6 +30,8 @@ $items = getListItems($listID);
     <?php } else { ?>
     <!-- else here -->
     <?php } ?>
+    <div class="items" >
+
 
     <?php foreach($items as $item) { ?>
     <div class="item">
@@ -36,9 +40,25 @@ $items = getListItems($listID);
         <span><?=$item['dueDate']?></span>
     </div>
     <?php } ?>
-    
+    </div>
     <div class="item">
-        <span><i class="fa fa-plus"></i> Add a Task</span>
+      <span><i class="fa fa-plus"></i> Add a Task</span>
+      <div>
+          <form id="addItemForm">
+              <div>
+                <input type="hidden" name="id" value="<?=$list['id']?>">
+                  <div class="form-element">
+                      <input type="text" name="description" required>
+                      <span class="highlight"></span>
+                      <span class="bar"></span>
+                      <label>Description</label>
+                  </div>
+              </div>
+              <div>
+                  <input class="button-primary" type="submit" value="Add">
+              </div>
+          </form>
+      </div>
     </div>
 
 </div>
