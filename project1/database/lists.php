@@ -79,4 +79,18 @@ function getListItems($listId) {
     return $stmt->fetchAll();
 }
 
+function setItemComplete($itemId) {
+    global $dbh;
+    $stmt = $dbh->prepare('UPDATE Item SET complete = 1 WHERE Item.id = ?;');
+    $stmt->execute(array($itemId));
+    return;
+}
+
+function deleteList($listId) {
+    global $dbh;
+    $stmt = $dbh->prepare('DELETE from List where List.id == ?;');
+    $stmt->execute(array($listId));
+    return;
+}
+
 ?>

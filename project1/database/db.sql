@@ -125,6 +125,14 @@ begin
 insert into ListAdmin values (New.id, New.creator);
 end;
 
+drop trigger if exists deletelistitems;
+create trigger deletelistitems
+before delete on List
+for each row
+begin
+delete from Item where Item.list == old.id;
+end;
+
 insert INTO User (userName, name, password, email) VALUES("antonioalmeida", "António Almeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
 insert INTO User (userName, name, password, email) VALUES("diogotorres97", "Diogo Torres", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
 insert INTO User (userName, name, password, email) VALUES("cyrilico", "João Damas", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");
