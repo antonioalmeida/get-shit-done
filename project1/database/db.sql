@@ -10,18 +10,18 @@ drop table if exists Category;
 drop table if exists Color;
 
 create table Color(
-    id integer,
+    code text,
     name text not null,
-    constraint ColorPrimaryKey primary key (id),
+    constraint ColorPrimaryKey primary key (code),
     constraint ColorUnique unique (name)
 );
 
 create table Category(
     id integer,
     name text not null,
-    color integer,
+    color text,
     constraint CategoryPrimaryKey primary key (id),
-    constraint CategoryForeignKeyColor foreign key (color) references Color(id),
+    constraint CategoryForeignKeyColor foreign key (color) references Color(code),
     constraint CategoryUnique unique (name)
 );
 
@@ -53,12 +53,12 @@ create table Item(
     description text not null,
     dueDate date not null,
     complete integer default 0,
-    color integer not null,
+    color text not null,
     assignedUser text, --This one CAN be null
     list integer not null,
     constraint ItemPrimaryKey primary key (id),
     constraint ItemCheck check (complete == 0 or complete == 1),
-    constraint ItemForeignKeyColor foreign key (color) references Color (id),
+    constraint ItemForeignKeyColor foreign key (color) references Color (code),
     constraint ItemForeignKeyUser foreign key (assignedUser) references User (username),
     constraint ItemForeignKeyList foreign key (list) references List (id)
 );
@@ -125,6 +125,8 @@ begin
 insert into ListAdmin values (New.id, New.creator);
 end;
 
+--deletes list items before deleting list
+--also eliminates precedences that involved items from said list
 drop trigger if exists deletelistitems;
 create trigger deletelistitems
 before delete on List
@@ -133,15 +135,22 @@ begin
 delete from Item where Item.list == old.id;
 end;
 
+drop trigger if exists deleteprecedence;
+create trigger deleteprecedence
+before delete on Item
+for each row
+begin
+delete from ItemPrecedence where preceeded = old.id or preceeding = old.id;
+
 insert INTO User (userName, name, password, email) VALUES("antonioalmeida", "António Almeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
 insert INTO User (userName, name, password, email) VALUES("diogotorres97", "Diogo Torres", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
 insert INTO User (userName, name, password, email) VALUES("cyrilico", "João Damas", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");
 
-insert INTO Color VALUES(0xff00000, "Red");
-insert INTO Color VALUES(0xffff00, "Yellow");
-insert INTO Category VALUES(0, "My First Category", 0xff00000);
-insert INTO Category VALUES(1, "My Second Category", 0xffff00);
+insert INTO Color VALUES('0xff0000', "Red");
+insert INTO Color VALUES('0xffff00', "Yellow");
+insert INTO Category VALUES(0, "My First Category", '0xff0000');
+insert INTO Category VALUES(1, "My Second Category", '0xffff00');
 insert INTO List VALUES(0, "My First List", "2017-11-1", 0, "antonioalmeida");
 insert INTO List VALUES(1, "Second List", "2017-11-11", 0, "antonioalmeida");
-insert into Item (description, dueDate, color, list) values ('Finish LTW', '2017-12-12', 0xffff00, 0);
-insert into Item (description, dueDate, color, list) values ('Finish LAIG', '2017-12-8', 0xffff00, 0);
+insert into Item (description, dueDate, color, list) values ('Finish LTW', '2017-12-12', '0xffff00', 0);
+insert into Item (description, dueDate, color, list) values ('Finish LAIG', '2017-12-8', '0xffff00', 0);
