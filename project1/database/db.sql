@@ -141,16 +141,17 @@ before delete on Item
 for each row
 begin
 delete from ItemPrecedence where preceeded = old.id or preceeding = old.id;
+end;
 
 insert INTO User (userName, name, password, email) VALUES("antonioalmeida", "António Almeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
 insert INTO User (userName, name, password, email) VALUES("diogotorres97", "Diogo Torres", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
 insert INTO User (userName, name, password, email) VALUES("cyrilico", "João Damas", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");
 
-insert INTO Color VALUES('0xff0000', "Red");
-insert INTO Color VALUES('0xffff00', "Yellow");
-insert INTO Category VALUES(0, "My First Category", '0xff0000');
-insert INTO Category VALUES(1, "My Second Category", '0xffff00');
+insert INTO Color VALUES('ff0000', "Red");
+insert INTO Color VALUES('ffff00', "Yellow");
+insert INTO Category VALUES(0, "My First Category", 'ff0000');
+insert INTO Category VALUES(1, "My Second Category", 'ffff00');
 insert INTO List VALUES(0, "My First List", "2017-11-1", 0, "antonioalmeida");
 insert INTO List VALUES(1, "Second List", "2017-11-11", 0, "antonioalmeida");
-insert into Item (description, dueDate, color, list) values ('Finish LTW', '2017-12-12', '0xffff00', 0);
-insert into Item (description, dueDate, color, list) values ('Finish LAIG', '2017-12-8', '0xffff00', 0);
+insert into Item (description, dueDate, color, list) values ('Finish LTW', '2017-12-12', 'ffff00', 0);
+insert into Item (description, dueDate, color, list) values ('Finish LAIG', '2017-12-8', 'ffff00', 0);

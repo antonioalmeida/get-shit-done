@@ -27,7 +27,7 @@ function listAdded() {
 	listDiv.innerHTML =
 		'<h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
 		'<p>' + newList.creationDate + '</p>' +
-		'<p>' + newList.category + '</p>';
+		'<p><i style="color: #' + newList.color + '" class="fa fa-circle"></i> ' + newList.name + '</p>';
 
 	container.append(listDiv);
 }

@@ -31,36 +31,36 @@ $items = getListItems($listID);
     <!-- else here -->
     <?php } ?>
     <div class="items" >
-
-    <?php foreach($items as $item) { ?>
-    <div class="item">
-    <input type="checkbox" name="complete">
-        <span><?=$item['description']?></span>
-        <span><?=$item['dueDate']?></span>
+        <?php foreach($items as $item) { ?>
+        <div class="item">
+            <input type="checkbox" name="complete">
+            <span><?=$item['description']?></span>
+            <span><?= date('d M', strtotime($item['dueDate']))?></span>
+        </div>
+        <?php } ?>
     </div>
-    <?php } ?>
-    </div>
-    <div class="item">
-      <a id="showAddItem"><i class="fa fa-plus"></i> Add a Task</a>
+    
+    <div class="add-item">
+      <a href="#" id="showAddItem"><i class="fa fa-plus"></i> Add a Task</a>
       <div>
           <form class="hidden" id="addItemForm">
               <div>
                 <input type="hidden" name="id" value="<?=$list['id']?>">
                 <br>
-                  <div class="form-element">
-                      <input type="text" name="description" required>
-                      <span class="highlight"></span>
-                      <span class="bar"></span>
-                      <label>Description</label>
-                  </div>
+                <div class="form-element">
+                  <input type="text" name="description" required>
+                  <span class="highlight"></span>
+                  <span class="bar"></span>
+                  <label>Description</label>
               </div>
-              <div>
-                  <input class="button-primary" type="submit" value="Add">
-                  <input id="cancelAddItem" class="button" value="Cancel">
-              </div>
-          </form>
-      </div>
-    </div>
+          </div>
+          <div>
+              <input class="button-primary" type="submit" value="Add">
+              <input id="cancelAddItem" class="button" value="Cancel">
+          </div>
+      </form>
+  </div>
+</div>
 
 </div>
 

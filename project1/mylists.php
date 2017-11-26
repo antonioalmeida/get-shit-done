@@ -21,7 +21,7 @@ $lists = getUserLists($user['username']);
 
   <h4>
     My Lists
-</h4>
+  </h4>
 
 <?php } else { ?>
 <!-- else here -->
@@ -30,10 +30,9 @@ $lists = getUserLists($user['username']);
 <div class="flex-container">
   <?php foreach ($lists as $list) { ?>
   <div class="list">
-
-      <h6> <a href="list.php?id=<?=$list['id']?>"><?=$list['title']?></a></h6>
+      <h6> <a href="list.php?id=<?=$list['id']?>"><?=$list['listName']?></a></h6>
       <p> <?=$list['creationDate']?></p>
-      <p> <?=$list['category']?></p>
+      <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
   </div>
 
   <?php } ?>

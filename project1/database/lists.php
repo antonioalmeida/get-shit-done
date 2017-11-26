@@ -2,7 +2,7 @@
 
 function getUserLists($username) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT * FROM List WHERE creator = ?');
+    $stmt = $dbh->prepare('SELECT List.title as listName, List.creationDate as creationDate, Category.name as categoryName, Color.code as categoryColor from List, Category, Color where List.creator == ? and List.category == Category.id and Category.color == Color.Code;');
     $stmt->execute(array($username));
     return $stmt->fetchAll();
 }
@@ -46,7 +46,7 @@ function addItem($id_list, $description, $dueDate, $color) {
 
 function getLastList($username) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT List.id, List.title, List.creationDate, List.category FROM List, User WHERE List.creator == ? ORDER BY List.id DESC LIMIT 1');
+    $stmt = $dbh->prepare('SELECT List.id, List.title, List.creationDate, Category.name, Category.color FROM List, Category, User WHERE List.creator == ? AND List.category = Category.id ORDER BY List.id DESC LIMIT 1');
     $stmt->execute(array($username));
     return $stmt->fetch();
 }
