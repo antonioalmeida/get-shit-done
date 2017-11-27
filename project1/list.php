@@ -39,13 +39,13 @@ $items = getListItems($listID);
         </div>
         <?php } ?>
     </div>
-    
+
     <div class="add-item">
       <a href="#" id="showAddItem"><i class="fa fa-plus"></i> Add a Task</a>
       <div>
           <form class="hidden" id="addItemForm">
               <div>
-                <input type="hidden" name="id" value="<?=$list['id']?>">
+                <input type="hidden" name="id" value="<?=$listID?>">
                 <br>
                 <div class="form-element">
                   <input type="text" name="description" required>

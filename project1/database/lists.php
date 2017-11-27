@@ -2,7 +2,7 @@
 
 function getUserLists($username) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT List.title as listName, List.creationDate as creationDate, Category.name as categoryName, Color.code as categoryColor from List, Category, Color where List.creator == ? and List.category == Category.id and Category.color == Color.Code;');
+    $stmt = $dbh->prepare('SELECT List.id as listId, List.title as listName, List.creationDate as creationDate, Category.name as categoryName, Color.code as categoryColor from List, Category, Color where List.creator == ? and List.category == Category.id and Category.color == Color.Code;');
     $stmt->execute(array($username));
     return $stmt->fetchAll();
 }

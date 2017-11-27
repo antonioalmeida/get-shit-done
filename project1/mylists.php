@@ -30,7 +30,7 @@ $lists = getUserLists($user['username']);
 <div class="flex-container">
   <?php foreach ($lists as $list) { ?>
   <div class="list">
-      <h6> <a href="list.php?id=<?=$list['id']?>"><?=$list['listName']?></a></h6>
+      <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
       <p> <?=$list['creationDate']?></p>
       <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
   </div>
