@@ -6,7 +6,7 @@ form.addEventListener('submit', addList);
 
 function addList(event) {
 	let listTitle = document.querySelector('input[name=listTitle]').value;
-	let category = document.querySelector('input[name=category]').value;
+	let category = document.querySelector('select[name=category]').value;
 
 	let request = new XMLHttpRequest();
 	let DOMString = './actions/action_add_list.php?' + encodeForAjax({'title': listTitle, 'category': category});

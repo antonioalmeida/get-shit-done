@@ -50,10 +50,12 @@ $lists = getUserLists($user['username']);
             </div>
 
             <div class="form-element">
-                <input type="text" name="category" required>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Category</label>
+              <?php $categoriesUser = getUserAvailableCategories($user['username']); ?>
+              <select name="category">
+                    <?php foreach ($categoriesUser as $category) { ?>
+                <option value="<?=$category['id']?>"><?=$category['name']?></option>
+                <?php } ?>
+              </select>
             </div>
         </div>
         <div>
