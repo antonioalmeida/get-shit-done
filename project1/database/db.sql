@@ -152,8 +152,8 @@ insert INTO User (userName, name, password, email) VALUES("cyrilico", "João Dam
 insert INTO Color VALUES('ff0000', "Red");
 insert INTO Color VALUES('ffff00', "Yellow");
 insert INTO Category VALUES(0, "My First Category", 'ff0000', null);
-insert INTO Category VALUES(1, "My Second Category", 'ffff00', null);
+insert INTO Category VALUES(1, "My Second Category", 'ffff00', "antonioalmeida");
 insert INTO List VALUES(0, "My First List", "2017-11-1", 0, "antonioalmeida");
 insert INTO List VALUES(1, "Second List", "2017-11-11", 0, "antonioalmeida");
 insert into Item (description, dueDate, color, list) values ('Finish LTW', '2017-12-12', 'ffff00', 0);
-insert into Item (description, dueDate, color, list) values ('Finish LAIG', '2017-12-8', 'ffff00', 0);
+insert into Item (description, dueDate, color, list, complete) values ('Finish LAIG', '2017-12-8', 'ffff00', 0, 1);
