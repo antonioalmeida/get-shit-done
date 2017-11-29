@@ -7,20 +7,16 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 $confirmPassword = $_POST["confirmPassword"];
 
-if($confirmPassword != $password)
-  echo 'Password and confirmPassword not match!';
 
 if (usernameExists($username)) {
-  echo "Invalid Username!";
+  $_SESSION['error_messages'][] = "Invalid Username!"; $referer = '../register.php';
 } else if(emailInUse($email)){
-  echo "Email address already in use!";
-} else{
+  $_SESSION['error_messages'][] = "Email address already in use!"; $referer = '../register.php';
+} else if($confirmPassword != $password){
+  $_SESSION['error_messages'][] = "Password and Confirm Password not match!"; $referer = '../register.php';
+} else {
   newUser($username, $password, $email);
-}
-
-if (isset($_SERVER['HTTP_REFERER'])){
-  $referer = $_SERVER['HTTP_REFERER'];
-} else{
+  $_SESSION['success_messages'][] = "Register Sucessful!";
   $referer = '../index.php';
 }
 
