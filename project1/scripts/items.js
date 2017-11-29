@@ -3,10 +3,14 @@
 let form = document.querySelector('form');
 let showAddItem = document.querySelector('#showAddItem');
 let cancelAddItem = document.querySelector('#cancelAddItem');
+let checkboxList = document.querySelectorAll('input[name="complete"]');
 
 form.addEventListener('submit', addItem);
 showAddItem.addEventListener('click', showAddItemHandler);
 cancelAddItem.addEventListener('click', cancelAddItemHandler);
+checkboxList.forEach(function(element) {
+	element.addEventListener('click', updateComplete);
+});
 
 function addItem(event) {
 	let id_list = document.querySelector('input[name=id]').value;
@@ -43,6 +47,31 @@ function showAddItemHandler(event) {
 function cancelAddItemHandler(event) {
 	form.classList.add('hidden');
 	showAddItem.classList.remove('hidden');
+}
+
+function updateComplete(event) {
+	event.preventDefault();
+	let checkbox = event.target;
+	let currentValue = checkbox.checked;
+	let itemID = checkbox.id;
+
+	let newValue = currentValue ? 1 : 0; //lolwut
+	let DOMString = './actions/action_update_complete.php?' + encodeForAjax({'itemID':itemID, 'complete': newValue});
+
+	let request = new XMLHttpRequest();
+	request.open('get', DOMString, true);
+	request.addEventListener('load', checkboxUpdated);
+	request.send();
+}
+
+function checkboxUpdated() {
+	let item = JSON.parse(this.responseText);
+	setChecked(item.id, item.complete == 1);
+}
+
+function setChecked(id, value) {
+	let checkbox = document.getElementById(id);
+	checkbox.checked = value;
 }
 
 function encodeForAjax(data) {

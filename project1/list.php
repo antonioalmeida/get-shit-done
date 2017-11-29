@@ -33,7 +33,11 @@ $items = getListItems($listID);
     <div class="items" >
         <?php foreach($items as $item) { ?>
         <div class="item">
-            <input type="checkbox" name="complete">
+            <input type="checkbox" id="<?=$item['id']?>" name="complete" 
+                <?php if($item['complete'] == 1) { ?> 
+                    checked
+                    <?php } ?>
+                >
             <span><?=$item['description']?></span>
             <span><?= date('d M', strtotime($item['dueDate']))?></span>
         </div>

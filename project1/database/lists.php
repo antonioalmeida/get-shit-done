@@ -58,6 +58,13 @@ function getLastItem($id_list) {
     return $stmt->fetch();
 }
 
+function getItem($itemID) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * FROM Item WHERE id == ?');
+    $stmt->execute(array($itemID));
+    return $stmt->fetch();
+}
+
 function getUserList($username, $id) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT * FROM List WHERE creator = ? AND id =?');
@@ -79,11 +86,13 @@ function getListItems($listId) {
     return $stmt->fetchAll();
 }
 
-function setItemComplete($itemId) {
+function setItemComplete($itemID, $value) {
     global $dbh;
-    $stmt = $dbh->prepare('UPDATE Item SET complete = 1 WHERE Item.id = ?;');
-    $stmt->execute(array($itemId));
-    return;
+    $stmt = $dbh->prepare('UPDATE Item SET complete = ? WHERE Item.id = ?;');
+    $stmt->execute(array($value, $itemID));
+
+    $newItem = getItem($itemID);
+    echo json_encode($newItem);
 }
 
 function deleteList($listId) {

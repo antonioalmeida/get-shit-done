@@ -6,6 +6,7 @@ include_once('templates/common/navbar.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
 $username = $_SESSION['username'];
+print_r($username);
 $user = getUser($username);
 ?>
 
