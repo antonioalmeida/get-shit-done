@@ -32,14 +32,19 @@ $items = getListItems($listID);
     <?php } ?>
     <div class="items" >
         <?php foreach($items as $item) { ?>
-        <div class="item">
-            <input type="checkbox" id="<?=$item['id']?>" name="complete" 
+        <div class="item" id="item<?=$item['id']?>">
+            <div class="item-left">
+                <input type="checkbox" id="<?=$item['id']?>" name="complete" 
                 <?php if($item['complete'] == 1) { ?> 
-                    checked
-                    <?php } ?>
+                checked
+                <?php } ?>
                 >
-            <span><?=$item['description']?></span>
-            <span><?= date('d M', strtotime($item['dueDate']))?></span>
+                <span><?=$item['description']?></span>
+                <span><?= date('d M', strtotime($item['dueDate']))?></span>
+            </div>
+            <div class="item-right">
+                <span><i id="delete<?=$item['id']?>" class="fa fa-trash"></i></span>
+            </div>
         </div>
         <?php } ?>
     </div>

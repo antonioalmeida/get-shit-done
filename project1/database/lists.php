@@ -65,6 +65,19 @@ function getItem($itemID) {
     return $stmt->fetch();
 }
 
+function deleteItem($itemID) {
+    global $dbh;
+    $stmt = $dbh->prepare('DELETE FROM Item WHERE id == ?');
+
+    try {
+        $stmt->execute(array($itemID));
+        return true;
+    }
+    catch (Exception $e) {
+        return false;
+    }
+}
+
 function getUserList($username, $id) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT * FROM List WHERE creator = ? AND id =?');
@@ -93,6 +106,13 @@ function setItemComplete($itemID, $value) {
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);
+}
+
+function canDeleteItem($username, $itemID) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * FROM Item, List, ListAdmin WHERE Item.id = ? AND Item.list = List.id AND List.Id = ListAdmin.list AND ListAdmin.user = ?');
+    $stmt->execute(array($itemID, $username));
+    return ($stmt->fetch() !== false);
 }
 
 function deleteList($listId) {

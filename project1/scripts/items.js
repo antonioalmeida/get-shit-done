@@ -4,12 +4,18 @@ let form = document.querySelector('form');
 let showAddItem = document.querySelector('#showAddItem');
 let cancelAddItem = document.querySelector('#cancelAddItem');
 let checkboxList = document.querySelectorAll('input[name="complete"]');
+let deleteItemsList = document.querySelectorAll('.fa-trash');
 
 form.addEventListener('submit', addItem);
 showAddItem.addEventListener('click', showAddItemHandler);
 cancelAddItem.addEventListener('click', cancelAddItemHandler);
+
 checkboxList.forEach(function(element) {
-	element.addEventListener('click', updateComplete);
+	element.addEventListener('click', updateItemComplete);
+});
+
+deleteItemsList.forEach(function(element) {
+	element.addEventListener('click', deleteItem);
 });
 
 function addItem(event) {
@@ -23,6 +29,16 @@ function addItem(event) {
 	request.send();
 
 	event.preventDefault();
+}
+
+function deleteItem(event) {
+	let itemID = event.target.id.substr(6,6); // getting clicked item's ID
+
+	let request = new XMLHttpRequest();
+	let DOMString = './actions/action_delete_item.php?' + encodeForAjax({'id':itemID});
+	request.open('get', DOMString, true);
+	request.addEventListener('load', itemDeleted);
+	request.send();
 }
 
 function itemAdded() {
@@ -39,6 +55,17 @@ function itemAdded() {
 	container.append(itemDiv);
 }
 
+function itemDeleted() {
+	let itemID = this.responseText;
+	console.log(itemID);
+
+	if(itemID == -1) 
+		return;
+
+	let item = document.getElementById('item' + itemID);
+	item.parentNode.removeChild(item);
+}
+
 function showAddItemHandler(event) {
 	form.classList.remove('hidden');
 	showAddItem.classList.add('hidden');
@@ -49,7 +76,7 @@ function cancelAddItemHandler(event) {
 	showAddItem.classList.remove('hidden');
 }
 
-function updateComplete(event) {
+function updateItemComplete(event) {
 	event.preventDefault();
 	let checkbox = event.target;
 	let currentValue = checkbox.checked;
