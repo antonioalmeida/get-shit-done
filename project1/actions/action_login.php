@@ -11,9 +11,5 @@ include_once(dirname(__DIR__) . '/database/user.php');
     $referer = '../login.php';
   }
 
-
-
-  //TODO: Add redirect to login page again in case of login error
-
   header('Location: ' . $referer);
 ?>
