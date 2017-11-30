@@ -1,10 +1,12 @@
 'use strict';
 
-let form = document.querySelector('form');
+let form = document.querySelector('#addItemForm');
 let showAddItem = document.querySelector('#showAddItem');
 let cancelAddItem = document.querySelector('#cancelAddItem');
 let checkboxList = document.querySelectorAll('input[name="complete"]');
-let deleteItemsList = document.querySelectorAll('.fa-trash');
+let deleteItemList = document.querySelectorAll('.fa-trash');
+let editItemList = document.querySelectorAll('.fa-pencil-square-o');
+let cancelEditItemList = document.querySelectorAll('.cancelEditItem');
 
 form.addEventListener('submit', addItem);
 showAddItem.addEventListener('click', showAddItemHandler);
@@ -14,8 +16,16 @@ checkboxList.forEach(function(element) {
 	element.addEventListener('click', updateItemComplete);
 });
 
-deleteItemsList.forEach(function(element) {
+deleteItemList.forEach(function(element) {
 	element.addEventListener('click', deleteItem);
+});
+
+editItemList.forEach(function(element) {
+	element.addEventListener('click', editItemHandler);
+});
+
+cancelEditItemList.forEach(function(element) {
+	element.addEventListener('click', cancelEditItemHandler);
 });
 
 function addItem(event) {
@@ -57,7 +67,6 @@ function itemAdded() {
 
 function itemDeleted() {
 	let itemID = this.responseText;
-	console.log(itemID);
 
 	if(itemID == -1) 
 		return;
@@ -74,6 +83,24 @@ function showAddItemHandler(event) {
 function cancelAddItemHandler(event) {
 	form.classList.add('hidden');
 	showAddItem.classList.remove('hidden');
+}
+
+function editItemHandler(event) {
+	let itemID = event.target.id.substr(4,4);
+	let item = document.getElementById('item' + itemID);
+
+	let left = item.querySelector('.item-left');
+	let edit = item.querySelector('.item-edit');
+	left.classList.add('hidden');
+	edit.classList.remove('hidden');
+}
+
+function cancelEditItemHandler(event) {
+	let itemEdit = event.target.parentNode.parentNode.parentNode;
+	itemEdit.classList.add('hidden');
+
+	let itemLeft = itemEdit.parentNode.querySelector('.item-left');
+	itemLeft.classList.remove('hidden');
 }
 
 function updateItemComplete(event) {

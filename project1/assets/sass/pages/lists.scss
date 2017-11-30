@@ -30,13 +30,23 @@
 
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
-	.item-left {
+	.item-left, .item-edit {
 		flex: 2 0 0;
 	}
 
 	.item-right {
 		padding: 0 1em 0 1em;
 		flex: 1 0 1;
+
+		span:hover {
+			cursor: pointer;
+		}
+	}
+
+	.item-edit {
+		input[type=text], input[type=date] {
+			background-color: $white-color;
+		}
 	}
 }
 
@@ -47,6 +57,10 @@
 
 .hidden {
 	display: none;
+}
+
+.flex {
+	display: flex;
 }
 
 
