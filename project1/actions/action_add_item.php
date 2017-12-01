@@ -8,7 +8,7 @@ $username = $_SESSION['username'];
 
 $id_list = $_GET["id"];
 $description = (string) $_GET["description"];
-$dueDate = date("d-m-Y");
+$dueDate = date("Y-m-d");
 // TODO: need to add actual color input ASAP
 $color = 'ff0000';
 
