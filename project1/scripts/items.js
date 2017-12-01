@@ -42,7 +42,7 @@ function addItem(event) {
 }
 
 function deleteItem(event) {
-	let itemID = event.target.id.substr(6,6); // getting clicked item's ID
+	let itemID = event.target.id.substr(6); // getting clicked item's ID
 
 	let request = new XMLHttpRequest();
 	let DOMString = './actions/action_delete_item.php?' + encodeForAjax({'id':itemID});
@@ -86,7 +86,7 @@ function cancelAddItemHandler(event) {
 }
 
 function editItemHandler(event) {
-	let itemID = event.target.id.substr(4,4);
+	let itemID = event.target.id.substr(4);
 	let item = document.getElementById('item' + itemID);
 
 	let left = item.querySelector('.item-left');

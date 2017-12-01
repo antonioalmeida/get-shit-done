@@ -24,7 +24,9 @@ $items = getListItems($listID);
 
   <div class="flex-container">
     <div class="sidebar">
-      <p>Future Sidebar</p> 
+      <h6><strong>Menu</strong></h6>
+        <p><i class="fa fa-user-plus"></i> Invite...</p>
+      </ul>
     </div>
 
     <div class="items">
