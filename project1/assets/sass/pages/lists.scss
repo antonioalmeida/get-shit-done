@@ -1,8 +1,7 @@
 .list {
-	width: 210px;
-	margin: 1rem;
-	padding: 10px 20px 10px 0;
-	position: relative;
+	min-width: 220px;
+	margin: 1em;
+	padding: 1em 1em 1em 0;
 
 	border-radius: 2px;
 	background-color: $white-color;
@@ -72,8 +71,5 @@
 	display: none;
 }
 
-.flex {
-	display: flex;
-}
 
 

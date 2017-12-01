@@ -26,8 +26,11 @@ $items = getListItems($listID);
   <div class="flex-container">
     <div class="sidebar">
       <h6><strong>Menu</strong></h6>
-        <p><i class="fa fa-user-plus"></i> Invite...</p>
-      </ul>
+      <p><i class="fa fa-user-plus"></i> <strong>Invite Users</strong></p>
+      <div class="form-element ">
+        <input type="text" placeholder="Username" name="addMember" value="<?=$item['description']?>" required>
+      </div>
+      <p><i class="fa fa-calendar-check-o"></i> <strong>Due Today</strong></p>
     </div>
 
     <div class="items">
@@ -66,7 +69,7 @@ $items = getListItems($listID);
             </div>
             <div>
               <input class="button-primary" type="submit" value="Save">
-              <input class="button cancelEditItem" value="Cancel">
+              <a class="button cancelEditItem">Cancel</a>
             </div>
           </form>
         </div>
@@ -93,7 +96,7 @@ $items = getListItems($listID);
             </div>
             <div>
               <input class="button-primary" type="submit" value="Add">
-              <input id="cancelAddItem" class="button" value="Cancel">
+              <a id="cancelAddItem" class="button">Cancel</a>
             </div>
           </form>
         </div>
