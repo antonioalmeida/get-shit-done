@@ -3,7 +3,11 @@ include_once('includes/init.php');
 include_once('database/user.php');
 include_once('database/lists.php');
 include_once('templates/common/header.php');
+?>
 
+<script type="text/javascript" src="scripts/items.js" defer></script>
+
+<?php
 include_once('templates/common/navbar.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
@@ -17,8 +21,6 @@ $listID = $_GET['id'];
 $list = getUserList($user['username'], $listID);
 $items = getListItems($listID);
 ?>
-
-<script type="text/javascript" src="scripts/items.js" defer></script>
 
 <div class="container">
 
