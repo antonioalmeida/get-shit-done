@@ -52,6 +52,7 @@ function deleteItem(event) {
 }
 
 function itemAdded() {
+	console.log(this.responseText);
 	let newItem = JSON.parse(this.responseText);
 	let container = document.querySelector('.items');
 	let itemDiv = document.createElement('div');

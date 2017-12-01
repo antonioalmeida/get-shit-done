@@ -23,7 +23,6 @@ $items = getListItems($listID);
 ?>
 
 <div class="container">
-
   <div class="flex-container">
     <div class="sidebar">
       <h6><strong>Menu</strong></h6>
@@ -36,7 +35,6 @@ $items = getListItems($listID);
       <h4>
         <?=$list['title']?>
       </h4>
-      <h6>Created on <?=$list['creationDate']?></h6>
 
       <?php } else { ?>
       <!-- else here -->
@@ -55,17 +53,15 @@ $items = getListItems($listID);
 
         <div class="item-edit hidden">
           <form>
-            <div class="flex">
+            <div class="flex-equal">
               <input type="hidden" name="id" value="<?=$listID?>">
               <div class="form-element">
+                <label for="editDescription">Description</label>
                 <input type="text" name="editDescription" value="<?=$item['description']?>" required>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Description</label>
               </div>
               <div>
-                <p>Due Date</p>
-                <input type="date" name="editDate" value="" required>
+                <label for="editDate">Due Date</label>
+                <input type="date" name="editDate" value="<?=$item['dueDate']?>" required>
               </div>
             </div>
             <div>
@@ -91,10 +87,8 @@ $items = getListItems($listID);
               <input type="hidden" name="id" value="<?=$listID?>">
               <br>
               <div class="form-element">
-                <input type="text" name="description" required>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Description</label>
+                <label for="description">Description</label>
+                <input type="text" placeholder="Call girlfriend" name="description" required>
               </div>
             </div>
             <div>

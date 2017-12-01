@@ -21,31 +21,23 @@ include_once('templates/common/navbar.php');
         <form action="actions/action_edit_myprofile.php" method="post">
             <div>
                 <div class="form-element">
-                    <input type="text" name="username" value="<?=$user['username']?>" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Username</label>
+                    <label for="username">Username</label>
+                    <input type="text" placeholder="johndoe" name="username" value="<?=$user['username']?>" required>
                 </div>
 
                 <div class="form-element">
-                    <input type="email" name="email" value="<?=$user['email']?>" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Email</label>
+                    <label for="email">Email</label>
+                    <input type="email" placeholder="email@example.com" name="email" value="<?=$user['email']?>" required>
                 </div>
 
                 <div class="form-element">
-                    <input type="text" name="name" value="<?=$user['name']?>" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Name</label>
+                    <label for="name">Name</label>
+                    <input type="text" placeholder="John Doe" name="name" value="<?=$user['name']?>" required>
                 </div>
 
                 <div class="form-element">
-                    <input type="text" name="bio" value="<?=$user['bio']?>" required>
-                    <span class="highlight"></span>
-                    <span class="bar"></span>
-                    <label>Bio</label>
+                    <label for="bio">Bio</label>
+                    <input type="text" name="bio" placeholder="'I'll be back!'" value="<?=$user['bio']?>" required>
                 </div>
             </div>
             <div>

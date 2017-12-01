@@ -23,46 +23,45 @@ $lists = getUserLists($user['username']);
     My Lists
   </h4>
 
-<?php } else { ?>
-<!-- else here -->
-<?php } ?>
+  <?php } else { ?>
+  <!-- else here -->
+  <?php } ?>
 
-<div class="flex-container">
-  <?php foreach ($lists as $list) { ?>
-  <div class="list">
+  <div class="flex-container">
+    <?php foreach ($lists as $list) { ?>
+    <div class="list">
       <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
       <p> <?=$list['creationDate']?></p>
       <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
+    </div>
+
+    <?php } ?>
   </div>
 
-  <?php } ?>
-</div>
-
-<h4>Add a List</h4>
-<div>
+  <h4>Add a List</h4>
+  <div>
     <form id="addListForm">
-        <div>
-            <div class="form-element">
-                <input type="text" name="listTitle" required>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>Title</label>
-            </div>
+      <div>
+        <div class="form-element">
+            <label for="listTitle">Title</label>
+            <input placeholder="Homework" type="text" name="listTitle" required>
+          </div>
 
-            <div class="form-element">
-              <?php $categoriesUser = getUserAvailableCategories($user['username']); ?>
-              <select name="category">
-                    <?php foreach ($categoriesUser as $category) { ?>
-                <option value="<?=$category['id']?>"><?=$category['name']?></option>
-                <?php } ?>
-              </select>
-            </div>
-        </div>
-        <div>
-            <input class="button-primary" type="submit" value="Add">
-        </div>
+          <div class="form-element">
+            <?php $categoriesUser = getUserAvailableCategories($user['username']); ?>
+            <label for="category">Category</label>
+            <select name="category">
+              <?php foreach ($categoriesUser as $category) { ?>
+              <option value="<?=$category['id']?>"><?=$category['name']?></option>
+              <?php } ?>
+            </select>
+          </div>
+      </div>
+      <div>
+        <input class="button-primary" type="submit" value="Add">
+      </div>
     </form>
-</div>
+  </div>
 
 </div>
 

@@ -1,78 +1,40 @@
-* { box-sizing:border-box; }
+input[type='email'],
+input[type='number'],
+input[type='password'],
+input[type='search'],
+input[type='tel'],
+input[type='text'],
+input[type='url'],
+input:not([type]),
+textarea,
+select {
+	appearance: none;
+	background-color: transparent;
+	border: .1rem solid $light-grey;
+	border-radius: .4rem;
+	box-shadow: none;
+	box-sizing: inherit;
+	height: 1.5em;
+	padding: .6em 1.0em;
+	margin-bottom: 1.0em;
+	width: 200px;
+	min-width: 100px;
 
-input {
-  background-color: $background-color;
-}
-
-.form-element {
-  position:relative;
-  margin-bottom:45px;
-}
-
-input[type=text], input[type=password], input[type=email] {
-  padding: 10px 10px 8px 5px;
-  display:block;
-  width: 300px;
-  border: none;
-  border-bottom: 1px solid $light-grey;
-}
-
-input[type=text]:focus,
-input[type=password]:focus,
-input[type=email]:focus {
-    outline:none;
-    border-bottom: 0.5px solid $light-grey;
-}
-
-label {
-  color: $dark-grey;
-  font-size: 1em;
-  font-weight: normal;
-  position:absolute;
-  pointer-events:none;
-  left: 5px;
-  top: 10px;
-  transition: 0.2s ease all;
-  -moz-transition: 0.2s ease all;
-  -webkit-transition: 0.2s ease all;
+	&:focus {
+		border-color: $primary-color;
+		outline: 0;
+	}
 }
 
-/* active state */
-input[type=text]:focus ~ label, input[type=text]:valid ~ label,
-input[type=password]:focus ~ label, input[type=password]:valid ~ label,
-input[type=email]:focus ~ label, input[type=email]:valid ~ label {
-  top: -20px;
-  font-size: 0.8em;
-  color: $primary-color;
+select {
+	height: 3.0em;
+	padding-right: 3.0em;
 }
 
-/* BOTTOM BARS ================================= */
-.bar {
-    position:relative;
-    display:block;
-    width:300px;
-}
-.bar:before, .bar:after {
-  content: '';
-  height: 2px;
-  width: 0;
-  bottom: 1px;
-  position: absolute;
-  background: $primary-color;
-  transition: 0.3s ease all;
-  -moz-transition: 0.3s ease all;
-  -webkit-transition: 0.3s ease all;
-}
-.bar:before {
-  left: 50%;
-}
-.bar:after {
-  right: 50%;
-}
-
-/* active state */
-input[type=text]:focus ~ .bar:before, input[type=text]:focus ~ .bar:after,
-input[type=password]:focus ~ .bar:before, input[type=password]:focus ~ .bar:after,
-input[type=email]:focus ~ .bar:before, input[type=email]:focus ~ .bar:after {
-  width: 50%;
+label,
+legend {
+	display: block;
+	font-size: 1.2em;
+	font-weight: 700;
+	margin-bottom: .5rem;
 }
