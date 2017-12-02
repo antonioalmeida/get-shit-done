@@ -108,7 +108,17 @@ function setItemComplete($itemID, $value) {
     echo json_encode($newItem);
 }
 
-function canDeleteItem($username, $itemID) {
+function editItem($itemID, $description, $dueDate) {
+    global $dbh;
+    //TODO: add update due date 
+    $stmt = $dbh->prepare('UPDATE Item SET description = ? WHERE Item.id = ?;');
+    $stmt->execute(array($description, $itemID));
+
+    $newItem = getItem($itemID);
+    echo json_encode($newItem);
+}
+
+function isItemAdmin($username, $itemID) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT * FROM Item, List, ListAdmin WHERE Item.id = ? AND Item.list = List.id AND List.Id = ListAdmin.list AND ListAdmin.user = ?');
     $stmt->execute(array($itemID, $username));

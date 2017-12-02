@@ -50,15 +50,15 @@ $items = getListItems($listID);
           checked
           <?php } ?>
           >
-          <span><?=$item['description']?></span>
-          <span><?= date('d M', strtotime($item['dueDate']))?></span>
+          <span class="itemDescription"><?=$item['description']?></span>
+          <span clas="itemDueDate"><?= date('d M', strtotime($item['dueDate']))?></span>
         </div>
 
         <div class="item-edit hidden">
-          <form>
+          <form class="editItemForm">
             <div class="flex-equal">
-              <input type="hidden" name="id" value="<?=$listID?>">
-              <div class="form-element">
+              <input type="hidden" name="itemID" value="<?=$item['id']?>">
+              <div>
                 <label for="editDescription">Description</label>
                 <input type="text" name="editDescription" value="<?=$item['description']?>" required>
               </div>
@@ -89,7 +89,7 @@ $items = getListItems($listID);
             <div>
               <input type="hidden" name="id" value="<?=$listID?>">
               <br>
-              <div class="form-element">
+              <div>
                 <label for="description">Description</label>
                 <input type="text" placeholder="Call girlfriend" name="description" required>
               </div>

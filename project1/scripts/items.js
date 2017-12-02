@@ -7,6 +7,7 @@ let checkboxList = document.querySelectorAll('input[name="complete"]');
 let deleteItemList = document.querySelectorAll('.fa-trash');
 let editItemList = document.querySelectorAll('.fa-pencil-square-o');
 let cancelEditItemList = document.querySelectorAll('.cancelEditItem');
+let editItemFormList = document.querySelectorAll('.editItemForm');
 
 form.addEventListener('submit', addItem);
 showAddItem.addEventListener('click', showAddItemHandler);
@@ -26,6 +27,10 @@ editItemList.forEach(function(element) {
 
 cancelEditItemList.forEach(function(element) {
 	element.addEventListener('click', cancelEditItemHandler);
+});
+
+editItemFormList.forEach(function(element) {
+	element.addEventListener('submit', editItemSubmitHandler);
 });
 
 function addItem(event) {
@@ -96,6 +101,22 @@ function editItemHandler(event) {
 	edit.classList.remove('hidden');
 }
 
+function editItemSubmitHandler(event) {
+	event.preventDefault();
+	console.log(event.target);
+	let editForm = event.target;
+	let itemID = editForm.querySelector('input[name=itemID]').value;
+	let newDescription = editForm.querySelector('input[name=editDescription]').value;
+	let newDate = editForm.querySelector('input[name=editDate]').value;
+
+	let DOMString = './actions/action_edit_item.php?' + encodeForAjax({'itemID':itemID, 'description': newDescription, 'dueDate': newDate});
+
+	let request = new XMLHttpRequest();
+	request.open('get', DOMString, true);
+	request.addEventListener('load', editItemFinished);
+	request.send();
+}
+
 function cancelEditItemHandler(event) {
 	let itemEdit = event.target.parentNode.parentNode.parentNode;
 	itemEdit.classList.add('hidden');
@@ -123,6 +144,24 @@ function checkboxUpdated() {
 	let item = JSON.parse(this.responseText);
 	setChecked(item.id, item.complete == 1);
 }
+
+function editItemFinished() {
+	let newItem = JSON.parse(this.responseText);
+	let itemID = newItem.id;
+	let itemDiv = document.getElementById('item'+itemID);
+	
+	let description = itemDiv.querySelectorAll('.itemDescription');
+	let dueDate = itemDiv.querySelectorAll('.itemDueDate');
+
+	description.value = newItem.description;
+	dueDate.value = newItem.dueDate;
+
+	let itemEditArea = itemDiv.querySelector('.item-edit');
+	itemEditArea.classList.add('hidden');
+
+	let itemInfoArea = itemDiv.querySelector('.item-left');
+	itemInfoArea.classList.remove('hidden');
+}	
 
 function setChecked(id, value) {
 	let checkbox = document.getElementById(id);
