@@ -5,7 +5,8 @@ include_once(dirname(__DIR__) . '/database/lists.php');
 
 if(isset($_SESSION['username'])) {
 	$username = $_SESSION['username'];
-	if ( !preg_match ("/^\d+$/", $_GET['id'])) {
+
+	if ( !preg_match ("/^\d+$/", $_GET['itemID'])) {
 		die("ERROR: ID can only contain numbers");
 	}
 	if ( !preg_match ("/^[\w\s-?!\.()]*$/", $_GET['description'])) {
