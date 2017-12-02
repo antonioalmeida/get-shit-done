@@ -6,6 +6,14 @@ include_once(dirname(__DIR__) . '/database/lists.php');
 $isLoggedIn = (isset($_SESSION['username']));
 $username = $_SESSION['username'];
 
+if ( !preg_match ("/^\d+$/", $_GET['id'])) {
+  die("ERROR: ID can only contain numbers");
+}
+
+if ( !preg_match ("/^[\w\s-?!\.()]*$/", $_GET['description'])) {
+  die("ERROR: ID can only contain numbers");
+}
+
 $id_list = $_GET["id"];
 $description = (string) $_GET["description"];
 $dueDate = date("Y-m-d");

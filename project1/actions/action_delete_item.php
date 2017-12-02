@@ -5,6 +5,11 @@ include_once(dirname(__DIR__) . '/database/lists.php');
 
 if(isset($_SESSION['username'])) {
 	$username = $_SESSION['username'];
+	
+	if ( !preg_match ("/^\d+$/", $_GET['id'])) {
+	  die("ERROR: ID can only contain numbers");
+	}
+
 	$itemID = $_GET["id"];
 
 	if (isItemAdmin($username, $itemID))
@@ -14,7 +19,7 @@ if(isset($_SESSION['username'])) {
 		echo $itemID;
 	else
 		echo -1;
-} else 
+} else
 	echo -1;
 
 ?>

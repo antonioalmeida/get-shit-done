@@ -17,6 +17,10 @@ $user = getUser($username);
 if (!isset($_GET['id']))
   die("No id!");
 
+if ( !preg_match ("/^\d+$/", $_GET['id'])) {
+  die("ERROR: ID can only contain numbers");
+}
+
 $listID = $_GET['id'];
 $list = getUserList($user['username'], $listID);
 $items = getListItems($listID);
@@ -45,8 +49,8 @@ $items = getListItems($listID);
       <?php foreach($items as $item) { ?>
       <div class="item" id="item<?=$item['id']?>">
         <div class="item-left">
-          <input type="checkbox" id="<?=$item['id']?>" name="complete" 
-          <?php if($item['complete'] == 1) { ?> 
+          <input type="checkbox" id="<?=$item['id']?>" name="complete"
+          <?php if($item['complete'] == 1) { ?>
           checked
           <?php } ?>
           >
