@@ -61,12 +61,15 @@ function itemAdded() {
 	let newItem = JSON.parse(this.responseText);
 	let container = document.querySelector('.items');
 	let itemDiv = document.createElement('div');
-
+	console.log(newItem);
 	itemDiv.classList.add('item');
-	itemDiv.innerHTML =
-	'<input type="checkbox" name="complete">' +
-	'<span>' + newItem.description + '</span>'+
-	'<span>' + newItem.dueDate + '</span>';
+	itemDiv.id = 'item' + newItem.id;
+	itemDiv.innerHTML = getItemHTML(newItem.id, newItem.description, newItem.dueDate);
+	//TODO Add listeners to respective bottoms???
+	
+	// '<input type="checkbox" name="complete">' +
+	// '<span>' + newItem.description + '</span>'+
+	// '<span>' + newItem.dueDate + '</span>';
 
 	container.append(itemDiv);
 }
@@ -74,7 +77,7 @@ function itemAdded() {
 function itemDeleted() {
 	let itemID = this.responseText;
 
-	if(itemID == -1) 
+	if(itemID == -1)
 		return;
 
 	let item = document.getElementById('item' + itemID);
@@ -149,7 +152,7 @@ function editItemFinished() {
 	let newItem = JSON.parse(this.responseText);
 	let itemID = newItem.id;
 	let itemDiv = document.getElementById('item'+itemID);
-	
+
 	let description = itemDiv.querySelectorAll('.itemDescription');
 	let dueDate = itemDiv.querySelectorAll('.itemDueDate');
 
@@ -161,12 +164,31 @@ function editItemFinished() {
 
 	let itemInfoArea = itemDiv.querySelector('.item-left');
 	itemInfoArea.classList.remove('hidden');
-}	
+}
 
 function setChecked(id, value) {
 	let checkbox = document.getElementById(id);
 	checkbox.checked = value;
 }
+
+function getItemHTML(id,description, dueDate) {
+	return '<div class="item-left">'+
+			'<input type="checkbox" id="' + id + '" name="complete">' +
+			'<span class="itemDescription">' + description + '</span>'+
+			'<span clas="itemDueDate">' + dueDate + '</span>' +
+		'</div>	<div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">'+
+			'<input type="hidden" name="itemID" value="' + id + '"><div>'+
+			'<label for="editDescription">Description</label>'+
+			'<input type="text" name="editDescription" value="' + description+'" required></div>'+
+		'<div><label for="editDate">Due Date</label>'+
+			'<input type="date" name="editDate" value="' + dueDate +
+			'" required></div></div><div><input class="button-primary" type="submit" value="Save">'+
+			'<a class="button cancelEditItem">Cancel</a> </div></form></div><div class="item-right">'+
+			'<span><i id="assignUser'+ id + '" class="fa fa-user-plus"></i></span>'+
+			'<span><i id="edit'+ id + '" class="fa fa-pencil-square-o"></i></span>'+
+			'<span><i id="delete'+ id + '" class="fa fa-trash"></i></span>' +'</div>';
+}
+
 
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){
