@@ -31,8 +31,8 @@ $items = getListItems($listID);
     <div class="sidebar">
       <h6><strong>Menu</strong></h6>
       <p><i class="fa fa-user-plus"></i> <strong>Invite Users</strong></p>
-      <div class="form-element ">
-        <input type="text" placeholder="Username" name="addMember" value="<?=$item['description']?>" required>
+      <div>
+        <input type="text" placeholder="Username" name="addMember" required>
       </div>
       <p><i class="fa fa-calendar-check-o"></i> <strong>Due Today</strong></p>
     </div>
@@ -81,7 +81,7 @@ $items = getListItems($listID);
         <div class="item-right">
           <span><i id="assignUser<?=$item['id']?>" class="fa fa-user-plus"></i></span>
           <span><i id="edit<?=$item['id']?>" class="fa fa-pencil-square-o"></i></span>
-          <span><i id="delete<?=$item['id']?>" class="fa fa-trash"></i></span>
+          <span><i id="delete<?=$item['id']?>" class="fa fa-trash deleteItem"></i></span>
         </div>
       </div>
       <?php } ?>
@@ -107,7 +107,7 @@ $items = getListItems($listID);
       </div>
     </div>
 
-  </div> <!-- end .items -->
+  </div> 
 
 </div>
 

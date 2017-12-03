@@ -4,7 +4,7 @@ let form = document.querySelector('#addItemForm');
 let showAddItem = document.querySelector('#showAddItem');
 let cancelAddItem = document.querySelector('#cancelAddItem');
 let checkboxList = document.querySelectorAll('input[name="complete"]');
-let deleteItemList = document.querySelectorAll('.fa-trash');
+let deleteItemList = document.querySelectorAll('.deleteItem');
 let editItemList = document.querySelectorAll('.fa-pencil-square-o');
 let cancelEditItemList = document.querySelectorAll('.cancelEditItem');
 let editItemFormList = document.querySelectorAll('.editItemForm');
@@ -18,7 +18,7 @@ checkboxList.forEach(function(element) {
 });
 
 deleteItemList.forEach(function(element) {
-	element.addEventListener('click', deleteItem);
+	element.addEventListener('click', deleteItemHandler);
 });
 
 editItemList.forEach(function(element) {
@@ -46,7 +46,7 @@ function addItem(event) {
 	event.preventDefault();
 }
 
-function deleteItem(event) {
+function deleteItemHandler(event) {
 	let itemID = event.target.id.substr(6); // getting clicked item's ID
 
 	let request = new XMLHttpRequest();
@@ -57,20 +57,19 @@ function deleteItem(event) {
 }
 
 function itemAdded() {
-	console.log(this.responseText);
 	let newItem = JSON.parse(this.responseText);
 	let container = document.querySelector('.items');
 	let itemDiv = document.createElement('div');
-	console.log(newItem);
+
 	itemDiv.classList.add('item');
 	itemDiv.id = 'item' + newItem.id;
 	itemDiv.innerHTML = getItemHTML(newItem.id, newItem.description, newItem.dueDate);
-	//TODO Add listeners to respective bottoms???
-	
-	// '<input type="checkbox" name="complete">' +
-	// '<span>' + newItem.description + '</span>'+
-	// '<span>' + newItem.dueDate + '</span>';
 
+	// Add event listeners to new item
+	itemDiv.querySelector('.fa-pencil-square-o').addEventListener('click', editItemHandler);
+	itemDiv.querySelector('.cancelEditItem').addEventListener('click', cancelEditItemHandler);
+	itemDiv.querySelector('.deleteItem').addEventListener('click', deleteItemHandler);
+	
 	container.append(itemDiv);
 }
 
@@ -171,7 +170,7 @@ function setChecked(id, value) {
 	checkbox.checked = value;
 }
 
-function getItemHTML(id,description, dueDate) {
+function getItemHTML(id, description, dueDate) {
 	return '<div class="item-left">'+
 			'<input type="checkbox" id="' + id + '" name="complete">' +
 			'<span class="itemDescription">' + description + '</span>'+
@@ -186,9 +185,8 @@ function getItemHTML(id,description, dueDate) {
 			'<a class="button cancelEditItem">Cancel</a> </div></form></div><div class="item-right">'+
 			'<span><i id="assignUser'+ id + '" class="fa fa-user-plus"></i></span>'+
 			'<span><i id="edit'+ id + '" class="fa fa-pencil-square-o"></i></span>'+
-			'<span><i id="delete'+ id + '" class="fa fa-trash"></i></span>' +'</div>';
+			'<span><i id="delete'+ id + '" class="fa fa-trash deleteItem"></i></span>' +'</div>';
 }
-
 
 function encodeForAjax(data) {
   return Object.keys(data).map(function(k){
