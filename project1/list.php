@@ -24,15 +24,27 @@ if ( !preg_match ("/^\d+$/", $_GET['id'])) {
 $listID = $_GET['id'];
 $list = getUserList($user['username'], $listID);
 $items = getListItems($listID);
+$admins = getListAdmins($listID);
 ?>
 
 <div class="container">
   <div class="flex-container">
     <div class="sidebar">
       <h6><strong>Menu</strong></h6>
-      <p><i class="fa fa-user-plus"></i> <strong>Invite Users</strong></p>
+
+
+      <p><strong>Members</strong></p>
+      <div class="members">
+        <?php foreach ($admins as $admin) { ?>
+        <p>@<?=$admin['user']?></p>
+        <?php } ?>
+      </div>
+      <p><i class="fa fa-user-plus"></i> <strong>Invite Members</strong></p>
       <div>
-        <input type="text" placeholder="Username" name="addMember" required>
+        <form id="addListAdmin">
+          <input type="hidden" name="listID" value="<?=$listID?>" required>
+          <input type="text" placeholder="Username" name="addAdminUsername" required>
+        </form>
       </div>
       <p><i class="fa fa-calendar-check-o"></i> <strong>Due Today</strong></p>
     </div>
@@ -107,7 +119,7 @@ $items = getListItems($listID);
             <span><i id="delete<?=$item['id']?>" class="fa fa-trash deleteItem"></i></span>
           </div>
         </div>
-      <?php } ?>
+        <?php } ?>
       </div>
 
       <div class="add-item">

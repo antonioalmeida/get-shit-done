@@ -11,10 +11,12 @@ let editItemFormList = document.querySelectorAll('.editItemForm');
 let assignUserList = document.querySelectorAll('.assignUser');
 let cancelAssignUserList = document.querySelectorAll('.cancelAssignUser');
 let assignUserFormList = document.querySelectorAll('.assignUserForm');
+let addListAdmin = document.getElementById('addListAdmin');
 
 form.addEventListener('submit', addItem);
 showAddItem.addEventListener('click', showAddItemHandler);
 cancelAddItem.addEventListener('click', cancelAddItemHandler);
+addListAdmin.addEventListener('submit', addListAdminSubmitHandler);
 
 checkboxList.forEach(function(element) {
 	element.addEventListener('click', updateItemComplete);
@@ -47,6 +49,8 @@ cancelAssignUserList.forEach(function(element) {
 assignUserFormList.forEach(function(element) {
 	element.addEventListener('submit', assignUserSubmitHandler);
 });
+
+
 
 
 function addItem(event) {
@@ -233,6 +237,29 @@ function assignUserFinished() {
 function setChecked(id, value) {
 	let checkbox = document.getElementById(id);
 	checkbox.checked = value;
+}
+
+function addListAdminSubmitHandler(event) {
+	event.preventDefault();
+	let form = event.target;
+	let listID = form.querySelector('input[name=listID]').value;
+	let username = form.querySelector('input[name=addAdminUsername]').value;
+	form.querySelector('input[name=addAdminUsername]').value = '';
+
+	let DOMString = './actions/action_add_list_admin.php?' + encodeForAjax({'listID':listID, 'username': username});
+
+	let request = new XMLHttpRequest();
+	request.open('get', DOMString, true);
+	request.addEventListener('load', addListAdminFinished);
+	request.send();
+}
+
+function addListAdminFinished() {
+	let membersDiv = document.querySelector('.members');	
+	let newMember = document.createElement('div');
+	newMember.innerHTML = '<p>@' + this.responseText + '</p>';
+
+	membersDiv.append(newMember);
 }
 
 function getItemHTML(id, description, dueDate) {

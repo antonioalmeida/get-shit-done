@@ -29,6 +29,27 @@ function addList($username, $title, $creationDate, $category) {
     echo json_encode($newList);
 }
 
+function listAddAdmin($listID, $username) {
+    global $dbh;
+    $stmt = $dbh->prepare('INSERT INTO ListAdmin values(?, ?)');
+
+    try {
+        $stmt->execute(array($listID, $username));
+    } catch (Exception $e) {
+        print_r($e->errorInfo);
+        return;
+    }
+    // return username in case of success
+    echo $username; 
+}
+
+function getListAdmins($listID) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT User FROM ListAdmin WHERE List = ?');
+    $stmt->execute(array($listID));
+    return $stmt->fetchAll();
+}
+
 function addItem($id_list, $description, $dueDate, $color) {
     global $dbh;
     $stmt = $dbh->prepare('INSERT INTO Item (description, dueDate, Color, list) values(?, ?, ?, ?)');
@@ -120,8 +141,9 @@ function editItem($itemID, $description, $dueDate) {
 
 function itemAssignUser($itemID, $assignedUser) {
     global $dbh;
-    $stmt = $dbh->prepare('UPDATE Item SET assignedUser = ? WHERE Item.id = ?;');
-    $stmt->execute(array($assignedUser, $itemID));
+    //TODO: add update due date 
+    $stmt = $dbh->prepare('UPDATE Item SET description = ? WHERE Item.id = ?;');
+    $stmt->execute(array($description, $itemID));
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);
