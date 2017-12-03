@@ -141,9 +141,8 @@ function editItem($itemID, $description, $dueDate) {
 
 function itemAssignUser($itemID, $assignedUser) {
     global $dbh;
-    //TODO: add update due date 
-    $stmt = $dbh->prepare('UPDATE Item SET description = ? WHERE Item.id = ?;');
-    $stmt->execute(array($description, $itemID));
+    $stmt = $dbh->prepare('UPDATE Item SET assignedUser = ? WHERE Item.id = ?;');
+    $stmt->execute(array($assignedUser, $itemID));
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);

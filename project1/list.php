@@ -33,13 +33,13 @@ $admins = getListAdmins($listID);
       <h6><strong>Menu</strong></h6>
 
 
-      <p><strong>Members</strong></p>
+      <p><i class="fa fa-users"></i> <strong>Members</strong></p>
       <div class="members">
         <?php foreach ($admins as $admin) { ?>
         <p>@<?=$admin['user']?></p>
         <?php } ?>
       </div>
-      <p><i class="fa fa-user-plus"></i> <strong>Invite Members</strong></p>
+      <p><i class="fa fa-user-plus"></i> <strong>Invite</strong></p>
       <div>
         <form id="addListAdmin">
           <input type="hidden" name="listID" value="<?=$listID?>" required>
@@ -97,7 +97,12 @@ $admins = getListAdmins($listID);
                 <input type="hidden" name="itemID" value="<?=$item['id']?>">
                 <div>
                   <label for="assignedUser">Assign User</label>
-                  <input type="text" name="assignedUser" placeholder="johndoe" value="<?=$item['assignedUser']?>" required>
+                  <select name="assignedUser" >
+                    <option value="">None</option>
+                    <?php foreach ($admins as $admin) { ?>
+                    <option value="<?=$admin['user']?>"><?=$admin['user']?></option>
+                    <?php } ?>
+                  </select>
                 </div>
               </div>
               <div>
