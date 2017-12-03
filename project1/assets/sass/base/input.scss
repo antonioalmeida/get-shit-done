@@ -16,9 +16,9 @@ select {
 	box-shadow: none;
 	box-sizing: inherit;
 	height: 1.5em;
-	padding: .6em;
+	padding: .6em 0em .6em .6em;
 	margin-bottom: 1.0em;
-	width: 100%;
+	width: 95%; /* not ideal but it works */
 
 	&:focus {
 		border-color: $primary-color;

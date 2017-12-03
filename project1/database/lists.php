@@ -162,9 +162,9 @@ function deleteList($listId) {
     return;
 }
 
-function getUserAvailableCategories($userId) {
+function getUserCategories($userId) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT id, name from category where user is null union select id, name from category where user = ?;');
+    $stmt = $dbh->prepare('SELECT id, name, color from category where user is null union select id, name, color from category where user = ?;');
     $stmt->execute(array($userId));
     return $stmt->fetchAll();
 }

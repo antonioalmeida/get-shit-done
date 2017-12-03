@@ -9,7 +9,7 @@ if(isset($_SESSION['username'])) {
 	if ( !preg_match ("/^\d+$/", $_GET['itemID'])) {
 		die("ERROR: ID can only contain numbers");
 	}
-	if ( !preg_match ("/^[a-zA-Z][\w-]{1,18}(?![-_])\w$/", $_GET['assignedUser'])) {
+	if ( !preg_match ("/^$|^[a-zA-Z][\w-]{1,18}(?![-_])\w$/", $_GET['assignedUser'])) {
 		die("ERROR: Username invalid");
 	}
 	

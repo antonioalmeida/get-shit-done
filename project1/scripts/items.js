@@ -125,7 +125,6 @@ function editItemHandler(event) {
 
 function editItemSubmitHandler(event) {
 	event.preventDefault();
-	console.log(event.target);
 	let editForm = event.target;
 	let itemID = editForm.querySelector('input[name=itemID]').value;
 	let newDescription = editForm.querySelector('input[name=editDescription]').value;
@@ -167,11 +166,9 @@ function cancelAssignUserHandler(event) {
 
 function assignUserSubmitHandler(event) {
 	event.preventDefault();
-	console.log(event.target);
 	let editForm = event.target;
 	let itemID = editForm.querySelector('input[name=itemID]').value;
 	let assignedUser = editForm.querySelector('select[name=assignedUser]').value;
-	console.log("assigned " + assignedUser);
 
 	let DOMString = './actions/action_assign_user.php?' + encodeForAjax({'itemID':itemID, 'assignedUser': assignedUser});
 
@@ -220,7 +217,6 @@ function editItemFinished() {
 }
 
 function assignUserFinished() {
-	console.log(this.responseText);
 	let newItem = JSON.parse(this.responseText);
 	let itemID = newItem.id;
 	let itemDiv = document.getElementById('item'+itemID);
