@@ -8,6 +8,9 @@ let deleteItemList = document.querySelectorAll('.deleteItem');
 let editItemList = document.querySelectorAll('.fa-pencil-square-o');
 let cancelEditItemList = document.querySelectorAll('.cancelEditItem');
 let editItemFormList = document.querySelectorAll('.editItemForm');
+let assignUserList = document.querySelectorAll('.assignUser');
+let cancelAssignUserList = document.querySelectorAll('.cancelAssignUser');
+let assignUserFormList = document.querySelectorAll('.assignUserForm');
 
 form.addEventListener('submit', addItem);
 showAddItem.addEventListener('click', showAddItemHandler);
@@ -32,6 +35,19 @@ cancelEditItemList.forEach(function(element) {
 editItemFormList.forEach(function(element) {
 	element.addEventListener('submit', editItemSubmitHandler);
 });
+
+assignUserList.forEach(function(element) {
+	element.addEventListener('click', assignUserHandler);
+});
+
+cancelAssignUserList.forEach(function(element) {
+	element.addEventListener('click', cancelAssignUserHandler);
+});
+
+assignUserFormList.forEach(function(element) {
+	element.addEventListener('submit', assignUserSubmitHandler);
+});
+
 
 function addItem(event) {
 	let id_list = document.querySelector('input[name=id]').value;
@@ -58,7 +74,7 @@ function deleteItemHandler(event) {
 
 function itemAdded() {
 	let newItem = JSON.parse(this.responseText);
-	let container = document.querySelector('.items');
+	let container = document.getElementById('items-list');
 	let itemDiv = document.createElement('div');
 
 	itemDiv.classList.add('item');
@@ -127,6 +143,39 @@ function cancelEditItemHandler(event) {
 	itemLeft.classList.remove('hidden');
 }
 
+function assignUserHandler(event) {
+	let itemID = event.target.id.substr(10);
+	let item = document.getElementById('item' + itemID);
+
+	let left = item.querySelector('.item-left');
+	let user = item.querySelector('.item-user');
+	left.classList.add('hidden');
+	user.classList.remove('hidden');
+}
+
+function cancelAssignUserHandler(event) {
+	let itemUser = event.target.parentNode.parentNode.parentNode;
+	itemUser.classList.add('hidden');
+
+	let itemLeft = itemUser.parentNode.querySelector('.item-left');
+	itemLeft.classList.remove('hidden');
+}
+
+function assignUserSubmitHandler(event) {
+	event.preventDefault();
+	console.log(event.target);
+	let editForm = event.target;
+	let itemID = editForm.querySelector('input[name=itemID]').value;
+	let assignedUser = editForm.querySelector('input[name=assignedUser]').value;
+
+	let DOMString = './actions/action_assign_user.php?' + encodeForAjax({'itemID':itemID, 'assignedUser': assignedUser});
+
+	let request = new XMLHttpRequest();
+	request.open('get', DOMString, true);
+	request.addEventListener('load', assignUserFinished);
+	request.send();
+}
+
 function updateItemComplete(event) {
 	event.preventDefault();
 	let checkbox = event.target;
@@ -160,6 +209,22 @@ function editItemFinished() {
 
 	let itemEditArea = itemDiv.querySelector('.item-edit');
 	itemEditArea.classList.add('hidden');
+
+	let itemInfoArea = itemDiv.querySelector('.item-left');
+	itemInfoArea.classList.remove('hidden');
+}
+
+function assignUserFinished() {
+	let newItem = JSON.parse(this.responseText);
+	let itemID = newItem.id;
+	let itemDiv = document.getElementById('item'+itemID);
+	let assignUser = document.getElementById('assignUser'+itemID);
+
+	assignUser.classList.remove('fa-user-plus');
+	assignUser.classList.add('fa-user');
+
+	let itemUserArea = itemDiv.querySelector('.item-user');
+	itemUserArea.classList.add('hidden');
 
 	let itemInfoArea = itemDiv.querySelector('.item-left');
 	itemInfoArea.classList.remove('hidden');

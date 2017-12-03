@@ -118,6 +118,15 @@ function editItem($itemID, $description, $dueDate) {
     echo json_encode($newItem);
 }
 
+function itemAssignUser($itemID, $assignedUser) {
+    global $dbh;
+    $stmt = $dbh->prepare('UPDATE Item SET assignedUser = ? WHERE Item.id = ?;');
+    $stmt->execute(array($assignedUser, $itemID));
+
+    $newItem = getItem($itemID);
+    echo json_encode($newItem);
+}
+
 function isItemAdmin($username, $itemID) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT * FROM Item, List, ListAdmin WHERE Item.id = ? AND Item.list = List.id AND List.Id = ListAdmin.list AND ListAdmin.user = ?');

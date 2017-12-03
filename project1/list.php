@@ -38,53 +38,77 @@ $items = getListItems($listID);
     </div>
 
     <div class="items">
-      <?php if ($isLoggedIn) { ?>
-      <h4>
-        <?=$list['title']?>
-      </h4>
+      <div id="items-list">
+        <?php if ($isLoggedIn) { ?>
+        <h4>
+          <?=$list['title']?>
+        </h4>
 
-      <?php } else { ?>
-      <!-- else here -->
+        <?php } else { ?>
+        <!-- else here -->
+        <?php } ?>
+        <?php foreach($items as $item) { ?>
+        <div class="item" id="item<?=$item['id']?>">
+          <div class="item-left">
+            <input type="checkbox" id="<?=$item['id']?>" name="complete"
+            <?php if($item['complete'] == 1) { ?>
+            checked
+            <?php } ?>
+            >
+            <span class="itemDescription"><?=$item['description']?></span>
+            <span clas="itemDueDate"><?= date('d M', strtotime($item['dueDate']))?></span>
+          </div>
+
+          <div class="item-edit hidden">
+            <form class="editItemForm">
+              <div class="flex-equal">
+                <input type="hidden" name="itemID" value="<?=$item['id']?>">
+                <div>
+                  <label for="editDescription">Description</label>
+                  <input type="text" name="editDescription" value="<?=$item['description']?>" required>
+                </div>
+                <div>
+                  <label for="editDate">Due Date</label>
+                  <input type="date" name="editDate" value="<?=$item['dueDate']?>" required>
+                </div>
+              </div>
+              <div>
+                <input class="button-primary" type="submit" value="Save">
+                <a class="button cancelEditItem">Cancel</a>
+              </div>
+            </form>
+          </div>
+
+          <div class="item-user hidden">
+            <form class="assignUserForm">
+              <div class="flex-equal">
+                <input type="hidden" name="itemID" value="<?=$item['id']?>">
+                <div>
+                  <label for="assignedUser">Assign User</label>
+                  <input type="text" name="assignedUser" placeholder="johndoe" value="<?=$item['assignedUser']?>" required>
+                </div>
+              </div>
+              <div>
+                <input class="button-primary" type="submit" value="Assign">
+                <a class="button cancelAssignUser">Cancel</a>
+              </div>
+            </form>
+          </div>
+
+          <div class="item-right">
+            <span>
+              <?php if($item['assignedUser'] != "") { ?> 
+              <i id="assignUser<?=$item['id']?>" class="fa fa-user assignUser"></i>
+              <?php } else { ?>
+              <i id="assignUser<?=$item['id']?>" class="fa fa-user-plus assignUser"></i>
+              <?php } ?>
+            </span>
+            <span><i id="edit<?=$item['id']?>" class="fa fa-pencil-square-o"></i></span>
+            <span><i id="delete<?=$item['id']?>" class="fa fa-trash deleteItem"></i></span>
+          </div>
+        </div>
       <?php } ?>
-      <?php foreach($items as $item) { ?>
-      <div class="item" id="item<?=$item['id']?>">
-        <div class="item-left">
-          <input type="checkbox" id="<?=$item['id']?>" name="complete"
-          <?php if($item['complete'] == 1) { ?>
-          checked
-          <?php } ?>
-          >
-          <span class="itemDescription"><?=$item['description']?></span>
-          <span clas="itemDueDate"><?= date('d M', strtotime($item['dueDate']))?></span>
-        </div>
-
-        <div class="item-edit hidden">
-          <form class="editItemForm">
-            <div class="flex-equal">
-              <input type="hidden" name="itemID" value="<?=$item['id']?>">
-              <div>
-                <label for="editDescription">Description</label>
-                <input type="text" name="editDescription" value="<?=$item['description']?>" required>
-              </div>
-              <div>
-                <label for="editDate">Due Date</label>
-                <input type="date" name="editDate" value="<?=$item['dueDate']?>" required>
-              </div>
-            </div>
-            <div>
-              <input class="button-primary" type="submit" value="Save">
-              <a class="button cancelEditItem">Cancel</a>
-            </div>
-          </form>
-        </div>
-
-        <div class="item-right">
-          <span><i id="assignUser<?=$item['id']?>" class="fa fa-user-plus"></i></span>
-          <span><i id="edit<?=$item['id']?>" class="fa fa-pencil-square-o"></i></span>
-          <span><i id="delete<?=$item['id']?>" class="fa fa-trash deleteItem"></i></span>
-        </div>
       </div>
-      <?php } ?>
 
       <div class="add-item">
         <a href="#" id="showAddItem"><i class="fa fa-plus"></i> Add a Task</a>
