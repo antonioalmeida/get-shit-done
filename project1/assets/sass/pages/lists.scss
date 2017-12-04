@@ -10,6 +10,26 @@
 		padding-left: 1em;
 	}
 
+	input, select {
+		margin-left: .5em;
+		border: 0;
+		width: 180px;
+	}
+
+	select {
+		width: 180px;
+		margin-left: 1.3em;
+		padding-left: 2em;
+		height: 2.0em;	
+	}
+
+
+	input[name='listTitle'] {
+		border: 0;
+		font-size: 1.5rem;
+		color: $primary-color;
+	}
+
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 }
 

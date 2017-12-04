@@ -19,17 +19,22 @@ function addList(event) {
 
 function listAdded() {
     let newList = JSON.parse(this.responseText);
-    let container = document.querySelector('.flex-container');
-    let listDiv = document.createElement('div');
+    let parent = document.getElementById('allLists');
+    let addList = document.getElementById('addList');
+    addList.querySelector('input[name=listTitle').value = '';
 
+    let listDiv = document.createElement('div');
     listDiv.classList.add('list');
     listDiv.innerHTML =
 		'<h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
 		'<p>' + newList.creationDate + '</p>' +
 		'<p><i style="color: #' + newList.color + '" class="fa fa-circle"></i> ' + newList.name + '</p>';
 
-    container.append(listDiv);
+    parent.insertBefore(listDiv, addList);
+
 }
+
+
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function(k){

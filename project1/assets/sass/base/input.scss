@@ -12,7 +12,7 @@ select {
 	appearance: none;
 	background-color: transparent;
 	border: .1rem solid $light-grey;
-	border-radius: .4rem;
+	border-radius: .4em;
 	box-shadow: none;
 	box-sizing: inherit;
 	height: 1.5em;
@@ -28,7 +28,7 @@ select {
 
 select {
 	height: 3.0em;
-	padding-right: 3.0em;
+	width: 95%;
 }
 
 label,
