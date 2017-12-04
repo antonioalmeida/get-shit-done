@@ -1,23 +1,28 @@
 'use strict';
 
-let form = document.querySelector('form');
+let addListForm = document.getElementById('addListForm');
+let deleteListTargets = document.querySelectorAll('.deleteList');
 
-form.addEventListener('submit', addList);
+addList.addEventListener('submit', addListHandler);
 
-function addList(event) {
+deleteListTargets.forEach(function(element) {
+    element.addEventListener('click', deleteListHandler);
+})
+
+function addListHandler(event) {
     let listTitle = document.querySelector('input[name=listTitle]').value;
     let category = document.querySelector('select[name=category]').value;
 
     let request = new XMLHttpRequest();
     let DOMString = './actions/action_add_list.php?' + encodeForAjax({'title': listTitle, 'category': category});
     request.open('get', DOMString, true);
-    request.addEventListener('load', listAdded);
+    request.addEventListener('load', addListFinished);
     request.send();
 
     event.preventDefault();
 }
 
-function listAdded() {
+function addListFinished() {
     let newList = JSON.parse(this.responseText);
     let parent = document.getElementById('allLists');
     let addList = document.getElementById('addList');
@@ -34,6 +39,9 @@ function listAdded() {
 
 }
 
+function deleteListHandler(event) {
+    // TODO
+}
 
 
 function encodeForAjax(data) {

@@ -36,14 +36,19 @@ $categoriesUser = getUserCategories($user['username']);
     <div id="allLists" class="flex-container">
       <?php foreach ($lists as $list) { ?>
       <div class="list">
-        <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
+        <div class="flex-container">
+          <div class="title">
+            <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
+          </div>
+          <div class="deleteList"><i class="fa fa-times"></i></div>
+        </div>
         <p> <?=$list['creationDate']?></p>
         <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
       </div>
       <?php } ?>
 
       <div class="list" id="addList">
-        <form>
+        <form id="addListForm">
           <input placeholder="New List" name="listTitle" required>
           <br>
           <select name="category">

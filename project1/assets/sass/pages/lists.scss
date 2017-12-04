@@ -10,6 +10,20 @@
 		padding-left: 1em;
 	}
 
+	.title {
+		flex: 2 0 0;
+	}
+
+	.deleteList {
+		flex: 1 0 1;
+		color: $light-grey;
+	}
+
+	.deleteList:hover {
+		color: $black-color;
+		cursor: pointer;
+	}
+
 	input, select {
 		margin-left: .5em;
 		border: 0;
