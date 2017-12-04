@@ -113,11 +113,11 @@ $admins = getListAdmins($listID);
           </div>
 
           <div class="item-right">
-            <span id="assignUser<?=$item['id']?>" class="assignUser">
+            <span>
               <?php if($item['assignedUser'] != "") { ?> 
-              @<?=$item['assignedUser']?> 
+              <span class="assignUser" id="assignUser<?=$item['id']?>"> @<?=$item['assignedUser']?></span>
               <?php } else { ?>
-              <i class="fa fa-user-plus"></i>
+              <i id="assignUser<?=$item['id']?>" class="fa fa-user-plus assignUser"></i>
               <?php } ?>
             </span>
             <span><i id="edit<?=$item['id']?>" class="fa fa-pencil-square-o"></i></span>

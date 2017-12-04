@@ -218,10 +218,16 @@ function assignUserFinished () {
     let itemDiv = document.getElementById('item' + itemID);
     let assignUser = document.getElementById('assignUser' + itemID);
 
-    if(newItem.assignedUser)
+    if(newItem.assignedUser) {
     	assignUser.innerHTML = '@' + newItem.assignedUser;
-    else
-    	assignUser.innerHTML = '<i class="fa fa-user-plus">';
+    	assignUser.classList.remove('fa-user-plus');
+    	assignUser.classList.remove('fa');
+    }
+    else {
+    	assignUser.classList.add('fa-user-plus');
+    	assignUser.classList.add('fa');
+    	assignUser.innerHTML = '';
+    }
 
     let itemUserArea = itemDiv.querySelector('.item-user');
     itemUserArea.classList.add('hidden');
