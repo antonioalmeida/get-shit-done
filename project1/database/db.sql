@@ -162,3 +162,35 @@ insert into User (username, password, email, picture, name, bio, joinDate) value
 insert into User (username, password, email, picture, name, bio, joinDate) values ('nstivenc', '$2y$10$ylPR40Rk/vPPiH9A4lF20.tKJKiuS4XIhAS/TjvbGpGhRpUJwG90C', 'nstivenc@ed.gov', 'http://dummyimage.com/164x145.png/ff4444/ffffff', 'Naoma Stiven', 'drive world-class portals', '2017-03-18');
 insert into User (username, password, email, picture, name, bio, joinDate) values ('ktomsad', '$2y$10$8YuofP6tTxD6WWXnjecPzOfEbxds3UBMoTPZaYLaz42OH8yIi8ibC', 'ktomsad@disqus.com', 'http://dummyimage.com/111x108.png/cc0000/ffffff', 'Kristen Tomsa', 'empower cross-platform initiatives', '2017-04-02');
 insert into User (username, password, email, picture, name, bio, joinDate) values ('kmckewe', '$2y$10$nv0xkpp69EVb8rZoXkkFGezK40DG3iXT9U3wp/cCpkkHlf2vl76vW', 'kmckewe@last.fm', 'http://dummyimage.com/114x234.jpg/ff4444/ffffff', 'Katey McKew', 'deliver proactive models', '2017-01-16');
+
+
+insert into Category (name, color, user) values ('demand-driven', 'f44336', 'antonioalmeida');
+insert into Category (name, color) values ('budgetary management', 'e91e63');
+insert into Category (name, color, user) values ('monitoring', '9c27b0', 'cyrilico');
+insert into Category (name, color, user) values ('methodical', 'ff9800', 'diogotorres97');
+insert into Category (name, color) values ('super discrete', 'ff5722');
+insert into Category (name, color) values ('sports', '000000');
+insert into Category (name, color) values ('optimizing', 'ffffff');
+insert into Category (name, color) values ('homogeneous', '9e9e9e');
+insert into Category (name, color) values ('secured line', '795548');
+insert into Category (name, color) values ('Future-proofed', '607d8b');
+insert into Category (name, color) values ('human-resource', '009688');
+insert into Category (name, color) values ('Profit-focused', '00bcd4');
+insert into Category (name, color) values ('customer loyalty', '03a9f4');
+insert into Category (name, color) values ('Vision-oriented', '4caf50');
+insert into Category (name, color, user) values ('methodology', '673ab7', 'hdicty0');
+insert into Category (name, color, user) values ('policy', '673ab7', 'dshama1');
+insert into Category (name, color) values ('background', 'ffc107');
+insert into Category (name, color, user) values ('matrices', '8bc34a', 'ctinman5');
+insert into Category (name, color) values ('Team-oriented', '2196f3');
+insert into Category (name, color, user) values ('attitude', '3f51b5', 'lwardroper9');
+insert into Category (name, color) values ('Customer-focused', '3f51b5');
+insert into Category (name, color, user) values ('discrete', '03a9f4', 'ktomsad');
+insert into Category (name, color) values ('moderator', 'f44336');
+insert into Category (name, color) values ('analyzing', '9c27b0');
+insert into Category (name, color, user) values ('challenge', '000000', 'wstolberger3');
+insert into Category (name, color) values ('synergy', '673ab7');
+insert into Category (name, color, user) values ('strategy', 'ffffff', 'amclennana');
+insert into Category (name, color, user) values ('Secured', 'ff5722', 'bkelley6');
+insert into Category (name, color, user) values ('Profound', 'ff9800', 'kmckewe');
+insert into Category (name, color) values ('Operative', 'ff9800');
