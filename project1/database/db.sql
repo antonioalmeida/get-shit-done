@@ -196,3 +196,14 @@ insert into List (title, creationDate, category, creator) values ('Six Degrees o
 insert into List (title, creationDate, category, creator) values ('Map For Saturday, A', '2017-06-25', 15, 'hdicty0');
 insert into List (title, creationDate, category, creator) values ('Police Story 3: Supercop', '2017-04-30', 29, 'hdicty0');
 insert into List (title, creationDate, category, creator) values ('From Dusk Till Dawn 2: Texas Blood Money ', '2017-10-05', 23, 'hdicty0');
+
+insert into ListAdmin values (1, 'cyrilico');
+insert into ListAdmin values (2, 'diogotorres97');
+insert into ListAdmin values (4, 'antonioalmeida');
+insert into ListAdmin values (5, 'dshama1');
+insert into ListAdmin values (8, 'yipsgrave2');
+insert into ListAdmin values (7, 'zdowney4');
+insert into ListAdmin values (10, 'ctinman5');
+insert into ListAdmin values (10, 'wstolberger3');
+insert into ListAdmin values (11, 'cyrilico');
+insert into ListAdmin values (12, 'diogotorres97');
