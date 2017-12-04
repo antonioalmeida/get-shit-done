@@ -33,7 +33,6 @@ create table User(
     picture text,
     name text,
     bio text,
-    joinDate date,
     constraint UserPrimaryKey primary key (username),
     constraint UserCheckBio check (length(bio) < 140)
 );
@@ -55,7 +54,7 @@ create table Item(
     dueDate date not null,
     complete integer default 0,
     color text not null,
-    preceeding integer, --can be null (no preceeding items)
+    preceeding integer, --can be null (no preceeding item)
     assignedUser text, --can be null
     list integer not null,
     constraint ItemPrimaryKey primary key (id),
@@ -147,22 +146,12 @@ insert into Color values ('ffffff', 'White');
 insert INTO User (userName, name, password, email) VALUES("antonioalmeida", "António Almeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
 insert INTO User (userName, name, password, email) VALUES("diogotorres97", "Diogo Torres", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
 insert INTO User (userName, name, password, email) VALUES("cyrilico", "João Damas", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");
-insert into User (username, password, email, picture, name, bio, joinDate) values ('hdicty0', '$2y$10$.wE1LR7rkCg4TvHBz30CHegzxlTpjfn5h.3FhPZb.YH7BoxGcocmC', 'hdicty0@blogspot.com', 'http://dummyimage.com/185x247.png/cc0000/ffffff', 'Hendrika Dicty', 'grow integrated web-readiness', '2016-12-08');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('dshama1', '$2y$10$z7x5efuR9D298UN2u3sF8ez2rTH/BOP0uXcgQjhwJrXkZQReFn7zm', 'dshama1@dyndns.org', 'http://dummyimage.com/141x120.bmp/ff4444/ffffff', 'Dotty Shama', 'recontextualize plug-and-play markets', '2017-02-09');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('yipsgrave2', '$2y$10$XfWlUG5fSpKy7AxM4rvpLupsoH7uM9Ha5FPHSnewUICf1VELhHWi2', 'yipsgrave2@ifeng.com', 'http://dummyimage.com/194x179.png/ff4444/ffffff', 'Yovonnda Ipsgrave', 'visualize one-to-one content', '2017-05-12');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('wstolberger3', '$2y$10$l41dnqXej1ofA6ZZ89qo4e/7ACN3xhFZhd.xWtTDXupT57VgRhuXu', 'wstolberger3@parallels.com', 'http://dummyimage.com/197x196.png/dddddd/000000', 'Waldemar Stolberger', 'implement cross-media paradigms', '2017-09-26');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('zdowney4', '$2y$10$XcpTm2tcxISKDzQsz5qcB..apQy0Sf/z9tprQ3RmT959rquMN.xi.', 'zdowney4@seattletimes.com', 'http://dummyimage.com/105x104.bmp/cc0000/ffffff', 'Zach Downey', 'syndicate world-class initiatives', '2017-03-11');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('ctinman5', '$2y$10$Z1aaNEndZye8dH4RVD8stuwsXeuwI1XSm0lfSBRnAq3chKmBbD4MG', 'ctinman5@nba.com', 'http://dummyimage.com/236x218.jpg/cc0000/ffffff', 'Cynthie Tinman', 'extend B2C functionalities', '2017-06-19');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('bkelley6', '$2y$10$Tvyv350G10puCnR6rXKeleBN7Jr1nLysSs2ZbtvLK/rqlEcU4mQG.', 'bkelley6@bloglines.com', 'http://dummyimage.com/185x197.jpg/5fa2dd/ffffff', 'Bartholemy Kelley', 'visualize compelling infomediaries', '2017-01-18');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('wgoodban7', '$2y$10$/E.O/wSRSUTo3WbujkAhEeyfqa8lqUvQpP61OMrQg4jJPq.U22DUS', 'wgoodban7@biblegateway.com', 'http://dummyimage.com/215x199.bmp/cc0000/ffffff', 'Wayland Goodban', 'whiteboard dot-com channels', '2017-09-15');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('bgrendon8', '$2y$10$r2gyPdDeCGA/pfFgIrgEeedPtS0gWA6OJAjFCbWu/9GhqgXAqGxX2', 'bgrendon8@drupal.org', 'http://dummyimage.com/139x204.png/cc0000/ffffff', 'Bevon Grendon', 'facilitate compelling models', '2017-05-18');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('lwardroper9', '$2y$10$nhM778fiVYnfVr.VnMx5pen4guEy/jv3v.EzOwhwFT5lZ.YR1deTK', 'lwardroper9@princeton.edu', 'http://dummyimage.com/123x187.bmp/dddddd/000000', 'Lauri Wardroper', 'matrix strategic methodologies', '2017-05-23');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('amclennana', '$2y$10$5pPFcO9f2A5oUWM..kzOKuAYc8t/bocyVewU3denIDj0wcOGcHtpi', 'amclennana@shareasale.com', 'http://dummyimage.com/238x223.jpg/dddddd/000000', 'Antin McLennan', 'synergize clicks-and-mortar vortals', '2017-11-07');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('dfauldsb', '$2y$10$sBrKc6XtQtwUZxI9fV9dgOW2PIcRJ5L8xhBnsqzy6ZABVpnMQUjDS', 'dfauldsb@archive.org', 'http://dummyimage.com/174x190.png/cc0000/ffffff', 'Dillie Faulds', 'disintermediate next-generation systems', '2017-09-22');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('nstivenc', '$2y$10$ylPR40Rk/vPPiH9A4lF20.tKJKiuS4XIhAS/TjvbGpGhRpUJwG90C', 'nstivenc@ed.gov', 'http://dummyimage.com/164x145.png/ff4444/ffffff', 'Naoma Stiven', 'drive world-class portals', '2017-03-18');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('ktomsad', '$2y$10$8YuofP6tTxD6WWXnjecPzOfEbxds3UBMoTPZaYLaz42OH8yIi8ibC', 'ktomsad@disqus.com', 'http://dummyimage.com/111x108.png/cc0000/ffffff', 'Kristen Tomsa', 'empower cross-platform initiatives', '2017-04-02');
-insert into User (username, password, email, picture, name, bio, joinDate) values ('kmckewe', '$2y$10$nv0xkpp69EVb8rZoXkkFGezK40DG3iXT9U3wp/cCpkkHlf2vl76vW', 'kmckewe@last.fm', 'http://dummyimage.com/114x234.jpg/ff4444/ffffff', 'Katey McKew', 'deliver proactive models', '2017-01-16');
-
+insert into User (username, password, email, picture, name, bio) values ('hdicty0', '$2y$10$.wE1LR7rkCg4TvHBz30CHegzxlTpjfn5h.3FhPZb.YH7BoxGcocmC', 'hdicty0@blogspot.com', 'http://dummyimage.com/185x247.png/cc0000/ffffff', 'Hendrika Dicty', 'grow integrated web-readiness');
+insert into User (username, password, email, picture, name, bio) values ('dshama1', '$2y$10$z7x5efuR9D298UN2u3sF8ez2rTH/BOP0uXcgQjhwJrXkZQReFn7zm', 'dshama1@dyndns.org', 'http://dummyimage.com/141x120.bmp/ff4444/ffffff', 'Dotty Shama', 'recontextualize plug-and-play markets');
+insert into User (username, password, email, picture, name, bio) values ('yipsgrave2', '$2y$10$XfWlUG5fSpKy7AxM4rvpLupsoH7uM9Ha5FPHSnewUICf1VELhHWi2', 'yipsgrave2@ifeng.com', 'http://dummyimage.com/194x179.png/ff4444/ffffff', 'Yovonnda Ipsgrave', 'visualize one-to-one content');
+insert into User (username, password, email, picture, name, bio) values ('wstolberger3', '$2y$10$l41dnqXej1ofA6ZZ89qo4e/7ACN3xhFZhd.xWtTDXupT57VgRhuXu', 'wstolberger3@parallels.com', 'http://dummyimage.com/197x196.png/dddddd/000000', 'Waldemar Stolberger', 'implement cross-media paradigms');
+insert into User (username, password, email, picture, name, bio) values ('zdowney4', '$2y$10$XcpTm2tcxISKDzQsz5qcB..apQy0Sf/z9tprQ3RmT959rquMN.xi.', 'zdowney4@seattletimes.com', 'http://dummyimage.com/105x104.bmp/cc0000/ffffff', 'Zach Downey', 'syndicate world-class initiatives');
+insert into User (username, password, email, picture, name, bio) values ('ctinman5', '$2y$10$Z1aaNEndZye8dH4RVD8stuwsXeuwI1XSm0lfSBRnAq3chKmBbD4MG', 'ctinman5@nba.com', 'http://dummyimage.com/236x218.jpg/cc0000/ffffff', 'Cynthie Tinman', 'extend B2C functionalities');
 
 insert into Category (name, color, user) values ('demand-driven', 'f44336', 'antonioalmeida');
 insert into Category (name, color) values ('budgetary management', 'e91e63');
@@ -183,14 +172,27 @@ insert into Category (name, color, user) values ('policy', '673ab7', 'dshama1');
 insert into Category (name, color) values ('background', 'ffc107');
 insert into Category (name, color, user) values ('matrices', '8bc34a', 'ctinman5');
 insert into Category (name, color) values ('Team-oriented', '2196f3');
-insert into Category (name, color, user) values ('attitude', '3f51b5', 'lwardroper9');
+insert into Category (name, color, user) values ('attitude', '3f51b5', 'ctinman5');
 insert into Category (name, color) values ('Customer-focused', '3f51b5');
-insert into Category (name, color, user) values ('discrete', '03a9f4', 'ktomsad');
+insert into Category (name, color, user) values ('discrete', '03a9f4', 'yipsgrave2');
 insert into Category (name, color) values ('moderator', 'f44336');
 insert into Category (name, color) values ('analyzing', '9c27b0');
 insert into Category (name, color, user) values ('challenge', '000000', 'wstolberger3');
 insert into Category (name, color) values ('synergy', '673ab7');
-insert into Category (name, color, user) values ('strategy', 'ffffff', 'amclennana');
-insert into Category (name, color, user) values ('Secured', 'ff5722', 'bkelley6');
-insert into Category (name, color, user) values ('Profound', 'ff9800', 'kmckewe');
+insert into Category (name, color, user) values ('strategy', 'ffffff', 'zdowney4');
+insert into Category (name, color, user) values ('Secured', 'ff5722', 'wstolberger3');
+insert into Category (name, color, user) values ('Profound', 'ff9800', 'hdicty0');
 insert into Category (name, color) values ('Operative', 'ff9800');
+
+insert into List (title, creationDate, category, creator) values ('Oscar', '2017-05-25', 2, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Woman Under the Influence, A', '2017-05-14', 1, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Jackass 2.5', '2017-05-09', 5, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Critters', '2017-09-25', 3, 'cyrilico');
+insert into List (title, creationDate, category, creator) values ('Cousin Angelica (La prima Angélica)', '2017-06-28', 6, 'cyrilico');
+insert into List (title, creationDate, category, creator) values ('Real Life', '2017-10-24', 11, 'cyrilico');
+insert into List (title, creationDate, category, creator) values ('Cousin Angelica (La prima Angélica)', '2017-11-26', 4, 'diogotorres97');
+insert into List (title, creationDate, category, creator) values ('Paan Singh Tomar', '2017-07-23', 30, 'diogotorres97');
+insert into List (title, creationDate, category, creator) values ('Six Degrees of Separation', '2017-10-24', 26, 'diogotorres97');
+insert into List (title, creationDate, category, creator) values ('Map For Saturday, A', '2017-06-25', 15, 'hdicty0');
+insert into List (title, creationDate, category, creator) values ('Police Story 3: Supercop', '2017-04-30', 29, 'hdicty0');
+insert into List (title, creationDate, category, creator) values ('From Dusk Till Dawn 2: Texas Blood Money ', '2017-10-05', 23, 'hdicty0');
