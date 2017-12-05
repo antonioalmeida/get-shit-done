@@ -143,9 +143,9 @@ insert into Color values ('607d8b', 'Blue Grey');
 insert into Color values ('000000', 'Black');
 insert into Color values ('ffffff', 'White');
 
-insert INTO User (userName, name, password, email) VALUES("antonioalmeida", "António Almeida", "9613c98430aa75fcce457d97056a42c49be41c84", "cenas@hotmail.com");
-insert INTO User (userName, name, password, email) VALUES("diogotorres97", "Diogo Torres", "894ff497ca1c634444f1dcc66b3aa6766a78efbf", "cenas2@hotmail.com");
-insert INTO User (userName, name, password, email) VALUES("cyrilico", "João Damas", "153bca65a1343c229bce8e08d8b8d28a61f6a55a","cenas3@hotmail.com");
+insert INTO User (userName, name, password, email) VALUES("antonioalmeida", "António Almeida", "$2a$12$ImZy3AAEkbMWq3ZFDSFmwOYghh7nbqzQdvvS1r/tggwgeAKOnXLQi", "cenas@hotmail.com");
+insert INTO User (userName, name, password, email) VALUES("diogotorres97", "Diogo Torres", "$2a$12$YO6D3sebd305UTKc9kLf1.zkMeqeP1/2SIYdJzeSaTqzj6MguUcgy", "cenas2@hotmail.com");
+insert INTO User (userName, name, password, email) VALUES("cyrilico", "João Damas", "$2a$12$TGl/9isx4.pfcurXJ4vSyes5g9LUvJ6lXh9jjfH/bGyeRcJJ/gADq","cenas3@hotmail.com");
 insert into User (username, password, email, picture, name, bio) values ('hdicty0', '$2y$10$.wE1LR7rkCg4TvHBz30CHegzxlTpjfn5h.3FhPZb.YH7BoxGcocmC', 'hdicty0@blogspot.com', 'http://dummyimage.com/185x247.png/cc0000/ffffff', 'Hendrika Dicty', 'grow integrated web-readiness');
 insert into User (username, password, email, picture, name, bio) values ('dshama1', '$2y$10$z7x5efuR9D298UN2u3sF8ez2rTH/BOP0uXcgQjhwJrXkZQReFn7zm', 'dshama1@dyndns.org', 'http://dummyimage.com/141x120.bmp/ff4444/ffffff', 'Dotty Shama', 'recontextualize plug-and-play markets');
 insert into User (username, password, email, picture, name, bio) values ('yipsgrave2', '$2y$10$XfWlUG5fSpKy7AxM4rvpLupsoH7uM9Ha5FPHSnewUICf1VELhHWi2', 'yipsgrave2@ifeng.com', 'http://dummyimage.com/194x179.png/ff4444/ffffff', 'Yovonnda Ipsgrave', 'visualize one-to-one content');

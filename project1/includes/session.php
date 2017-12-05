@@ -1,5 +1,8 @@
 <?php
+
+   session_set_cookie_params(0, '/', 'www.fe.up.pt', true, true);
    session_start();
+   // session_regenerate_id(true);
 
    function setCurrentUser($username) {
      $_SESSION['username'] = $username;

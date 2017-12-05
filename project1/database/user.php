@@ -1,9 +1,10 @@
 <?php
   function isLoginCorrect($username, $password) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT * FROM User WHERE username = ? AND password = ?');
-    $stmt->execute(array($username, sha1($password)));
-    return $stmt->fetch() !== false;
+    $stmt = $dbh->prepare('SELECT * FROM User WHERE username = ?');
+    $stmt->execute(array($username));
+    $user = $stmt->fetch();
+    return ($user !== false && password_verify($password, $user['password']));
   }
 
   function usernameExists($username){
@@ -22,8 +23,9 @@ function emailInUse($email){
 
 function newUser($username, $password, $email){
     global $dbh;
+    $options = ['cost' => 12];
     $stmt = $dbh->prepare('INSERT INTO User (userName, password, email) values(?, ?, ?)');
-    $stmt->execute(array($username, sha1($password), $email));
+    $stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options), $email));
 }
 
 function getUser($username) {
