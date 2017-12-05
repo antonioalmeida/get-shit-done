@@ -51,9 +51,12 @@ assignUserFormList.forEach(function (element) {
 });
 
 function addItemSubmitHandler (event) {
+    event.preventDefault();
     let id_list = document.querySelector('input[name=id]').value;
-    let description = document.querySelector('input[name=addItemDescripion]').value;
-    let date = document.querySelector('input[name=addItemDueDate]').value;
+    let description = document.querySelector('input[name=addItemDescription]').value;
+    let dueDate = document.querySelector('input[name=addItemDueDate]').value;
+    console.log(description);
+    console.log(dueDate);
 
     let request = new XMLHttpRequest();
     let DOMString = './actions/action_add_item.php?' + encodeForAjax({'id': id_list, 'description': description, 'dueDate': dueDate});
@@ -61,7 +64,6 @@ function addItemSubmitHandler (event) {
     request.addEventListener('load', itemAdded);
     request.send();
 
-    event.preventDefault();
 }
 
 function deleteItemHandler (event) {

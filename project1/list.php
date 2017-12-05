@@ -135,8 +135,8 @@ $admins = getListAdmins($listID);
               <input type="hidden" name="id" value="<?=$listID?>">
               <br>
               <div>
-                <label for="description">Description</label>
-                <input type="text" placeholder="Call girlfriend" name="description" required>
+                <label for="addItemDescription">Description</label>
+                <input type="text" placeholder="Call girlfriend" name="addItemDescription" required>
               </div>
               <div>
                 <label for="addItemDueDate">Due Date</label>
