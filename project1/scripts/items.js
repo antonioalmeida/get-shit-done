@@ -74,6 +74,7 @@ function deleteItemHandler (event) {
 }
 
 function itemAdded () {
+	console.log(this.responseText);
     let newItem = JSON.parse(this.responseText);
     let container = document.getElementById('items-list');
     let itemDiv = document.createElement('div');
@@ -195,15 +196,19 @@ function checkboxUpdated () {
 }
 
 function editItemFinished () {
+	console.log(this.responseText);
     let newItem = JSON.parse(this.responseText);
     let itemID = newItem.id;
     let itemDiv = document.getElementById('item' + itemID);
 
-    let description = itemDiv.querySelectorAll('.itemDescription');
-    let dueDate = itemDiv.querySelectorAll('.itemDueDate');
+    let description = itemDiv.querySelectorAll('.itemDescription')[0];
+    let dueDate = itemDiv.querySelectorAll('.itemDueDate')[0];
 
-    description.value = newItem.description;
-    dueDate.value = newItem.dueDate;
+    description.innerHTML = newItem.description;
+    dueDate.innerHTML = newItem.dueDate;
+
+    console.log(description);
+    console.log(dueDate);
 
     let itemEditArea = itemDiv.querySelector('.item-edit');
     itemEditArea.classList.add('hidden');

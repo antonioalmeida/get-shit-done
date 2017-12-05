@@ -7,6 +7,13 @@ function getUserLists($username) {
     return $stmt->fetchAll();
 }
 
+function getUserSharedLists($username) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT Category.name as categoryName, Category.color as categoryColor, List.id as listId, List.title as listName, List.creationDate as creadtionDate from Category, List, ListAdmin where List.id = ListAdmin.list and ListAdmin.user = ? and List.creator <> ? and List.category = Category.id');
+    $stmt->execute(array($username, $username));
+    return $stmt->fetchAll();
+}
+
 function isAdmin($username, $listID) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT user FROM List, ListAdmin WHERE user = ? AND ListAdmin.list = ?');
@@ -132,8 +139,8 @@ function setItemComplete($itemID, $value) {
 function editItem($itemID, $description, $dueDate) {
     global $dbh;
     //TODO: add update due date 
-    $stmt = $dbh->prepare('UPDATE Item SET description = ? WHERE Item.id = ?;');
-    $stmt->execute(array($description, $itemID));
+    $stmt = $dbh->prepare('UPDATE Item SET description = ?, dueDate = ? WHERE Item.id = ?;');
+    $stmt->execute(array($description, $dueDate, $itemID));
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);
@@ -162,10 +169,24 @@ function deleteList($listId) {
     return;
 }
 
-function getUserCategories($userId) {
+function getUserCategories($username) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT id, name, color from category where user is null union select id, name, color from category where user = ?;');
-    $stmt->execute(array($userId));
+    $stmt->execute(array($username));
+    return $stmt->fetchAll();
+}
+
+function getUserSharedCategories($username) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT Category.id as id, Category.name as name, Category.color as color from List, ListAdmin, Category where List.id = ListAdmin.list and ListAdmin.user = ? and List.creator <> ? and List.category = Category.id');
+    $stmt->execute(array($username, $username));
+    return $stmt->fetchAll();
+}
+
+function getUserAssignedItems($username) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT Item.description as description, Item.complete as complete, Item.dueDate as dueDate, Item.color as color FROM Item WHERE Item.assignedUser = ?');
+    $stmt->execute(array($username));
     return $stmt->fetchAll();
 }
 

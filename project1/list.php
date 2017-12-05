@@ -68,7 +68,7 @@ $admins = getListAdmins($listID);
             <?php } ?>
             >
             <span class="itemDescription"><?=$item['description']?></span>
-            <span clas="itemDueDate"><?= date('d M', strtotime($item['dueDate']))?></span>
+            <span class="itemDueDate"><?= date('d M', strtotime($item['dueDate']))?></span>
           </div>
 
           <div class="item-edit hidden">

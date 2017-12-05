@@ -18,7 +18,7 @@ $id_list = $_GET["id"];
 $description = (string) $_GET["description"];
 $dueDate = date("Y-m-d");
 // TODO: need to add actual color input ASAP
-$color = 'ff0000';
+$color = '000000';
 
 addItem($id_list, $description, $dueDate, $color);
 ?>
