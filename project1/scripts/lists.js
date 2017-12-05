@@ -12,9 +12,10 @@ deleteListTargets.forEach(function(element) {
 function addListHandler(event) {
     let listTitle = document.querySelector('input[name=listTitle]').value;
     let category = document.querySelector('select[name=category]').value;
+    let csrf = document.querySelector('input[name=csrf]').value;
 
     let request = new XMLHttpRequest();
-    let DOMString = './actions/action_add_list.php?' + encodeForAjax({'title': listTitle, 'category': category});
+    let DOMString = './actions/action_add_list.php?' + encodeForAjax({'title': listTitle, 'category': category, 'csrf': csrf});
     request.open('get', DOMString, true);
     request.addEventListener('load', addListFinished);
     request.send();
@@ -41,9 +42,10 @@ function addListFinished() {
 function deleteListHandler(event) {
     let listToDelete = event.target.parentNode.parentNode.parentNode;
     let listID = listToDelete.id.substr(4);
+      let csrf = document.querySelector('input[name=csrf]').value;
 
     let request = new XMLHttpRequest();
-    let DOMString = './actions/action_delete_list.php?' + encodeForAjax({'listID': listID});
+    let DOMString = './actions/action_delete_list.php?' + encodeForAjax({'listID': listID, 'csrf': csrf});
     request.open('get', DOMString, true);
     request.addEventListener('load', deleteListFinished);
     request.send();

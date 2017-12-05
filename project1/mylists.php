@@ -40,7 +40,10 @@ $categoriesUser = getUserCategories($user['username']);
           <div class="title">
             <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
           </div>
-          <div class="deleteList"><i class="fa fa-times"></i></div>
+          <div class="deleteList">
+              <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+            <i class="fa fa-times"></i>
+          </div>
         </div>
         <p> <?=$list['creationDate']?></p>
         <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
@@ -49,6 +52,7 @@ $categoriesUser = getUserCategories($user['username']);
 
       <div class="list" id="addList">
         <form id="addListForm">
+          <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
           <input placeholder="New List" name="listTitle" required>
           <br>
           <select name="category">
