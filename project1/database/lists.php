@@ -47,7 +47,7 @@ function listAddAdmin($listID, $username) {
         return;
     }
     // return username in case of success
-    echo $username; 
+    echo $username;
 }
 
 function getListAdmins($listID) {
@@ -138,7 +138,7 @@ function setItemComplete($itemID, $value) {
 
 function editItem($itemID, $description, $dueDate) {
     global $dbh;
-    //TODO: add update due date 
+    //TODO: add update due date
     $stmt = $dbh->prepare('UPDATE Item SET description = ?, dueDate = ? WHERE Item.id = ?;');
     $stmt->execute(array($description, $dueDate, $itemID));
 

@@ -5,7 +5,7 @@
    // session_regenerate_id(true);
 
    function setCurrentUser($username) {
-     $_SESSION['username'] = $username;
+     $_SESSION['username'] = strtolower($username);
  }
 
   function getErrorMessages() {
