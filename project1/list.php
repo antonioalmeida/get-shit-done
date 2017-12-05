@@ -138,6 +138,10 @@ $admins = getListAdmins($listID);
                 <label for="description">Description</label>
                 <input type="text" placeholder="Call girlfriend" name="description" required>
               </div>
+              <div>
+                <label for="addItemDueDate">Due Date</label>
+                <input type="date" name="addItemDueDate" required>
+              </div>
             </div>
             <div>
               <input class="button-primary" type="submit" value="Add">

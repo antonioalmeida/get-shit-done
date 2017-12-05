@@ -1,6 +1,6 @@
 'use strict';
 
-let form = document.querySelector('#addItemForm');
+let addItemForm = document.querySelector('#addItemForm');
 let showAddItem = document.querySelector('#showAddItem');
 let cancelAddItem = document.querySelector('#cancelAddItem');
 let checkboxList = document.querySelectorAll('input[name="complete"]');
@@ -13,7 +13,7 @@ let cancelAssignUserList = document.querySelectorAll('.cancelAssignUser');
 let assignUserFormList = document.querySelectorAll('.assignUserForm');
 let addListAdmin = document.getElementById('addListAdmin');
 
-form.addEventListener('submit', addItem);
+addItemForm.addEventListener('submit', addItemSubmitHandler);
 showAddItem.addEventListener('click', showAddItemHandler);
 cancelAddItem.addEventListener('click', cancelAddItemHandler);
 addListAdmin.addEventListener('submit', addListAdminSubmitHandler);
@@ -50,12 +50,13 @@ assignUserFormList.forEach(function (element) {
     element.addEventListener('submit', assignUserSubmitHandler);
 });
 
-function addItem (event) {
+function addItemSubmitHandler (event) {
     let id_list = document.querySelector('input[name=id]').value;
-    let description = document.querySelector('input[name=description]').value;
+    let description = document.querySelector('input[name=addItemDescripion]').value;
+    let date = document.querySelector('input[name=addItemDueDate]').value;
 
     let request = new XMLHttpRequest();
-    let DOMString = './actions/action_add_item.php?' + encodeForAjax({'id': id_list, 'description': description});
+    let DOMString = './actions/action_add_item.php?' + encodeForAjax({'id': id_list, 'description': description, 'dueDate': dueDate});
     request.open('get', DOMString, true);
     request.addEventListener('load', itemAdded);
     request.send();
@@ -101,12 +102,12 @@ function itemDeleted () {
 }
 
 function showAddItemHandler (event) {
-    form.classList.remove('hidden');
+    addItemForm.classList.remove('hidden');
     showAddItem.classList.add('hidden');
 }
 
 function cancelAddItemHandler (event) {
-    form.classList.add('hidden');
+    addItemForm.classList.add('hidden');
     showAddItem.classList.remove('hidden');
 }
 

@@ -38,12 +38,17 @@ $assignedItems = getUserAssignedItems($username);
 <div>
   <h4>Shit To Do</h4>
   <div>
-    <?php foreach ($assignedItems as $item) { ?>
+    <?php if(sizeof($assignedItems) > 0) {
+
+      foreach ($assignedItems as $item) { ?>
     <div class="assigned-item">
       <p><?= $item['description']?></p>
       <p><?= $item['dueDate']?></p>
       <p><?= $item['color']?></p>
     </div>
+    <?php } 
+    } else { ?>
+    <h6>You don't have shit to do, congrats!</h6>
     <?php } ?>
 
   </div>

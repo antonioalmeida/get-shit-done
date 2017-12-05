@@ -34,18 +34,23 @@ $categoriesUser = getUserSharedCategories($user['username']);
     <?php } ?>
 
     <div id="allLists" class="flex-container">
-      <?php foreach ($lists as $list) { ?>
-      <div class="list">
-        <div class="flex-container">
-          <div class="title">
-            <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
+      <?php if(sizeof($lists) > 0) {
+        foreach ($lists as $list) { ?>
+        <div class="list">
+          <div class="flex-container">
+            <div class="title">
+              <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
+            </div>
+            <div class="deleteList"><i class="fa fa-times"></i></div>
           </div>
-          <div class="deleteList"><i class="fa fa-times"></i></div>
+          <p> <?=$list['creationDate']?></p>
+          <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
         </div>
-        <p> <?=$list['creationDate']?></p>
-        <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
-      </div>
+        <?php } 
+      } else { ?>
+      <h6>Noone shared any lists with you. <i class="fa fa-frown-o"></i></h6>
       <?php } ?>
+
     </div>
 
   </div>

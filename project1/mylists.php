@@ -35,7 +35,7 @@ $categoriesUser = getUserCategories($user['username']);
 
     <div id="allLists" class="flex-container">
       <?php foreach ($lists as $list) { ?>
-      <div class="list">
+      <div class="list" id="list<?=$list['listId']?>">
         <div class="flex-container">
           <div class="title">
             <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>

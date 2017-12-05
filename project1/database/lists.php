@@ -165,8 +165,14 @@ function isItemAdmin($username, $itemID) {
 function deleteList($listId) {
     global $dbh;
     $stmt = $dbh->prepare('DELETE from List where List.id == ?;');
-    $stmt->execute(array($listId));
-    return;
+
+    try {
+        $stmt->execute(array($listId));
+        return true;
+    }
+    catch (Exception $e) {
+        return false;
+    }
 }
 
 function getUserCategories($username) {

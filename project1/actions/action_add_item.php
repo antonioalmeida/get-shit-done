@@ -14,9 +14,12 @@ if ( !preg_match ("/^[\w\s-?!\.()]*$/", $_GET['description'])) {
   die("ERROR: ID can only contain numbers");
 }
 
+//TODO add regex for date verification
+
 $id_list = $_GET["id"];
 $description = (string) $_GET["description"];
-$dueDate = date("Y-m-d");
+$dueDate = $GET["dueDate"];
+
 // TODO: need to add actual color input ASAP
 $color = '000000';
 

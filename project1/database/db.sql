@@ -153,12 +153,12 @@ insert into User (username, password, email, picture, name, bio) values ('wstolb
 insert into User (username, password, email, picture, name, bio) values ('zdowney4', '$2y$10$XcpTm2tcxISKDzQsz5qcB..apQy0Sf/z9tprQ3RmT959rquMN.xi.', 'zdowney4@seattletimes.com', 'http://dummyimage.com/105x104.bmp/cc0000/ffffff', 'Zach Downey', 'syndicate world-class initiatives');
 insert into User (username, password, email, picture, name, bio) values ('ctinman5', '$2y$10$Z1aaNEndZye8dH4RVD8stuwsXeuwI1XSm0lfSBRnAq3chKmBbD4MG', 'ctinman5@nba.com', 'http://dummyimage.com/236x218.jpg/cc0000/ffffff', 'Cynthie Tinman', 'extend B2C functionalities');
 
-insert into Category (name, color, user) values ('demand-driven', '4caf50', 'antonioalmeida');
-insert into Category (name, color) values ('budgetary management', '03a9f4');
-insert into Category (name, color, user) values ('monitoring', '9c27b0', 'cyrilico');
-insert into Category (name, color, user) values ('methodical', 'ff9800', 'diogotorres97');
-insert into Category (name, color) values ('super discrete', 'ff5722');
-insert into Category (name, color) values ('sports', '000000');
+insert into Category (name, color, user) values ('Home', '4caf50', 'antonioalmeida');
+insert into Category (name, color) values ('Work', '03a9f4');
+insert into Category (name, color, user) values ('Shopping', '9c27b0', 'cyrilico');
+insert into Category (name, color, user) values ('FEUP', 'ff9800', 'diogotorres97');
+insert into Category (name, color) values ('Cooking', 'ff5722');
+insert into Category (name, color) values ('Sports', '000000');
 
 insert into List (title, creationDate, category, creator) values ('Do LAIG', '2017-05-25', 2, 'antonioalmeida');
 insert into List (title, creationDate, category, creator) values ('Try to do RCOM', '2017-05-14', 1, 'antonioalmeida');

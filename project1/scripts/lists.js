@@ -36,13 +36,28 @@ function addListFinished() {
 		'<p><i style="color: #' + newList.color + '" class="fa fa-circle"></i> ' + newList.name + '</p>';
 
     parent.insertBefore(listDiv, addList);
-
 }
 
 function deleteListHandler(event) {
-    // TODO
+    let listToDelete = event.target.parentNode.parentNode.parentNode;
+    let listID = listToDelete.id.substr(4);
+
+    let request = new XMLHttpRequest();
+    let DOMString = './actions/action_delete_list.php?' + encodeForAjax({'listID': listID});
+    request.open('get', DOMString, true);
+    request.addEventListener('load', deleteListFinished);
+    request.send();
 }
 
+function deleteListFinished () {
+    let deletedID = this.responseText;
+    let listToDelete;
+    console.log(deletedID);
+    if(deletedID != -1) {
+        listToDelete = document.getElementById('list'+deletedID);
+        listToDelete.parentNode.removeChild(listToDelete);
+    }
+}
 
 function encodeForAjax(data) {
     return Object.keys(data).map(function(k){
