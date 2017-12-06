@@ -2,7 +2,7 @@
 
 function getUserLists($username) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT List.id as listId, List.title as listName, List.creationDate as creationDate, Category.name as categoryName, Color.code as categoryColor from List, Category, Color where List.creator == ? and List.category == Category.id and Category.color == Color.Code;');
+    $stmt = $dbh->prepare('SELECT List.id as listId, List.title as listName, List.creationDate as creationDate, Category.name as categoryName, Category.color as categoryColor from List, Category where List.creator == ? and List.category == Category.id');
     $stmt->execute(array($username));
     return $stmt->fetchAll();
 }
@@ -65,11 +65,12 @@ function addItem($id_list, $description, $dueDate, $color) {
         $stmt->execute(array($description, $dueDate, $color, $id_list));
     } catch (Exception $e) {
         print_r($e->errorInfo);
-        return;
+        return false;
     }
     // return added list as JSON
     $newItem = getLastItem($id_list);
     echo json_encode($newItem);
+    return true;
 }
 
 function getLastList($username) {
@@ -196,4 +197,27 @@ function getUserAssignedItems($username) {
     return $stmt->fetchAll();
 }
 
+function addCategory($username, $name, $color) {
+    global $dbh;
+    $stmt = $dbh->prepare('INSERT INTO Category (name, color, user) values(?, ?, ?)');
+
+    try {
+        $stmt->execute(array($name, $color, $username));
+    } catch (Exception $e) {
+        print_r($e->errorInfo);
+        return false;
+    }
+
+    // return added list as JSON
+    $newCategory = getLastCategory($username);
+    echo json_encode($newCategory);
+    return true;
+}
+
+function getLastCategory($username) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT * FROM Category WHERE Category.user = ? ORDER BY Category.id DESC LIMIT 1');
+    $stmt->execute(array($username));
+    return $stmt->fetch();
+}
 ?>

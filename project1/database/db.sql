@@ -8,20 +8,12 @@ drop table if exists User;
 drop table if exists Category;
 drop table if exists Color;
 
-create table Color(
-    code text,
-    name text not null,
-    constraint ColorPrimaryKey primary key (code),
-    constraint ColorUnique unique (name)
-);
-
 create table Category(
     id integer,
     name text not null,
     color text,
     user text, --if not null, category is local to user
     constraint CategoryPrimaryKey primary key (id),
-    constraint CategoryForeignKeyColor foreign key (color) references Color(code),
     constraint CategoryForeignKeyUser foreign key (user) references User(username),
     constraint CategoryUnique unique (name)
 );
@@ -60,7 +52,6 @@ create table Item(
     constraint ItemPrimaryKey primary key (id),
     constraint ItemCheck check (complete == 0 or complete == 1),
     constraint ItemForeignKeyItem foreign key (preceeding) references Item (id) on delete set null,
-    constraint ItemForeignKeyColor foreign key (color) references Color (code),
     constraint ItemForeignKeyUser foreign key (assignedUser) references User (username),
     constraint ItemForeignKeyList foreign key (list) references List (id) on delete cascade
 );
@@ -120,28 +111,6 @@ for each row
 begin
 insert into ListAdmin values (New.id, New.creator);
 end;
-
-insert into Color values ('f44336', 'Red');
-insert into Color values ('e91e63', 'Pink');
-insert into Color values ('9c27b0', 'Purple');
-insert into Color values ('673ab7', 'Deep Purple');
-insert into Color values ('3f51b5', 'Indigo');
-insert into Color values ('2196f3', 'Blue');
-insert into Color values ('03a9f4', 'Light Blue');
-insert into Color values ('00bcd4', 'Cyan');
-insert into Color values ('009688', 'Teal');
-insert into Color values ('4caf50', 'Green');
-insert into Color values ('8bc34a', 'Light Green');
-insert into Color values ('cddc39', 'Lime');
-insert into Color values ('ffeb3b', 'Yellow');
-insert into Color values ('ffc107', 'Amber');
-insert into Color values ('ff9800', 'Orange');
-insert into Color values ('ff5722', 'Deep Orange');
-insert into Color values ('795548', 'Brown');
-insert into Color values ('9e9e9e', 'Grey');
-insert into Color values ('607d8b', 'Blue Grey');
-insert into Color values ('000000', 'Black');
-insert into Color values ('ffffff', 'White');
 
 insert INTO User (userName, name, password, email) VALUES("antonioalmeida", "António Almeida", "$2a$12$ImZy3AAEkbMWq3ZFDSFmwOYghh7nbqzQdvvS1r/tggwgeAKOnXLQi", "cenas@hotmail.com");
 insert INTO User (userName, name, password, email) VALUES("diogotorres97", "Diogo Torres", "$2a$12$YO6D3sebd305UTKc9kLf1.zkMeqeP1/2SIYdJzeSaTqzj6MguUcgy", "cenas2@hotmail.com");

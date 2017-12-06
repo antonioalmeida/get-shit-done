@@ -24,12 +24,21 @@ $categoriesUser = getUserCategories($user['username']);
      <p><strong>Categories</strong></p>
      <div class="categories">
        <?php foreach ($categoriesUser as $category) { ?>
-       <p> <i style="color: #<?=$category['color']?>" class="fa fa-circle"></i> <?=$category['name']?></p>
+       <p><i style="color: #<?=$category['color']?>" class="fa fa-circle"></i> <?=$category['name']?></p>
        <?php } ?>
      </div>
-   </div>
+     <div>
+      <br>
+      <p><i class="fa fa-plus"></i> <strong>Add Category</strong></p>
+      <form id="addCategoryForm">
+        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+        <input type="text" placeholder="Fantasy Football" name="categoryName" required>
+        <input type="color" name="categoryColor">
+      </form>
+    </div>
+  </div>
 
-   <div class="lists">
+  <div class="lists">
     <?php if ($isLoggedIn) { ?>
     <h4> My Lists </h4>
     <?php } ?>
@@ -42,7 +51,7 @@ $categoriesUser = getUserCategories($user['username']);
             <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
           </div>
           <div class="deleteList">
-              <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
             <i class="fa fa-times"></i>
           </div>
         </div>

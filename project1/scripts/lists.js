@@ -2,14 +2,17 @@
 
 let addListForm = document.getElementById('addListForm');
 let deleteListTargets = document.querySelectorAll('.deleteList');
+let addCategoryForm = document.getElementById('addCategoryForm');
 
 addList.addEventListener('submit', addListHandler);
+addCategoryForm.addEventListener('submit', addCategoryHandler);
 
 deleteListTargets.forEach(function(element) {
     element.addEventListener('click', deleteListHandler);
 })
 
 function addListHandler(event) {
+    // TODO: Update this
     let listTitle = document.querySelector('input[name=listTitle]').value;
     let category = document.querySelector('select[name=category]').value;
     let csrf = document.querySelector('input[name=csrf]').value;
@@ -32,9 +35,9 @@ function addListFinished() {
     let listDiv = document.createElement('div');
     listDiv.classList.add('list');
     listDiv.innerHTML =
-		'<h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
-		'<p>' + newList.creationDate + '</p>' +
-		'<p><i style="color: #' + newList.color + '" class="fa fa-circle"></i> ' + newList.name + '</p>';
+    '<h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
+    '<p>' + newList.creationDate + '</p>' +
+    '<p><i style="color: #' + newList.color + '" class="fa fa-circle"></i> ' + newList.name + '</p>';
 
     parent.insertBefore(listDiv, addList);
 }
@@ -42,7 +45,7 @@ function addListFinished() {
 function deleteListHandler(event) {
     let listToDelete = event.target.parentNode.parentNode.parentNode;
     let listID = listToDelete.id.substr(4);
-      let csrf = document.querySelector('input[name=csrf]').value;
+    let csrf = document.querySelector('input[name=csrf]').value;
 
     let request = new XMLHttpRequest();
     let DOMString = './actions/action_delete_list.php?' + encodeForAjax({'listID': listID, 'csrf': csrf});
@@ -59,6 +62,32 @@ function deleteListFinished () {
         listToDelete = document.getElementById('list'+deletedID);
         listToDelete.parentNode.removeChild(listToDelete);
     }
+}
+
+function addCategoryHandler(event) {
+    event.preventDefault();
+    let form = event.target;
+    let categoryName = form.querySelector('input[name=categoryName]').value;
+    let categoryColor = form.querySelector('input[name=categoryColor]').value.substr(1);
+    console.log(categoryColor);
+    let csrf = form.querySelector('input[name=csrf]').value;
+
+    let request = new XMLHttpRequest();
+    let DOMString = './actions/action_add_category.php?' + encodeForAjax({'categoryName': categoryName, 'categoryColor': categoryColor, 'csrf': csrf});
+    request.open('get', DOMString, true);
+    request.addEventListener('load', addCategoryFinished);
+    request.send();
+}
+
+function addCategoryFinished() {
+    let newCategory = JSON.parse(this.responseText);
+    let categoriesDiv = document.querySelector('.categories');
+
+    let newCategoryHTML = document.createElement('p');
+    newCategoryHTML.innerHTML = '<i style="color: #' + newCategory.color +
+                            '" class="fa fa-circle"></i>' + newCategory.name;
+
+    categoriesDiv.append(newCategoryHTML);
 }
 
 function encodeForAjax(data) {
