@@ -19,6 +19,7 @@ $categoriesUser = getUserCategories($user['username']);
 
 <div class="container">
   <div class="flex-container">
+    <input type="text" name="searchedTitle" placeholder="Search by title here..." onkeyup="filterLists(this.value)"/>
     <div class="sidebar">
      <h6><strong>Menu</strong></h6>
      <p><strong>Categories</strong></p>

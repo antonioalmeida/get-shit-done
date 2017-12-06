@@ -90,7 +90,20 @@ function addCategoryFinished() {
     categoriesDiv.append(newCategoryHTML);
 
     let selectCategory = document.getElementById('selectCategory');
-    selectCategory.innerHTML += '<option value="' + newCategory.id + '">' + newCategory.name + '</option>';    
+    selectCategory.innerHTML += '<option value="' + newCategory.id + '">' + newCategory.name + '</option>';
+}
+
+function filterLists(title) {
+    if(!title.match(/^[\w\s-?!\.()]*$/)) return;
+    let titleRegex = new RegExp(title, 'i');
+    let allLists = document.querySelectorAll('div[id^=list]');
+    console.log(allLists);
+    [].forEach.call(allLists, function(elem) {
+        if(!elem.querySelector("a").innerHTML.match(titleRegex))
+            elem.classList.add("hidden");
+        else
+            elem.classList.remove("hidden");
+    });
 }
 
 function encodeForAjax(data) {
