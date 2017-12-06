@@ -31,10 +31,12 @@ function addListFinished() {
 
     let listDiv = document.createElement('div');
     listDiv.classList.add('list');
-    listDiv.innerHTML =
-		'<h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
-		'<p>' + newList.creationDate + '</p>' +
-		'<p><i style="color: #' + newList.color + '" class="fa fa-circle"></i> ' + newList.name + '</p>';
+    listDiv.id = 'list' + newList.id;
+    listDiv.innerHTML = getListHTML(newList);
+    console.log(listDiv);
+    console.log(listDiv.innerHTML);
+
+    listDiv.querySelector('.deleteList').addEventListener('click', deleteListHandler);
 
     parent.insertBefore(listDiv, addList);
 }
@@ -59,6 +61,15 @@ function deleteListFinished () {
         listToDelete = document.getElementById('list'+deletedID);
         listToDelete.parentNode.removeChild(listToDelete);
     }
+}
+
+function getListHTML(newList){
+
+  return '<div class="fex-container"> <div class="title"> <h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
+  '</div><div class="deleteList"><i class="fa fa-times"></i>'+
+  '</div></div><p>' + newList.creationDate + '</p>' +
+  '<p><i style="color: #' + newList.color + '" class="fa fa-circle"></i> ' + newList.name + '</p></div>';
+
 }
 
 function encodeForAjax(data) {
