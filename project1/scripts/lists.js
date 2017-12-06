@@ -85,9 +85,12 @@ function addCategoryFinished() {
 
     let newCategoryHTML = document.createElement('p');
     newCategoryHTML.innerHTML = '<i style="color: #' + newCategory.color +
-                            '" class="fa fa-circle"></i>' + newCategory.name;
+                            '" class="fa fa-circle"></i> ' + newCategory.name;
 
     categoriesDiv.append(newCategoryHTML);
+
+    let selectCategory = document.getElementById('selectCategory');
+    selectCategory.innerHTML += '<option value="' + newCategory.id + '">' + newCategory.name + '</option>';    
 }
 
 function encodeForAjax(data) {

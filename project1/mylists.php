@@ -65,7 +65,7 @@ $categoriesUser = getUserCategories($user['username']);
           <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
           <input placeholder="New List" name="listTitle" required>
           <br>
-          <select name="category">
+          <select id="selectCategory" name="category">
             <?php foreach ($categoriesUser as $category) { ?>
             <option value="<?=$category['id']?>"><?=$category['name']?></option>
             <?php } ?>
