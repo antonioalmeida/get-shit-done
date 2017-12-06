@@ -35,7 +35,7 @@
 		width: 180px;
 		margin-left: 1.3em;
 		padding-left: 2em;
-		height: 2.0em;	
+		height: 2.0em;
 	}
 
 
@@ -106,19 +106,20 @@
 	padding: 1em;
 	margin: 1em;
 	min-width: 200px;
-	background-color: $white-color;	
+	background-color: $white-color;
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
 }
 
 .add-item {
 	padding: 0.5em 1em 1em 1em;
-	margin: 1em;		
+	margin: 1em;
 }
 
 .hidden {
 	display: none;
 }
 
-
-
+.filtered {
+	background-color: $light-grey;
+}

@@ -19,13 +19,13 @@ $categoriesUser = getUserCategories($user['username']);
 
 <div class="container">
   <div class="flex-container">
-    <input type="text" name="searchedTitle" placeholder="Search by title here..." onkeyup="filterLists(this.value)"/>
+    <input type="text" name="searchedTitle" placeholder="Search by title here..." onkeyup="filterListsByTitle(this.value)"/>
     <div class="sidebar">
      <h6><strong>Menu</strong></h6>
      <p><strong>Categories</strong></p>
      <div class="categories">
        <?php foreach ($categoriesUser as $category) { ?>
-       <p><i style="color: #<?=$category['color']?>" class="fa fa-circle"></i> <?=$category['name']?></p>
+       <p onclick="filterListsByCategory(this)"><i style="color: #<?=$category['color']?>" class="fa fa-circle"></i> <?=$category['name']?></p>
        <?php } ?>
      </div>
      <div>

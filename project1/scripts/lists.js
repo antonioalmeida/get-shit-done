@@ -93,17 +93,36 @@ function addCategoryFinished() {
     selectCategory.innerHTML += '<option value="' + newCategory.id + '">' + newCategory.name + '</option>';
 }
 
-function filterLists(title) {
+function filterListsByTitle(title) {
     if(!title.match(/^[\w\s-?!\.()]*$/)) return;
     let titleRegex = new RegExp(title, 'i');
     let allLists = document.querySelectorAll('div[id^=list]');
-    console.log(allLists);
     [].forEach.call(allLists, function(elem) {
         if(!elem.querySelector("a").innerHTML.match(titleRegex))
             elem.classList.add("hidden");
         else
             elem.classList.remove("hidden");
     });
+}
+
+function filterListsByCategory(categoryElement) {
+    let allLists = document.querySelectorAll('div[id^=list]');
+    let unfilter = categoryElement.classList.contains('filtered');
+    if(unfilter) {
+        categoryElement.classList.remove('filtered');
+        [].forEach.call(allLists, function(elem) {elem.classList.remove("hidden");});
+        return;
+    }
+
+    let categoryFiltered = categoryElement.textContent.replace(/\s/g, '');
+    [].forEach.call(allLists, function(elem) {
+        let elemCategory = elem.children[2].textContent.replace(/\s/g,'');
+        if(elemCategory !== categoryFiltered)
+            elem.classList.add("hidden");
+        else
+            elem.classList.remove("hidden");
+    });
+    categoryElement.classList.add('filtered');
 }
 
 function getListHTML(newList){
