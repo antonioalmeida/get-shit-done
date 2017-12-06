@@ -86,10 +86,14 @@ function itemAdded () {
     itemDiv.innerHTML = getItemHTML(newItem);
 
     // Add event listeners to new item
+    itemDiv.querySelector('.assignUserForm').addEventListener('submit', assignUserSubmitHandler);
     itemDiv.querySelector('.fa-user-plus').addEventListener('click', assignUserHandler);
     itemDiv.querySelector('.fa-pencil-square-o').addEventListener('click', editItemHandler);
     itemDiv.querySelector('.cancelEditItem').addEventListener('click', cancelEditItemHandler);
     itemDiv.querySelector('.deleteItem').addEventListener('click', deleteItemHandler);
+    itemDiv.querySelector('input[name="complete"]').addEventListener('click', updateItemComplete);
+    itemDiv.querySelector('.editItemForm').addEventListener('submit', editItemSubmitHandler);
+    itemDiv.querySelector('.cancelAssignUser').addEventListener('click', cancelAssignUserHandler);
 
     container.append(itemDiv);
 }
@@ -276,7 +280,7 @@ function getItemHTML (newItem) {
     return '<div class="item-left">' +
 			'<input type="checkbox" id="' + newItem.id + '" name="complete">' +
 			'<span class="itemDescription">' + newItem.description + '</span>' +
-			'<span clas="itemDueDate">' + newItem.dueDate + '</span>' +
+			'<span class="itemDueDate">' + newItem.dueDate + '</span>' +
 
     '</div>	<div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">' +
 			'<input type="hidden" name="itemID" value="' + newItem.id + '"><div>' +
@@ -290,7 +294,6 @@ function getItemHTML (newItem) {
       '<div class="item-user hidden"><form class="assignUserForm"><div class="flex-equal">'+
             '<input type="hidden" name="itemID" value="' + newItem.id + '"><div><label for="assignedUser">Assign User</label>'+
               '<select name="assignedUser" ><option value="">None</option>'+ getAllAdmin(newItem)+
-              // TODO Add assigned users on select
               '</select></div></div><div><input class="button-primary" type="submit" value="Assign">'+
             '<a class="button cancelAssignUser">Cancel</a></div></form></div>'+
       '<div class="item-right">' +
