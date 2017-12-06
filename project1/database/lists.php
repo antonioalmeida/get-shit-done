@@ -69,6 +69,8 @@ function addItem($id_list, $description, $dueDate, $color) {
     }
     // return added list as JSON
     $newItem = getLastItem($id_list);
+    $admins = getListAdmins($id_list);
+    $newItem['admins']=$admins;
     echo json_encode($newItem);
     return true;
 }
