@@ -65,7 +65,7 @@ function deleteListFinished () {
 
 function getListHTML(newList){
 
-  return '<div class="fex-container"> <div class="title"> <h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
+  return '<div class="flex-container"> <div class="title"> <h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
   '</div><div class="deleteList"><i class="fa fa-times"></i>'+
   '</div></div><p>' + newList.creationDate + '</p>' +
   '<p><i style="color: #' + newList.color + '" class="fa fa-circle"></i> ' + newList.name + '</p></div>';
