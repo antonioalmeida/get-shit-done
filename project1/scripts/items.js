@@ -87,6 +87,7 @@ function itemAdded () {
     itemDiv.innerHTML = getItemHTML(newItem.id, newItem.description, newItem.dueDate);
 
     // Add event listeners to new item
+    itemDiv.querySelector('.fa-user-plus').addEventListener('click', assignUserHandler);
     itemDiv.querySelector('.fa-pencil-square-o').addEventListener('click', editItemHandler);
     itemDiv.querySelector('.cancelEditItem').addEventListener('click', cancelEditItemHandler);
     itemDiv.querySelector('.deleteItem').addEventListener('click', deleteItemHandler);
@@ -277,18 +278,28 @@ function getItemHTML (id, description, dueDate) {
 			'<input type="checkbox" id="' + id + '" name="complete">' +
 			'<span class="itemDescription">' + description + '</span>' +
 			'<span clas="itemDueDate">' + dueDate + '</span>' +
-		'</div>	<div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">' +
+
+    '</div>	<div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">' +
 			'<input type="hidden" name="itemID" value="' + id + '"><div>' +
 			'<label for="editDescription">Description</label>' +
 			'<input type="text" name="editDescription" value="' + description + '" required></div>' +
 		'<div><label for="editDate">Due Date</label>' +
 			'<input type="date" name="editDate" value="' + dueDate +
 			'" required></div></div><div><input class="button-primary" type="submit" value="Save">' +
-			'<a class="button cancelEditItem">Cancel</a> </div></form></div><div class="item-right">' +
+			'<a class="button cancelEditItem">Cancel</a> </div></form></div>'+
+
+      '<div class="item-user hidden"><form class="assignUserForm"><div class="flex-equal">'+
+            '<input type="hidden" name="itemID" value="' + id + '"><div><label for="assignedUser">Assign User</label>'+
+              '<select name="assignedUser" ><option value="">None</option>'+
+              // TODO Add assigned users on select
+              '</select></div></div><div><input class="button-primary" type="submit" value="Assign">'+
+            '<a class="button cancelAssignUser">Cancel</a></div></form></div>'+
+      '<div class="item-right">' +
 			'<span><i id="assignUser' + id + '" class="fa fa-user-plus"></i></span>' +
 			'<span><i id="edit' + id + '" class="fa fa-pencil-square-o"></i></span>' +
 			'<span><i id="delete' + id + '" class="fa fa-trash deleteItem"></i></span>' + '</div>';
 }
+
 
 function encodeForAjax (data) {
     return Object.keys(data).map(function (k) {
