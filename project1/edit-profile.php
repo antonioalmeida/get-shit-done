@@ -13,6 +13,7 @@ try {
 
 include_once('templates/common/header.php');
 include_once('templates/common/navbar.php');
+include_once('templates/common/alerts.php');
 ?>
 
 <div class="container">

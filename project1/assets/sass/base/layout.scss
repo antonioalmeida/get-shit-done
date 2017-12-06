@@ -23,6 +23,13 @@ html, body {
     margin: 0 auto;
 }
 
+.small-container {
+    width: 100%;
+    max-width: $container-width;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
 .content {
     flex: 1 0 auto;
 }

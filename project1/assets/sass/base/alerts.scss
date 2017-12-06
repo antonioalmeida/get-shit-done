@@ -1,0 +1,18 @@
+.alert-success {
+	color: darken($green-color, 25%);
+	background-color: lighten($green-color, 30%);
+}
+
+.alert-error {
+	color: darken($red-color, 25%);
+	background-color: lighten($red-color, 30%);
+}
+
+.alert {
+	width: 100%;
+	padding: 1em 0 .2em 0;
+
+	p {
+		padding-left: 2em;
+	}
+}

@@ -3,6 +3,7 @@ include_once('includes/init.php');
 include_once('database/user.php');
 include_once('database/lists.php');
 include_once('templates/common/header.php');
+include_once('templates/common/alerts.php');
 ?>
 
 <script type="text/javascript" src="scripts/items.js" defer></script>
@@ -131,7 +132,7 @@ $admins = getListAdmins($listID);
         <a href="#" id="showAddItem"><i class="fa fa-plus"></i> Add a Task</a>
         <div>
           <form class="hidden" id="addItemForm">
-            <div>
+            <div class="flex-spaced">
               <input type="hidden" name="id" value="<?=$listID?>">
               <br>
               <div>

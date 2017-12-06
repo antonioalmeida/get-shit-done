@@ -13,3 +13,12 @@
 	flex-flow: row wrap;
 	justify-content: space-around;
 }
+
+.flex-spaced {
+	display: flex;
+	flex-flow: row wrap;
+
+	div {
+		padding-right: 2em;
+	}
+}

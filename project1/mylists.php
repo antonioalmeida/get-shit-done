@@ -9,6 +9,7 @@ include_once('templates/common/header.php');
 
 <?php
 include_once('templates/common/navbar.php');
+include_once('templates/common/alerts.php');
 $isLoggedIn = (isset($_SESSION['username']));
 $username = $_SESSION['username'];
 $user = getUser($username);
