@@ -6,7 +6,6 @@ drop table if exists Item;
 drop table if exists List;
 drop table if exists User;
 drop table if exists Category;
-drop table if exists Color;
 
 create table Category(
     id integer,
@@ -45,7 +44,6 @@ create table Item(
     description text not null,
     dueDate date not null,
     complete integer default 0,
-    color text not null,
     priority integer default 1,
     assignedUser text, --can be null
     list integer not null,

@@ -57,12 +57,12 @@ function getListAdmins($listID) {
     return $stmt->fetchAll();
 }
 
-function addItem($id_list, $description, $dueDate, $color) {
+function addItem($id_list, $description, $dueDate) {
     global $dbh;
-    $stmt = $dbh->prepare('INSERT INTO Item (description, dueDate, Color, list) values(?, ?, ?, ?)');
+    $stmt = $dbh->prepare('INSERT INTO Item (description, dueDate list) values(?, ?, ?)');
 
     try {
-        $stmt->execute(array($description, $dueDate, $color, $id_list));
+        $stmt->execute(array($description, $dueDate $id_list));
     } catch (Exception $e) {
         print_r($e->errorInfo);
         return false;

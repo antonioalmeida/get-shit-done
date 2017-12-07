@@ -20,11 +20,8 @@ $id_list = $_GET["id"];
 $description = (string) $_GET["description"];
 $dueDate = $_GET['dueDate'];
 
-// TODO: need to add actual color input ASAP
-$color = '000000';
-
-if (addItem($id_list, $description, $dueDate, $color))
+if (addItem($id_list, $description, $dueDate))
     $_SESSION['success_messages'][] = "Item added!";
-else 
+else
     $_SESSION['error_messages'][] = "Error adding Item";
 ?>
