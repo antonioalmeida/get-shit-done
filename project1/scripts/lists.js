@@ -3,6 +3,8 @@
 let addListForm = document.getElementById('addListForm');
 let deleteListTargets = document.querySelectorAll('.deleteList');
 let addCategoryForm = document.getElementById('addCategoryForm');
+let colorPicker = document.getElementById('colorPicker')
+let nativeColorPicker = document.getElementById('nativeColorPicker');
 
 addList.addEventListener('submit', addListHandler);
 addCategoryForm.addEventListener('submit', addCategoryHandler);
@@ -10,6 +12,9 @@ addCategoryForm.addEventListener('submit', addCategoryHandler);
 deleteListTargets.forEach(function(element) {
     element.addEventListener('click', deleteListHandler);
 })
+
+colorPicker.addEventListener('click', colorPickerHandler);
+nativeColorPicker.addEventListener('change', updateColorHandler);
 
 function addListHandler(event) {
     // TODO: Update this
@@ -123,6 +128,16 @@ function filterListsByCategory(categoryElement) {
             elem.classList.remove("hidden");
     });
     categoryElement.classList.add('filtered');
+}
+
+function colorPickerHandler(event) {
+    let picker = document.querySelector('input[name=categoryColor]');
+    picker.click();
+}
+
+function updateColorHandler (event) {
+    console.log(event.target);
+    document.getElementById('colorPicker').style.color = event.target.value;
 }
 
 function getListHTML(newList){

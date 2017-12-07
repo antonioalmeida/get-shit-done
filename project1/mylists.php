@@ -19,7 +19,7 @@ $categoriesUser = getUserCategories($user['username']);
 
 <div class="container">
   <div class="flex-container">
-    <input type="text" name="searchedTitle" placeholder="Search by title here..." onkeyup="filterListsByTitle(this.value)"/>
+
     <div class="sidebar">
      <h6><strong>Menu</strong></h6>
      <p><strong>Categories</strong></p>
@@ -32,10 +32,22 @@ $categoriesUser = getUserCategories($user['username']);
       <br>
       <p><i class="fa fa-plus"></i> <strong>Add Category</strong></p>
       <form id="addCategoryForm">
-        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-        <input type="text" placeholder="Fantasy Football" name="categoryName" required>
-        <input type="color" name="categoryColor">
+        <div class="flex-container">
+          <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+          <div class="color-picker" id="colorPicker">
+            <i class="fa fa-circle"></i>
+            <input type="color" class="hidden" name="categoryColor" id="nativeColorPicker" value="#ff0000">
+          </div>
+          <div class="category-input">
+            <input type="text" placeholder="Fantasy Football" name="categoryName" required>
+          </div>
+
+        </div>
       </form>
+    </div>
+    <div>
+      <p><i class="fa fa-search"></i> <strong>Search</strong></p>
+      <input type="text" name="searchedTitle" placeholder="Search by title here..." onkeyup="filterListsByTitle(this.value)"/>
     </div>
   </div>
 

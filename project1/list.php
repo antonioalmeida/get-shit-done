@@ -68,7 +68,7 @@ $admins = getListAdmins($listID);
             checked
             <?php } ?>
             >
-            <span class="itemDescription"><?=$item['description']?></span>
+            <span class="itemDescription" id="itemDescription<?=$item['id']?>"><?=$item['description']?></span>
           </div>
 
           <div class="item-edit hidden">

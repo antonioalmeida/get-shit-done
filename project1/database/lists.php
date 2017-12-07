@@ -203,7 +203,7 @@ function getUserSharedCategories($username) {
 
 function getUserAssignedItems($username) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT Item.description as description, Item.complete as complete, Item.dueDate as dueDate, Item.color as color FROM Item WHERE Item.assignedUser = ?');
+    $stmt = $dbh->prepare('SELECT Item.description as description, Item.complete as complete, Item.dueDate as dueDate, Item.priority as priority FROM Item WHERE Item.assignedUser = ?');
     $stmt->execute(array($username));
     return $stmt->fetchAll();
 }

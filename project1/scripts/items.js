@@ -13,6 +13,9 @@ let cancelAssignUserList = document.querySelectorAll('.cancelAssignUser');
 let assignUserFormList = document.querySelectorAll('.assignUserForm');
 let addListAdmin = document.getElementById('addListAdmin');
 
+//Testing
+let editDescriptionList = document.querySelectorAll('.itemDescription');
+
 addItemForm.addEventListener('submit', addItemSubmitHandler);
 showAddItem.addEventListener('click', showAddItemHandler);
 cancelAddItem.addEventListener('click', cancelAddItemHandler);
@@ -48,6 +51,10 @@ cancelAssignUserList.forEach(function (element) {
 
 assignUserFormList.forEach(function (element) {
     element.addEventListener('submit', assignUserSubmitHandler);
+});
+
+editDescriptionList.forEach(function (element) {
+    element.addEventListener('click', editDescriptionHandler);
 });
 
 function addItemSubmitHandler (event) {
@@ -116,6 +123,19 @@ function showAddItemHandler (event) {
 function cancelAddItemHandler (event) {
     addItemForm.classList.add('hidden');
     showAddItem.classList.remove('hidden');
+}
+
+// Just testing something
+function editDescriptionHandler (event) {
+	let target = event.target;
+	let itemID = target.id.substr(14);
+	let descriptionInput = document.createElement('input');
+	descriptionInput.value = target.innerHTML;
+	descriptionInput.type = 'text';
+	target.classList.add('hidden');
+	console.log(descriptionInput);
+
+	event.target.parentNode.append(descriptionInput);
 }
 
 function editItemHandler (event) {
@@ -199,8 +219,6 @@ function updateItemComplete (event) {
 }
 
 function updateItemPriority (elem) {
-    even.preventDefault();
-
     let currentPriority;
     switch(elem.innerHTML) {
       case 'Low':
@@ -216,7 +234,7 @@ function updateItemPriority (elem) {
     let newPriority = (currentPriority + 1 ) % 4;
     if(newPriority == 0) newPriority = 1;
 
-    let itemID = elemID.match(/\d+/)[0];
+    let itemID = elem.id.match(/\d+/)[0];
 
     let DOMString = './actions/action_edit_priority.php?' + encodeForAjax({'itemID': itemID, 'priority': newPriority});
 
@@ -234,16 +252,17 @@ function checkboxUpdated () {
 function updateItemPriorityFinished() {
     let item = JSON.parse(this.responseText);
     let priorityElem = document.getElementById("item"+item.id+"priority");
+
     switch(item.priority) {
-      case 1:
+      case '1':
         priorityElem.innerHTML = 'Low';
         priorityElem.classList.replace('priority-high', 'priority-low');
         return;
-      case 2:
+      case '2':
         priorityElem.innerHTML = 'Med';
         priorityElem.classList.replace('priority-low', 'priority-medium');
         return;
-      case 3:
+      case '3':
         priorityElem.innerHTML = 'High';
         priorityElem.classList.replace('priority-medium', 'priority-high');
         return;
