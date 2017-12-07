@@ -16,7 +16,8 @@
 
 .flex-spaced {
 	display: flex;
-	flex-flow: row wrap;
+	flex-direction: row;
+	flex-wrap: wrap;
 
 	div {
 		padding-right: 2em;
