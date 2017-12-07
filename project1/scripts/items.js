@@ -198,9 +198,56 @@ function updateItemComplete (event) {
     request.send();
 }
 
+function updateItemPriority (elem) {
+    even.preventDefault();
+
+    let currentPriority;
+    switch(elem.innerHTML) {
+      case 'Low':
+        currentPriority = 1;
+        break;
+      case 'Med':
+        currentPriority = 2;
+        break;
+      case 'High':
+        currentPriority = 3;
+        break;
+    }
+    let newPriority = (currentPriority + 1 ) % 4;
+    if(newPriority == 0) newPriority = 1;
+
+    let itemID = elemID.match(/\d+/)[0];
+
+    let DOMString = './actions/action_edit_priority.php?' + encodeForAjax({'itemID': itemID, 'priority': newPriority});
+
+    let request = new XMLHttpRequest();
+    request.open('get', DOMString, true);
+    request.addEventListener('load', updateItemPriorityFinished);
+    request.send();
+}
+
 function checkboxUpdated () {
     let item = JSON.parse(this.responseText);
     setChecked(item.id, item.complete == 1);
+}
+
+function updateItemPriorityFinished() {
+    let item = JSON.parse(this.responseText);
+    let priorityElem = document.getElementById("item"+item.id+"priority");
+    switch(item.priority) {
+      case 1:
+        priorityElem.innerHTML = 'Low';
+        priorityElem.classList.replace('priority-high', 'priority-low');
+        return;
+      case 2:
+        priorityElem.innerHTML = 'Med';
+        priorityElem.classList.replace('priority-low', 'priority-medium');
+        return;
+      case 3:
+        priorityElem.innerHTML = 'High';
+        priorityElem.classList.replace('priority-medium', 'priority-high');
+        return;
+    }
 }
 
 function editItemFinished () {

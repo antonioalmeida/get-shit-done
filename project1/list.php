@@ -116,20 +116,20 @@ $admins = getListAdmins($listID);
             <span class="itemDueDate"><?= date('d M', strtotime($item['dueDate']))?></span>
             <?php switch ($item['priority']) {
               case 1: ?>
-              <span class="itemPriority priority-low">Low</span> 
+              <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-low">Low</span>
               <?php
               break;
               case 2:  ?>
-              <span class="itemPriority priority-medium">Med</span> 
+              <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-medium">Med</span>
               <?php
               break;
               case 3: ?>
-              <span class="itemPriority priority-high">High</span> 
+              <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-high">High</span> 
               <?php
               break;
             } ?>
             <span>
-              <?php if($item['assignedUser'] != "") { ?> 
+              <?php if($item['assignedUser'] != "") { ?>
               <span class="assignUser" id="assignUser<?=$item['id']?>"> @<?=$item['assignedUser']?></span>
               <?php } else { ?>
               <i id="assignUser<?=$item['id']?>" class="fa fa-user-plus assignUser"></i>
@@ -167,7 +167,7 @@ $admins = getListAdmins($listID);
       </div>
     </div>
 
-  </div> 
+  </div>
 
 </div>
 

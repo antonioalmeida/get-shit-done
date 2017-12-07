@@ -165,6 +165,15 @@ function isItemAdmin($username, $itemID) {
     return ($stmt->fetch() !== false);
 }
 
+function updateItemPriority($itemID, $priority) {
+    global $dbh;
+    $stmt = $dbh->prepare('UPDATE Item set priority = ? where Item.id = ?');
+    $stmt->execute(array($priority,$itemID));
+
+    $newItem = getItem($itemID);
+    echo json_encode($newItem);
+}
+
 function deleteList($listId) {
     global $dbh;
     $stmt = $dbh->prepare('DELETE from List where List.id == ?;');
