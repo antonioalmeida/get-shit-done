@@ -46,12 +46,11 @@ create table Item(
     dueDate date not null,
     complete integer default 0,
     color text not null,
-    preceeding integer, --can be null (no preceeding item)
+    priority integer default 1,
     assignedUser text, --can be null
     list integer not null,
     constraint ItemPrimaryKey primary key (id),
     constraint ItemCheck check (complete == 0 or complete == 1),
-    constraint ItemForeignKeyItem foreign key (preceeding) references Item (id) on delete set null,
     constraint ItemForeignKeyUser foreign key (assignedUser) references User (username),
     constraint ItemForeignKeyList foreign key (list) references List (id) on delete cascade
 );
@@ -74,14 +73,15 @@ begin
 select raise(fail, 'cannot remove admin status to list creator!');
 end;
 
---checks item precedence when trying to mark it as complete
-drop trigger if exists itemprecedence;
-create trigger itemprecedence
+--checks item precedence when trying to set one as complete
+--in other words, an item can only be completed once items of higher priority have also been completed
+drop trigger if exists itempriorityprecedence;
+create trigger itempriorityprecedence
 before update of complete on item
 for each row
-when old.preceeding is not null and (select complete from item where id = old.preeceding) = 0
+when new.complete = 1 and exists (select * from item where priority > new.priority and complete = 0)
 begin
-select raise(fail, 'preceeding item to the current one must be completed before this one is!');
+select raise(fail, 'item cannot be completed before higher priority items have been completed');
 end;
 
 --check item's due date is after the respective list's creation date
