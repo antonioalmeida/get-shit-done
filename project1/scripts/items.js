@@ -77,6 +77,7 @@ function deleteItemHandler (event) {
 }
 
 function itemAdded () {
+    console.log(this.responseText);
     let newItem = JSON.parse(this.responseText);
     let container = document.getElementById('items-list');
     let itemDiv = document.createElement('div');

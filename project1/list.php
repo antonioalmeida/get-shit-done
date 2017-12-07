@@ -69,7 +69,6 @@ $admins = getListAdmins($listID);
             <?php } ?>
             >
             <span class="itemDescription"><?=$item['description']?></span>
-            <span class="itemDueDate"><?= date('d M', strtotime($item['dueDate']))?></span>
           </div>
 
           <div class="item-edit hidden">
@@ -114,6 +113,21 @@ $admins = getListAdmins($listID);
           </div>
 
           <div class="item-right">
+            <span class="itemDueDate"><?= date('d M', strtotime($item['dueDate']))?></span>
+            <?php switch ($item['priority']) {
+              case 1: ?>
+              <span class="itemPriority priority-low">Low</span> 
+              <?php
+              break;
+              case 2:  ?>
+              <span class="itemPriority priority-medium">Med</span> 
+              <?php
+              break;
+              case 3: ?>
+              <span class="itemPriority priority-high">High</span> 
+              <?php
+              break;
+            } ?>
             <span>
               <?php if($item['assignedUser'] != "") { ?> 
               <span class="assignUser" id="assignUser<?=$item['id']?>"> @<?=$item['assignedUser']?></span>
