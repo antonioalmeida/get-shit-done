@@ -61,7 +61,7 @@ $admins = getListAdmins($listID);
         <!-- else here -->
         <?php } ?>
         <?php foreach($items as $item) { ?>
-        <div class="item" id="item<?=$item['id']?>">
+        <div class="item flex-container" id="item<?=$item['id']?>">
           <div class="item-left">
             <input type="checkbox" id="<?=$item['id']?>" name="complete"
             <?php if($item['complete'] == 1) { ?>
