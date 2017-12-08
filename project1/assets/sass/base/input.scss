@@ -9,33 +9,33 @@ input[type='date'],
 input:not([type]),
 textarea,
 select {
-	appearance: none;
-	background-color: transparent;
-	border: .1rem solid $light-grey;
-	border-radius: .4em;
-	box-shadow: none;
-	box-sizing: inherit;
-	height: 1.5em;
-	padding: .6em 0em .6em .6em;
-	margin-bottom: 1.0em;
-	width: 95%; /* not ideal but it works */
+  appearance: none;
+  background-color: transparent;
+  border: .1rem solid $light-grey;
+  border-radius: .4em;
+  box-shadow: none;
+  box-sizing: inherit;
+  height: 1.5em;
+  padding: .6em 0em .6em .6em;
+  margin-bottom: 1.0em;
+  width: 95%; /* not ideal but it works */
 
-	&:focus {
-		border-color: $primary-color;
-		outline: 0;
-	}
+  &:focus {
+    border-color: $primary-color;
+    outline: 0;
+  }
 }
 
 select {
-	height: 3.0em;
-	width: 95%;
+  height: 3.0em;
+  width: 95%;
 }
 
 label,
 legend {
-	display: block;
-	font-size: 1.2em;
-	font-weight: 700;
-	margin-bottom: .5rem;
+  display: block;
+  font-size: 1.2em;
+  font-weight: 700;
+  margin-bottom: .5rem;
 }
 

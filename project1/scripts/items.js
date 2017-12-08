@@ -57,7 +57,7 @@ editDescriptionList.forEach(function (element) {
     element.addEventListener('click', editDescriptionHandler);
 });
 
-function addItemSubmitHandler (event) {
+function addItemSubmitHandler(event) {
     event.preventDefault();
     let id_list = document.querySelector('input[name=id]').value;
     let description = document.querySelector('input[name=addItemDescription]').value;
@@ -66,14 +66,18 @@ function addItemSubmitHandler (event) {
     console.log(dueDate);
 
     let request = new XMLHttpRequest();
-    let DOMString = './actions/action_add_item.php?' + encodeForAjax({'id': id_list, 'description': description, 'dueDate': dueDate});
+    let DOMString = './actions/action_add_item.php?' + encodeForAjax({
+        'id': id_list,
+        'description': description,
+        'dueDate': dueDate
+    });
     request.open('get', DOMString, true);
     request.addEventListener('load', itemAdded);
     request.send();
 
 }
 
-function deleteItemHandler (event) {
+function deleteItemHandler(event) {
     let itemID = event.target.id.substr(6); // getting clicked item's ID
 
     let request = new XMLHttpRequest();
@@ -83,7 +87,7 @@ function deleteItemHandler (event) {
     request.send();
 }
 
-function itemAdded () {
+function itemAdded() {
     console.log(this.responseText);
     let newItem = JSON.parse(this.responseText);
     let container = document.getElementById('items-list');
@@ -106,39 +110,41 @@ function itemAdded () {
     container.append(itemDiv);
 }
 
-function itemDeleted () {
+function itemDeleted() {
     let itemID = this.responseText;
 
-    if (itemID == -1) { return; }
+    if (itemID == -1) {
+        return;
+    }
 
     let item = document.getElementById('item' + itemID);
     item.parentNode.removeChild(item);
 }
 
-function showAddItemHandler (event) {
+function showAddItemHandler(event) {
     addItemForm.classList.remove('hidden');
     showAddItem.classList.add('hidden');
 }
 
-function cancelAddItemHandler (event) {
+function cancelAddItemHandler(event) {
     addItemForm.classList.add('hidden');
     showAddItem.classList.remove('hidden');
 }
 
 // Just testing something
-function editDescriptionHandler (event) {
-	let target = event.target;
-	let itemID = target.id.substr(14);
-	let descriptionInput = document.createElement('input');
-	descriptionInput.value = target.innerHTML;
-	descriptionInput.type = 'text';
-	target.classList.add('hidden');
-	console.log(descriptionInput);
+function editDescriptionHandler(event) {
+    let target = event.target;
+    let itemID = target.id.substr(14);
+    let descriptionInput = document.createElement('input');
+    descriptionInput.value = target.innerHTML;
+    descriptionInput.type = 'text';
+    target.classList.add('hidden');
+    console.log(descriptionInput);
 
-	event.target.parentNode.append(descriptionInput);
+    event.target.parentNode.append(descriptionInput);
 }
 
-function editItemHandler (event) {
+function editItemHandler(event) {
     let itemID = event.target.id.substr(4);
     let item = document.getElementById('item' + itemID);
 
@@ -148,14 +154,18 @@ function editItemHandler (event) {
     edit.classList.remove('hidden');
 }
 
-function editItemSubmitHandler (event) {
+function editItemSubmitHandler(event) {
     event.preventDefault();
     let editForm = event.target;
     let itemID = editForm.querySelector('input[name=itemID]').value;
     let newDescription = editForm.querySelector('input[name=editDescription]').value;
     let newDate = editForm.querySelector('input[name=editDate]').value;
 
-    let DOMString = './actions/action_edit_item.php?' + encodeForAjax({'itemID': itemID, 'description': newDescription, 'dueDate': newDate});
+    let DOMString = './actions/action_edit_item.php?' + encodeForAjax({
+        'itemID': itemID,
+        'description': newDescription,
+        'dueDate': newDate
+    });
 
     let request = new XMLHttpRequest();
     request.open('get', DOMString, true);
@@ -163,7 +173,7 @@ function editItemSubmitHandler (event) {
     request.send();
 }
 
-function cancelEditItemHandler (event) {
+function cancelEditItemHandler(event) {
     let itemEdit = event.target.parentNode.parentNode.parentNode;
     itemEdit.classList.add('hidden');
 
@@ -171,7 +181,7 @@ function cancelEditItemHandler (event) {
     itemLeft.classList.remove('hidden');
 }
 
-function assignUserHandler (event) {
+function assignUserHandler(event) {
     let itemID = event.target.id.substr(10);
     let item = document.getElementById('item' + itemID);
 
@@ -181,7 +191,7 @@ function assignUserHandler (event) {
     user.classList.remove('hidden');
 }
 
-function cancelAssignUserHandler (event) {
+function cancelAssignUserHandler(event) {
     let itemUser = event.target.parentNode.parentNode.parentNode;
     itemUser.classList.add('hidden');
 
@@ -189,13 +199,16 @@ function cancelAssignUserHandler (event) {
     itemLeft.classList.remove('hidden');
 }
 
-function assignUserSubmitHandler (event) {
+function assignUserSubmitHandler(event) {
     event.preventDefault();
     let editForm = event.target;
     let itemID = editForm.querySelector('input[name=itemID]').value;
     let assignedUser = editForm.querySelector('select[name=assignedUser]').value;
 
-    let DOMString = './actions/action_assign_user.php?' + encodeForAjax({'itemID': itemID, 'assignedUser': assignedUser});
+    let DOMString = './actions/action_assign_user.php?' + encodeForAjax({
+        'itemID': itemID,
+        'assignedUser': assignedUser
+    });
 
     let request = new XMLHttpRequest();
     request.open('get', DOMString, true);
@@ -203,7 +216,7 @@ function assignUserSubmitHandler (event) {
     request.send();
 }
 
-function updateItemComplete (event) {
+function updateItemComplete(event) {
     event.preventDefault();
     let checkbox = event.target;
     let currentValue = checkbox.checked;
@@ -218,21 +231,21 @@ function updateItemComplete (event) {
     request.send();
 }
 
-function updateItemPriority (elem) {
+function updateItemPriority(elem) {
     let currentPriority;
-    switch(elem.innerHTML) {
-      case 'Low':
-        currentPriority = 1;
-        break;
-      case 'Med':
-        currentPriority = 2;
-        break;
-      case 'High':
-        currentPriority = 3;
-        break;
+    switch (elem.innerHTML) {
+        case 'Low':
+            currentPriority = 1;
+            break;
+        case 'Med':
+            currentPriority = 2;
+            break;
+        case 'High':
+            currentPriority = 3;
+            break;
     }
-    let newPriority = (currentPriority + 1 ) % 4;
-    if(newPriority == 0) newPriority = 1;
+    let newPriority = (currentPriority + 1) % 4;
+    if (newPriority == 0) newPriority = 1;
 
     let itemID = elem.id.match(/\d+/)[0];
 
@@ -244,33 +257,33 @@ function updateItemPriority (elem) {
     request.send();
 }
 
-function checkboxUpdated () {
+function checkboxUpdated() {
     let item = JSON.parse(this.responseText);
     setChecked(item.id, item.complete == 1);
 }
 
 function updateItemPriorityFinished() {
     let item = JSON.parse(this.responseText);
-    let priorityElem = document.getElementById("item"+item.id+"priority");
+    let priorityElem = document.getElementById("item" + item.id + "priority");
 
-    switch(item.priority) {
-      case '1':
-        priorityElem.innerHTML = 'Low';
-        priorityElem.classList.replace('priority-high', 'priority-low');
-        return;
-      case '2':
-        priorityElem.innerHTML = 'Med';
-        priorityElem.classList.replace('priority-low', 'priority-medium');
-        return;
-      case '3':
-        priorityElem.innerHTML = 'High';
-        priorityElem.classList.replace('priority-medium', 'priority-high');
-        return;
+    switch (item.priority) {
+        case '1':
+            priorityElem.innerHTML = 'Low';
+            priorityElem.classList.replace('priority-high', 'priority-low');
+            return;
+        case '2':
+            priorityElem.innerHTML = 'Med';
+            priorityElem.classList.replace('priority-low', 'priority-medium');
+            return;
+        case '3':
+            priorityElem.innerHTML = 'High';
+            priorityElem.classList.replace('priority-medium', 'priority-high');
+            return;
     }
 }
 
-function editItemFinished () {
-	console.log(this.responseText);
+function editItemFinished() {
+    console.log(this.responseText);
     let newItem = JSON.parse(this.responseText);
     let itemID = newItem.id;
     let itemDiv = document.getElementById('item' + itemID);
@@ -291,21 +304,21 @@ function editItemFinished () {
     itemInfoArea.classList.remove('hidden');
 }
 
-function assignUserFinished () {
+function assignUserFinished() {
     let newItem = JSON.parse(this.responseText);
     let itemID = newItem.id;
     let itemDiv = document.getElementById('item' + itemID);
     let assignUser = document.getElementById('assignUser' + itemID);
 
-    if(newItem.assignedUser) {
-    	assignUser.innerHTML = '@' + newItem.assignedUser;
-    	assignUser.classList.remove('fa-user-plus');
-    	assignUser.classList.remove('fa');
+    if (newItem.assignedUser) {
+        assignUser.innerHTML = '@' + newItem.assignedUser;
+        assignUser.classList.remove('fa-user-plus');
+        assignUser.classList.remove('fa');
     }
     else {
-    	assignUser.classList.add('fa-user-plus');
-    	assignUser.classList.add('fa');
-    	assignUser.innerHTML = '';
+        assignUser.classList.add('fa-user-plus');
+        assignUser.classList.add('fa');
+        assignUser.innerHTML = '';
     }
 
     let itemUserArea = itemDiv.querySelector('.item-user');
@@ -315,12 +328,12 @@ function assignUserFinished () {
     itemInfoArea.classList.remove('hidden');
 }
 
-function setChecked (id, value) {
+function setChecked(id, value) {
     let checkbox = document.getElementById(id);
     checkbox.checked = value;
 }
 
-function addListAdminSubmitHandler (event) {
+function addListAdminSubmitHandler(event) {
     event.preventDefault();
     let form = event.target;
     let listID = form.querySelector('input[name=listID]').value;
@@ -335,7 +348,7 @@ function addListAdminSubmitHandler (event) {
     request.send();
 }
 
-function addListAdminFinished () {
+function addListAdminFinished() {
     let membersDiv = document.querySelector('.members');
     let newMember = document.createElement('div');
     newMember.innerHTML = '<p>@' + this.responseText + '</p>';
@@ -343,42 +356,42 @@ function addListAdminFinished () {
     membersDiv.append(newMember);
 }
 
-function getItemHTML (newItem) {
+function getItemHTML(newItem) {
     return '<div class="item-left">' +
-			'<input type="checkbox" id="' + newItem.id + '" name="complete">' +
-			'<span class="itemDescription">' + newItem.description + '</span>' +
-			'<span class="itemDueDate">' + newItem.dueDate + '</span>' +
+        '<input type="checkbox" id="' + newItem.id + '" name="complete">' +
+        '<span class="itemDescription">' + newItem.description + '</span>' +
+        '<span class="itemDueDate">' + newItem.dueDate + '</span>' +
 
-    '</div>	<div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">' +
-			'<input type="hidden" name="itemID" value="' + newItem.id + '"><div>' +
-			'<label for="editDescription">Description</label>' +
-			'<input type="text" name="editDescription" value="' + newItem.description + '" required></div>' +
-		'<div><label for="editDate">Due Date</label>' +
-			'<input type="date" name="editDate" value="' + newItem.dueDate +
-			'" required></div></div><div><input class="button-primary" type="submit" value="Save">' +
-			'<a class="button cancelEditItem">Cancel</a> </div></form></div>'+
+        '</div>	<div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">' +
+        '<input type="hidden" name="itemID" value="' + newItem.id + '"><div>' +
+        '<label for="editDescription">Description</label>' +
+        '<input type="text" name="editDescription" value="' + newItem.description + '" required></div>' +
+        '<div><label for="editDate">Due Date</label>' +
+        '<input type="date" name="editDate" value="' + newItem.dueDate +
+        '" required></div></div><div><input class="button-primary" type="submit" value="Save">' +
+        '<a class="button cancelEditItem">Cancel</a> </div></form></div>' +
 
-      '<div class="item-user hidden"><form class="assignUserForm"><div class="flex-equal">'+
-            '<input type="hidden" name="itemID" value="' + newItem.id + '"><div><label for="assignedUser">Assign User</label>'+
-              '<select name="assignedUser" ><option value="">None</option>'+ getAllAdmin(newItem)+
-              '</select></div></div><div><input class="button-primary" type="submit" value="Assign">'+
-            '<a class="button cancelAssignUser">Cancel</a></div></form></div>'+
-      '<div class="item-right">' +
-			'<span><i id="assignUser' + newItem.id + '" class="fa fa-user-plus"></i></span>' +
-			'<span><i id="edit' + newItem.id + '" class="fa fa-pencil-square-o"></i></span>' +
-			'<span><i id="delete' + newItem.id + '" class="fa fa-trash deleteItem"></i></span>' + '</div>';
+        '<div class="item-user hidden"><form class="assignUserForm"><div class="flex-equal">' +
+        '<input type="hidden" name="itemID" value="' + newItem.id + '"><div><label for="assignedUser">Assign User</label>' +
+        '<select name="assignedUser" ><option value="">None</option>' + getAllAdmin(newItem) +
+        '</select></div></div><div><input class="button-primary" type="submit" value="Assign">' +
+        '<a class="button cancelAssignUser">Cancel</a></div></form></div>' +
+        '<div class="item-right">' +
+        '<span><i id="assignUser' + newItem.id + '" class="fa fa-user-plus"></i></span>' +
+        '<span><i id="edit' + newItem.id + '" class="fa fa-pencil-square-o"></i></span>' +
+        '<span><i id="delete' + newItem.id + '" class="fa fa-trash deleteItem"></i></span>' + '</div>';
 }
 
-function getAllAdmin(newItem){
-  let admins = newItem.admins;
-  let options = '';
-  for (let admin of admins) {
-    options += '<option value="'+ admin['user'] + '">'+ admin['user'] + '</option>';
-  }
-  return options;
+function getAllAdmin(newItem) {
+    let admins = newItem.admins;
+    let options = '';
+    for (let admin of admins) {
+        options += '<option value="' + admin['user'] + '">' + admin['user'] + '</option>';
+    }
+    return options;
 }
 
-function encodeForAjax (data) {
+function encodeForAjax(data) {
     return Object.keys(data).map(function (k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k]);
     }).join('&');

@@ -8,7 +8,7 @@ $username = $_SESSION['username'];
 
 //TODO: add regex verification for category name and category color
 
-if ($_SESSION['csrf'] !== $_GET['csrf']){
+if ($_SESSION['csrf'] !== $_GET['csrf']) {
     die("ERROR: Request does not appear to be legitimate");
 }
 
