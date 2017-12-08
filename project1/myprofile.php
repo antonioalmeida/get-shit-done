@@ -15,7 +15,7 @@ $assignedItems = getUserAssignedItems($username);
 <div class="container">
   <div class="flex-container">
    <div id="profile-pic">
-     <img width="60%" src="/assets/img/sample-logo.png" alt="">
+     <img width="100%" src="<?= $user['picture'] ?>" alt="">
    </div>
 
    <div id="profile-info">
@@ -47,7 +47,7 @@ $assignedItems = getUserAssignedItems($username);
       <p><?= $item['dueDate']?></p>
       <p><?= $item['color']?></p>
     </div>
-    <?php } 
+    <?php }
     } else { ?>
     <h6>You don't have shit to do, congrats!</h6>
     <?php } ?>

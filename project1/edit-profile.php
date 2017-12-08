@@ -45,6 +45,16 @@ include_once('templates/common/alerts.php');
                 <input class="button-primary" type="submit" value="Update">
             </div>
         </form>
+
+        <div class="upload">
+        <form action="actions/action_uploadPPic.php" method="post" enctype="multipart/form-data">
+            <br><label>Profile Picture:</label>
+            <input type="hidden" name="username" value="<?=$user['username']?>"/>
+            <input type="url" name="picture" placeholder="Insert the URL !" required>
+            <input type="submit" value="Upload">
+        </form>
+      </div>
+
     </div>
 
 </div>
