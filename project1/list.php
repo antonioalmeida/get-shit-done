@@ -3,13 +3,13 @@ include_once('includes/init.php');
 include_once('database/user.php');
 include_once('database/lists.php');
 include_once('templates/common/header.php');
-include_once('templates/common/alerts.php');
 ?>
 
 <script type="text/javascript" src="scripts/items.js" defer></script>
 
 <?php
 include_once('templates/common/navbar.php');
+include_once('templates/common/alerts.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
 $username = $_SESSION['username'];
@@ -47,7 +47,7 @@ $admins = getListAdmins($listID);
           <input type="text" placeholder="Username" name="addAdminUsername" required>
         </form>
       </div>
-      <p><i class="fa fa-calendar-check-o"></i> <strong>Due Today</strong></p>
+      <p><i class="fa fa-calendar-alt"></i> <strong>Due Today</strong></p>
     </div>
 
     <div class="items">
@@ -68,7 +68,7 @@ $admins = getListAdmins($listID);
             checked
             <?php } ?>
             >
-            <span class="itemDescription" id="itemDescription<?=$item['id']?>"><?=$item['description']?></span>
+            <span class="itemDescription"><?=$item['description']?></span>
           </div>
 
           <div class="item-edit hidden">
@@ -130,13 +130,13 @@ $admins = getListAdmins($listID);
             } ?>
             <span>
               <?php if($item['assignedUser'] != "") { ?>
-              <span class="assignUser" id="assignUser<?=$item['id']?>"> @<?=$item['assignedUser']?></span>
+              <img id="assignUser<?=$item['id']?>" class="assignUser user-image" src="<?=$item['userImage']?>"/>
               <?php } else { ?>
               <i id="assignUser<?=$item['id']?>" class="fa fa-user-plus assignUser"></i>
               <?php } ?>
             </span>
-            <span><i id="edit<?=$item['id']?>" class="fa fa-pencil-square-o"></i></span>
-            <span><i id="delete<?=$item['id']?>" class="fa fa-trash deleteItem"></i></span>
+            <span><i id="edit<?=$item['id']?>" class="fa fa-edit editItem"></i></span>
+            <span><i id="delete<?=$item['id']?>" class="fa fa-times deleteItem"></i></span>
           </div>
         </div>
         <?php } ?>

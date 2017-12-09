@@ -77,11 +77,8 @@ img-responsive {
 }
 
 .footer {
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  text-align: center;
-  background-color: $primary-color;
-  color: $white-color;
+    padding: 1.5em;
+    text-align: center;
+    background-color: $primary-color;
+    color: $white-color;
 }

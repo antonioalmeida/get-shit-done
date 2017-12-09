@@ -5,16 +5,13 @@ let showAddItem = document.querySelector('#showAddItem');
 let cancelAddItem = document.querySelector('#cancelAddItem');
 let checkboxList = document.querySelectorAll('input[name="complete"]');
 let deleteItemList = document.querySelectorAll('.deleteItem');
-let editItemList = document.querySelectorAll('.fa-pencil-square-o');
+let editItemList = document.querySelectorAll('.editItem');
 let cancelEditItemList = document.querySelectorAll('.cancelEditItem');
 let editItemFormList = document.querySelectorAll('.editItemForm');
 let assignUserList = document.querySelectorAll('.assignUser');
 let cancelAssignUserList = document.querySelectorAll('.cancelAssignUser');
 let assignUserFormList = document.querySelectorAll('.assignUserForm');
 let addListAdmin = document.getElementById('addListAdmin');
-
-//Testing
-let editDescriptionList = document.querySelectorAll('.itemDescription');
 
 addItemForm.addEventListener('submit', addItemSubmitHandler);
 showAddItem.addEventListener('click', showAddItemHandler);
@@ -51,10 +48,6 @@ cancelAssignUserList.forEach(function (element) {
 
 assignUserFormList.forEach(function (element) {
     element.addEventListener('submit', assignUserSubmitHandler);
-});
-
-editDescriptionList.forEach(function (element) {
-    element.addEventListener('click', editDescriptionHandler);
 });
 
 function addItemSubmitHandler (event) {
@@ -125,20 +118,8 @@ function cancelAddItemHandler (event) {
     showAddItem.classList.remove('hidden');
 }
 
-// Just testing something
-function editDescriptionHandler (event) {
-	let target = event.target;
-	let itemID = target.id.substr(14);
-	let descriptionInput = document.createElement('input');
-	descriptionInput.value = target.innerHTML;
-	descriptionInput.type = 'text';
-	target.classList.add('hidden');
-	console.log(descriptionInput);
-
-	event.target.parentNode.append(descriptionInput);
-}
-
 function editItemHandler (event) {
+	console.log("CEnas");
     let itemID = event.target.id.substr(4);
     let item = document.getElementById('item' + itemID);
 

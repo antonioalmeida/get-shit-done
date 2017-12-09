@@ -42,18 +42,43 @@ $assignedItems = getUserAssignedItems($username);
     <?php if(sizeof($assignedItems) > 0) {
 
       foreach ($assignedItems as $item) { ?>
-    <div class="assigned-item">
-      <p><?= $item['description']?></p>
-      <p><?= $item['dueDate']?></p>
-      <p><?= $item['color']?></p>
-    </div>
-    <?php }
-    } else { ?>
-    <h6>You don't have shit to do, congrats!</h6>
-    <?php } ?>
+      <div class="assigned-item flex-container">
+        <div>
+          <h6><?= $item['description']?></h6>
+        </div>
+        <div>
+          <p><strong>Due </strong>
+            <?= date('d M', strtotime($item['dueDate']))?></p>
+          </div>
+          <div>
+            <p><strong>Priority </strong>
+              <?php switch ($item['priority']) {
+                case 1: ?>
+                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-low">Low</span>
+                <?php
+                break;
+                case 2:  ?>
+                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-medium">Med</span>
+                <?php
+                break;
+                case 3: ?>
+                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-high">High</span> 
+                <?php
+                break;
+              } ?>
+            </p>
+          </div>
+          <div>
+            <p><strong>Part of </strong> LIST NAME</p>
+          </div>
+        </div>
+        <?php }
+      } else { ?>
+      <h6>You don't have shit to do, congrats!</h6>
+      <?php } ?>
 
+    </div>
   </div>
-</div>
 </div>
 
 

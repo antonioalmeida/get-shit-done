@@ -1,9 +1,29 @@
 #profile-pic {
    flex: 1 0 0;	
-   padding: 10px;
+   padding: 2em;
+
+   img {
+   	border-radius: 50%;
+   	min-width: 200px;
+   }
 }
 
 #profile-info {
    	flex: 3 0 0;
-   	padding: 10px;
+   	padding: 2em;
 }
+
+.assigned-item {
+	align-items: center;
+	justify-content: center;
+	padding: 1em;
+	margin: 1em;
+	min-width: 200px;
+	background-color: $white-color;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+	div {
+		flex: 1 0 0;
+	}
+}
+

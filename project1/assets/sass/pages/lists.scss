@@ -61,101 +61,103 @@
 
 		i:hover {
 			cursor: pointer; }
+		}
+
+		.category-input {
+			flex: 2 0 0;
+		}
 	}
 
-	.category-input {
-		flex: 2 0 0;
-	}
-}
-
-.lists {
-	flex: 4 0 0;
-}
-
-.items {
-	flex: 3 0 0;
-}
-
-.item {
-	padding: 1em;
-	margin: 1em;
-	min-width: 200px;
-	background-color: $white-color;
-
-	input {
-		display: inline;
+	.lists {
+		flex: 4 0 0;
 	}
 
-	span {
-		margin-left: 0.8em;
+	.items {
+		flex: 3 0 0;
 	}
 
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-
-	.item-left, .item-edit, .item-assign {
-		flex: 2 0 0;
+	.item {
+		padding: 1em;
+		margin: 1em;
 		min-width: 200px;
+		background-color: $white-color;
+
+		input {
+			display: inline;
+		}
+
+		span {
+			margin-left: 0.8em;
+		}
+
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+		.item-left, .item-edit, .item-assign {
+			flex: 2 0 0;
+			min-width: 200px;
+		}
+
+		.item-left input[type='text'] {
+			width: 180px;
+			margin: 0 0 0 .8em;
+			padding: 0;
+			border: 0;
+		}
+
+		.item-right {
+			padding: 0 1em 0 1em;
+			flex: 1 0 1;
+			min-width: 200px;
+
+			span:hover {
+				cursor: pointer;
+			}
+
+
+
+			.user-image {
+				height: 35px;
+				width: 35px;
+				border-radius: 50%;
+				margin: -0.5em;
+			}
+		}
+
+		.item-edit {
+			input[type=text], input[type=date] {
+				background-color: $white-color;
+			}
+		}
 	}
 
-	.item-left input[type='text'] {
-		width: 180px;
-		margin: 0 0 0 .8em;
-		padding: 0;
-		border: 0;
+
+	.add-item {
+		padding: 0.5em 1em 1em 1em;
+		margin: 1em;
 	}
 
-	.item-right {
-		padding: 0 1em 0 1em;
-		flex: 1 0 1;
-		min-width: 200px;
-
-		span:hover {
-			cursor: pointer;
-		}
-
-		.itemPriority {
-			border-radius: 16px;
-			color: $white-color;
-			padding: .3em .5em .3em .5em;
-		}
-
-		.priority-low {
-			background-color: $green-color;
-		}
-
-		.priority-medium {
-			background-color: $yellow-color;
-		}
-
-		.priority-high {
-			background-color: $red-color;
-		}
+	.hidden {
+		display: none;
 	}
 
-	.item-edit {
-		input[type=text], input[type=date] {
-			background-color: $white-color;
-		}
+	.filtered {
+		background-color: $light-grey;
 	}
-}
 
-.assigned-item {
-	padding: 1em;
-	margin: 1em;
-	min-width: 200px;
-	background-color: $white-color;
-	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-}
+	.itemPriority {
+		border-radius: 16px;
+		color: $white-color;
+		padding: .3em .5em .3em .5em;
+	}
 
-.add-item {
-	padding: 0.5em 1em 1em 1em;
-	margin: 1em;
-}
+	.priority-low {
+		background-color: $green-color;
+	}
 
-.hidden {
-	display: none;
-}
+	.priority-medium {
+		background-color: $yellow-color;
+	}
 
-.filtered {
-	background-color: $light-grey;
-}
+	.priority-high {
+		background-color: $red-color;
+	}

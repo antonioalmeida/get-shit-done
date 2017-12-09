@@ -14,21 +14,23 @@ if ( !preg_match ("/^https?:\/\/(?:[a-z-]+.)+[a-z]{2,6}(?:\/[^\#?]+)+.(?:jpe?g|g
 //$original_image = "data:image/png;base64,$encode_data";
 $temp_image = imagecreatefromstring(file_get_contents($_POST['picture']));
 
-$new_width = 500; 
-$new_height = 500; 
+$max_width = 500;
+$max_height = 500;
 $quality = 100; //The quality of your new image
 list($width, $height) = getimagesize($_POST['picture']);
 
-$img_ratio = $width/$height;
-if($width > $new_width || $height > $new_height) {
-	if($new_width/$new_height > $img_ratio)
-		$new_width = $new_height*$img_ratio;
-	else 
-		$new_height = $new_width/$img_ratio;
-}
+$new_width = $height * $max_width/$max_height;
+$new_height = $width * $max_height/$max_width;
 
-$new_image = imagecreatetruecolor($new_width, $new_height);
-imagecopyresampled($new_image, $temp_image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);
+//if the new width is greater than the actual width of the image, then the height is too large and the rest cut off, or vice versa
+$new_image = imagecreatetruecolor($max_width, $max_height);
+if($new_width > $width) {
+	$h_point = (($height - $new_height) / 2);
+	imagecopyresampled($new_image, $temp_image, 0, 0, 0, $h_point, $max_width, $max_height, $width, $new_width);
+} else {
+	$w_point = (($width - $new_width) / 2);
+	imagecopyresampled($new_image, $temp_image, 0, 0, $w_point, 0, $max_width, $max_height, $new_width, $height);
+}
 
 ob_start();
 imagepng($new_image);
