@@ -83,13 +83,14 @@ function itemAdded () {
     let itemDiv = document.createElement('div');
 
     itemDiv.classList.add('item');
+    itemDiv.classList.add('flex-container');
     itemDiv.id = 'item' + newItem.id;
     itemDiv.innerHTML = getItemHTML(newItem);
 
     // Add event listeners to new item
     itemDiv.querySelector('.assignUserForm').addEventListener('submit', assignUserSubmitHandler);
     itemDiv.querySelector('.fa-user-plus').addEventListener('click', assignUserHandler);
-    itemDiv.querySelector('.fa-pencil-square-o').addEventListener('click', editItemHandler);
+    itemDiv.querySelector('.editItem').addEventListener('click', editItemHandler);
     itemDiv.querySelector('.cancelEditItem').addEventListener('click', cancelEditItemHandler);
     itemDiv.querySelector('.deleteItem').addEventListener('click', deleteItemHandler);
     itemDiv.querySelector('input[name="complete"]').addEventListener('click', updateItemComplete);
@@ -328,7 +329,6 @@ function getItemHTML (newItem) {
     return '<div class="item-left">' +
 			'<input type="checkbox" id="' + newItem.id + '" name="complete">' +
 			'<span class="itemDescription">' + newItem.description + '</span>' +
-			'<span class="itemDueDate">' + newItem.dueDate + '</span>' +
 
     '</div>	<div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">' +
 			'<input type="hidden" name="itemID" value="' + newItem.id + '"><div>' +
@@ -344,10 +344,13 @@ function getItemHTML (newItem) {
               '<select name="assignedUser" ><option value="">None</option>'+ getAllAdmin(newItem)+
               '</select></div></div><div><input class="button-primary" type="submit" value="Assign">'+
             '<a class="button cancelAssignUser">Cancel</a></div></form></div>'+
+
       '<div class="item-right">' +
-			'<span><i id="assignUser' + newItem.id + '" class="fa fa-user-plus"></i></span>' +
-			'<span><i id="edit' + newItem.id + '" class="fa fa-pencil-square-o"></i></span>' +
-			'<span><i id="delete' + newItem.id + '" class="fa fa-trash deleteItem"></i></span>' + '</div>';
+      '<span class="itemDueDate">' + newItem.dueDate + '</span>'+
+      '<span id="item' + newItem.id + 'priority" onclick="updateItemPriority(this)" class="itemPriority priority-low">Low</span>'+
+      '<span><i id="assignUser' + newItem.id + '" class="fa fa-user-plus"></i></span>' +
+			'<span><i id="edit' + newItem.id + '" class="fa fa-edit editItem"></i></span>' +
+			'<span><i id="delete' + newItem.id + '" class="fa fa-times deleteItem"></i></span>' + '</div>';
 }
 
 function getAllAdmin(newItem){
