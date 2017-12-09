@@ -44,7 +44,14 @@ function updateUser($username, $picture,$name, $bio) {
 function updatePictureUser($username, $picture) {
   global $dbh;
   $stmt = $dbh->prepare('UPDATE User SET picture = ? WHERE username = ?');
-  $stmt->execute(array($picture, strtolower($username)));
+
+  try {
+    $stmt->execute(array($picture, strtolower($username)));
+    return true;
+  }
+  catch (Exception $e) {
+      return false;
+  }
 }
 
 ?>
