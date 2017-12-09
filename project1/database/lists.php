@@ -125,7 +125,13 @@ function getAdminList($id) {
 
 function getListItems($listId) {
     global $dbh;
-    $stmt = $dbh->prepare("SELECT Item.id as id, Item.assignedUser as assignedUser, Item.priority as priority, Item.dueDate as dueDate, Item.description, User.picture as userImage FROM Item, User WHERE list = ? AND User.username = Item.assignedUser union SELECT Item.id as id, Item.assignedUser as assignedUser, Item.priority as priority, Item.dueDate as dueDate, Item.description, '' as userImage from Item where list = ? AND assignedUser IS NULL");
+    $stmt = $dbh->prepare("SELECT Item.id as id, Item.complete as complete, Item.assignedUser as assignedUser, Item.priority as priority, Item.dueDate as dueDate, Item.description as description, User.picture as userImage
+                            FROM Item, User
+                            WHERE list = ? AND User.username = Item.assignedUser
+                            union all
+                            SELECT Item.id as id, Item.complete as complete, '' as assignedUser, Item.priority as priority, Item.dueDate as dueDate, Item.description as description, '' as userImage
+                            from Item
+                            where list = ? AND assignedUser IS NULL;");
     $stmt->execute(array($listId, $listId));
     return $stmt->fetchAll();
 }
