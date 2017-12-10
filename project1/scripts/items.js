@@ -107,6 +107,7 @@ function itemDeleted () {
 
     let item = document.getElementById('item' + itemID);
     item.parentNode.removeChild(item);
+    setAlertMessage('success', 'Item successfuly deleted!');
 }
 
 function showAddItemHandler (event) {
