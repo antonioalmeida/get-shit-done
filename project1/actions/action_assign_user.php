@@ -5,7 +5,7 @@ include_once(dirname(__DIR__) . '/database/lists.php');
 
 if(isset($_SESSION['username'])) {
 	$username = $_SESSION['username'];
-
+		
 	if ( !preg_match ("/^\d+$/", $_GET['itemID'])) {
 		die("ERROR: ID can only contain numbers");
 	}
@@ -16,13 +16,7 @@ if(isset($_SESSION['username'])) {
 	$itemID = $_GET["itemID"];
 	$assignedUser = $_GET["assignedUser"];
 
-	if (isItemAdmin($username, $itemID)) {
-		if (itemAssignUser($itemID, $assignedUser))
-				$_SESSION['success_messages'][] = "User Successfully Assigned! ";
-		else
-				$_SESSION['error_messages'][] = "Error assigning user";
-
-	}
-
+	if (isItemAdmin($username, $itemID))
+		itemAssignUser($itemID, $assignedUser);
 }
 ?>

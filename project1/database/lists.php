@@ -29,12 +29,11 @@ function addList($username, $title, $creationDate, $category) {
         $stmt->execute(array($title, $creationDate, $category, $username));
     } catch (Exception $e) {
         print_r($e->errorInfo);
-        return false;
+        return;
     }
     // return added list as JSON
     $newList = getLastList($username);
     echo json_encode($newList);
-    return true;
 }
 
 function listAddAdmin($listID, $username) {
@@ -45,11 +44,10 @@ function listAddAdmin($listID, $username) {
         $stmt->execute(array($listID, $username));
     } catch (Exception $e) {
         print_r($e->errorInfo);
-        return false;
+        return;
     }
     // return username in case of success
     echo $username;
-    return true;
 }
 
 function getListAdmins($listID) {
@@ -160,17 +158,10 @@ function editItem($itemID, $description, $dueDate) {
 function itemAssignUser($itemID, $assignedUser) {
     global $dbh;
     $stmt = $dbh->prepare('UPDATE Item SET assignedUser = ? WHERE Item.id = ?;');
-    
-    try {
-        $stmt->execute(array($assignedUser, $itemID));
-    }
-    catch (Exception $e) {
-        return false;
-    }
+    $stmt->execute(array($assignedUser, $itemID));
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);
-    return true;
 }
 
 function isItemAdmin($username, $itemID) {

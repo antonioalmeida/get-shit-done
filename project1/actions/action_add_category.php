@@ -21,11 +21,5 @@ if ($_SESSION['csrf'] !== $_GET['csrf']){
 $categoryName = $_GET["categoryName"];
 $categoryColor = $_GET["categoryColor"];
 
-if (addCategory($username, $categoryName, $categoryColor))
-    $_SESSION['success_messages'][] = "Category added!";
-else
-    $_SESSION['error_messages'][] = "Error adding Category";
-
-
-
+addCategory($username, $categoryName, $categoryColor)
 ?>

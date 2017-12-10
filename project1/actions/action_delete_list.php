@@ -13,22 +13,17 @@ if(isset($_SESSION['username'])) {
 	if ($_SESSION['csrf'] !== $_GET['csrf']){
 	    die("ERROR: Request does not appear to be legitimate");
 	}
-
+	
 	$listID = $_GET["listID"];
 
-	if (isAdmin($username, $listID)){
+	if (isAdmin($username, $listID))
+		$hasDeleted = deleteList($listID);
 
-			if (deleteList($listID)){
-				$_SESSION['success_messages'][] = "List Successfully Deleted! ";
-				echo $listID;
-			}
-			else{
-				$_SESSION['error_messages'][] = "Error deleting list";
-				echo -1;
-			}
-			}else echo -1;
-
-	}
-
+	if($hasDeleted)
+		echo $listID;
+	else
+		echo -1;
+} else
+	echo -1;
 
 ?>
