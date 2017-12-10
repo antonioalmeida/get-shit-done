@@ -73,14 +73,14 @@ end;
 
 --checks item precedence when trying to set one as complete
 --in other words, an item can only be completed once items of higher priority have also been completed
-drop trigger if exists itempriorityprecedence;
-create trigger itempriorityprecedence
-before update of complete on item
-for each row
-when new.complete = 1 and exists (select * from item where priority > new.priority and complete = 0)
-begin
-select raise(fail, 'item cannot be completed before higher priority items have been completed');
-end;
+DROP TRIGGER IF EXISTS itempriorityprecedence;
+CREATE TRIGGER itempriorityprecedence
+BEFORE UPDATE OF complete ON item
+FOR each ROW
+WHEN NEW.complete = 1 AND EXISTS (SELECT * FROM item WHERE priority > NEW.priority AND complete = 0 AND NEW.list = item.list)
+BEGIN
+SELECT raise(fail, 'item cannot be completed before higher priority items have been completed');
+END;
 
 --check item's due date is after the respective list's creation date
 drop trigger if exists itemduedateinsert;

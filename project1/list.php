@@ -62,13 +62,23 @@ $admins = getListAdmins($listID);
         <?php } ?>
         <?php foreach($items as $item) { ?>
         <div class="item flex-container" id="item<?=$item['id']?>">
-          <div class="item-left">
-            <input type="checkbox" id="<?=$item['id']?>" name="complete"
-            <?php if($item['complete'] == 1) { ?>
+          <div class="item-left flex-container">
+            <div>
+            <label class="label">
+              <input id="<?=$item['id']?>" name="complete" class="label-checkbox hidden" type="checkbox" <?php if($item['complete'] == 1) { ?>
             checked
             <?php } ?>
-            >
+            />
+              <span class="label-text">
+                <span class="label-check">
+                  <i class="fa fa-check icon"></i>
+                </span>
+              </span>
+            </label>
+          </div>
+           <div> 
             <span class="itemDescription"><?=$item['description']?></span>
+          </div>
           </div>
 
           <div class="item-edit hidden">

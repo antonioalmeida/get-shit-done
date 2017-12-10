@@ -227,6 +227,7 @@ function updateItemPriority (elem) {
 }
 
 function checkboxUpdated () {
+	console.log(this.responseText);
     let item = JSON.parse(this.responseText);
     setChecked(item.id, item.complete == 1);
 }

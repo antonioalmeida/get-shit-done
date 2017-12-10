@@ -82,14 +82,6 @@
 		min-width: 200px;
 		background-color: $white-color;
 
-		input {
-			display: inline;
-		}
-
-		span {
-			margin-left: 0.8em;
-		}
-
 		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 
 		.item-left, .item-edit, .item-assign {
@@ -97,35 +89,31 @@
 			min-width: 200px;
 		}
 
-		.item-left input[type='text'] {
-			width: 180px;
-			margin: 0 0 0 .8em;
-			padding: 0;
-			border: 0;
-		}
-
 		.item-right {
 			padding: 0 1em 0 1em;
 			flex: 1 0 1;
 			min-width: 200px;
 
-			span:hover {
-				cursor: pointer;
+			span {
+				margin-left: .8em;
+
+				&:hover {
+					cursor: pointer;
+				}
 			}
-
-
 
 			.user-image {
 				height: 35px;
 				width: 35px;
 				border-radius: 50%;
-				margin: -0.5em;
+				margin: -0.5em -0.5em -0.8em -0.5em;
 			}
 		}
 
 		.item-edit {
 			input[type=text], input[type=date] {
 				background-color: $white-color;
+				display: inline;
 			}
 		}
 	}
@@ -137,7 +125,7 @@
 	}
 
 	.hidden {
-		display: none;
+		display: none !important;
 	}
 
 	.filtered {
