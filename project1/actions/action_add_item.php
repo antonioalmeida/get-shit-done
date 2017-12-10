@@ -11,10 +11,12 @@ if ( !preg_match ("/^\d+$/", $_GET['id'])) {
 }
 
 if ( !preg_match ("/^[\w\s-?!\.()]*$/", $_GET['description'])) {
-  die("ERROR: ID can only contain numbers");
+  die("ERROR: categoryName can only contain letters, numbers and most common punctuaction");
 }
 
-//TODO add regex for date verification
+if ( !preg_match ("/^\d\d\d\d-\d{1,2}-\d{1,2}$/", $_GET['dueDate'])) {
+  die("ERROR: dueDate can only contain a date on format yyyy-mm-dd");
+}
 
 $id_list = $_GET["id"];
 $description = (string) $_GET["description"];

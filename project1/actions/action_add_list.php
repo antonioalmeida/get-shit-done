@@ -7,7 +7,7 @@ $isLoggedIn = (isset($_SESSION['username']));
 $username = $_SESSION['username'];
 
 if ( !preg_match ("/^[\w\s-?!\.()]*$/", $_GET['title'])) {
-  die("ERROR: ID can only contain numbers");
+  die("ERROR: title can only contain letters, numbers and most common punctuaction");
 }
 if ( !preg_match ("/^\d+$/", $_GET['category'])) {
   die("ERROR: ID can only contain numbers");
