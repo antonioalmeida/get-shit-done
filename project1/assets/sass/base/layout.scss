@@ -25,7 +25,14 @@ html, body {
 
 .small-container {
     width: 100%;
-    max-width: $container-width;
+    max-width: $container-width - 100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.container-smaller {
+    width: 100%;
+    max-width: $smaller-container-width;
     margin: 0 auto;
     box-sizing: border-box;
 }

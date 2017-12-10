@@ -1,10 +1,26 @@
 'use strict';
 
-let alerts = document.getElementById('alerts');
+let closeButton = document.querySelector('.close-button');
+closeButton.addEventListener('click', function(event) {
+	let bottomAlerts = document.getElementById('bottomAlerts');
+	bottomAlerts.classList.add('hidden');
+})
+
 
 function setAlertMessage(type, message) {
+	let bottomAlerts = document.getElementById('bottomAlerts');
+	let alertMessage = bottomAlerts.querySelector('.alert-message');
+	alertMessage.innerHTML = message;
+
 	if(type == 'error') {
-		alerts.classList.remove('alert-success');	
-		alerts.classList.add('alert-error');	
+		bottomAlerts.classList.remove('alert-success'); 
+		bottomAlerts.classList.add('alert-error'); 
 	}
+	else if(type == 'success') {
+		bottomAlerts.classList.remove('alert-error'); 
+		bottomAlerts.classList.add('alert-success'); 
+	}
+
+	bottomAlerts.classList.remove('hidden');
 }
+
