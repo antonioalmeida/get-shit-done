@@ -79,7 +79,7 @@ function deleteItemHandler (event) {
 function itemAdded () {
     console.log(this.responseText);
     let newItem = JSON.parse(this.responseText);
-    let container = document.getElementById('items-list');
+    let container = document.getElementById('listItems');
     let itemDiv = document.createElement('div');
 
     itemDiv.classList.add('item');
@@ -184,6 +184,39 @@ function assignUserSubmitHandler (event) {
     request.open('get', DOMString, true);
     request.addEventListener('load', assignUserFinished);
     request.send();
+}
+
+function filterItemsBy (element) {
+    let deadlineDate = new Date();
+    switch(element.textContent) {
+        case ' Due Today':
+            break;
+        case ' Due This Week':
+            deadlineDate = new Date(deadlineDate.getTime() + 7 * 86400000);
+            break;
+        case ' Due This Month':
+            deadlineDate = new Date(deadlineDate.getTime() + 30 * 86400000);
+            break;
+    }
+    deadlineDate = deadlineDate.toISOString().split('T')[0]; //May not be the best solution for a general case, but works for ours
+
+    let allItems = document.querySelectorAll("div[id^=item]");
+    let unfilter = element.classList.contains('filtered');
+    if(unfilter) {
+        element.classList.remove('filtered');
+        [].forEach.call(allItems, function(elem) {elem.classList.remove("hidden");});
+        return;
+    }
+
+    [].forEach.call(allItems, function(elem) {
+        let elemDueDate = elem.children[3].children[1].textContent;
+        console.log(elemDueDate);
+        if(elemDueDate > deadlineDate)
+            elem.classList.add("hidden");
+        else
+            elem.classList.remove("hidden");
+    });
+    element.classList.add('filtered');
 }
 
 function updateItemComplete (event) {

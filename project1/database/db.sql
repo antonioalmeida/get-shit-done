@@ -82,6 +82,16 @@ BEGIN
 SELECT raise(fail, 'item cannot be completed before higher priority items have been completed');
 END;
 
+--prevents user from changing item priority after it is complete
+drop trigger if exists itempreventpriorityaftercompletion;
+create trigger itempreventpriorityaftercompletion
+before update of priority on item
+for each row
+when new.complete = 1
+begin
+select raise(ignore);
+end;
+
 --check item's due date is after the respective list's creation date
 drop trigger if exists itemduedateinsert;
 create trigger itemduedateinsert
