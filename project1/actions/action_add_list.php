@@ -21,5 +21,10 @@ $title = (string) $_GET["title"];
 $creationDate = date("d-m-Y");
 $category = $_GET["category"];
 
-addList($username, $title, $creationDate, $category);
+
+if (addList($username, $title, $creationDate, $category))
+    $_SESSION['success_messages'][] = "List added!";
+else
+    $_SESSION['error_messages'][] = "Error adding List";
+
 ?>

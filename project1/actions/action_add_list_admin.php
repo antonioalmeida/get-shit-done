@@ -12,11 +12,17 @@ if(isset($_SESSION['username'])) {
 	if ( !preg_match ("/^[a-zA-Z][\w-]{1,18}(?![-_])\w$/", $_GET['username'])) {
 		die("ERROR: Username invalid");
 	}
-	
+
 	$listID = $_GET["listID"];
 	$newUser = $_GET["username"];
 
-	if (isAdmin($username, $listID))
-		listAddAdmin($listID, $newUser);
+	if (isAdmin($username, $listID)){
+		if (listAddAdmin($listID, $newUser))
+		    $_SESSION['success_messages'][] = "Admin added!";
+		else
+		    $_SESSION['error_messages'][] = "Error adding Admin";
+
+	}
+
 }
 ?>
