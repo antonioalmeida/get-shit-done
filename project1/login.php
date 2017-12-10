@@ -6,10 +6,9 @@ include_once('templates/common/alerts.php');
 ?>
 
 <!-- Typography -->
-<div class="container">
-  <h4>Login</h4>
-
-  <div class="form-group">
+<div class="centered-form">
+  <div class="form">
+    <h4>Login</h4>
     <form action="actions/action_login.php" method="post">
       <div>
         <div class="form-element">
@@ -26,10 +25,10 @@ include_once('templates/common/alerts.php');
         <input class="button-primary" type="submit" value="Login">
       </div>
     </form>
+    <br><br>
+    <h6>Don't have an account? <a href="register.php">Create one now!</a></h6>
   </div>
 
-  <br><br>
-  <h6>Don't have an account? <a href="register.php">Create one now!</a></h6>
 </div>
 
 
