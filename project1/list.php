@@ -47,11 +47,14 @@ $admins = getListAdmins($listID);
           <input type="text" placeholder="Username" name="addAdminUsername" required>
         </form>
       </div>
-      <p><i class="fa fa-calendar-alt"></i> <strong>Due Today</strong></p>
+      <h6><strong>Filter items:</strong></h6>
+      <p class="item-filter" onclick="filterItemsBy(this)"><i class="fa fa-calendar-alt"></i> <strong>Due Today</strong></p>
+      <p class="item-filter" onclick="filterItemsBy(this)"><i class="fa fa-calendar-alt"></i> <strong>Due This Week</strong></p>
+      <p class="item-filter" onclick="filterItemsBy(this)"><i class="fa fa-calendar-alt"></i> <strong>Due This Month</strong></p>
     </div>
 
     <div class="items">
-      <div id="items-list">
+      <div id="listItems">
         <?php if ($isLoggedIn) { ?>
         <h4>
           <?=$list['title']?>
@@ -76,7 +79,7 @@ $admins = getListAdmins($listID);
               </span>
             </label>
           </div>
-           <div> 
+           <div>
             <span class="itemDescription"><?=$item['description']?></span>
           </div>
           </div>
@@ -124,6 +127,7 @@ $admins = getListAdmins($listID);
 
           <div class="item-right">
             <span class="itemDueDate"><?= date('d M', strtotime($item['dueDate']))?></span>
+            <span hidden="hidden"><?=$item['dueDate']?></span>
             <?php switch ($item['priority']) {
               case 1: ?>
               <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-low">Low</span>
@@ -134,7 +138,7 @@ $admins = getListAdmins($listID);
               <?php
               break;
               case 3: ?>
-              <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-high">High</span> 
+              <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-high">High</span>
               <?php
               break;
             } ?>
