@@ -22,8 +22,5 @@ $id_list = $_GET["id"];
 $description = (string) $_GET["description"];
 $dueDate = $_GET['dueDate'];
 
-if (addItem($id_list, $description, $dueDate))
-    $_SESSION['success_messages'][] = "Item added!";
-else
-    $_SESSION['error_messages'][] = "Error adding Item";
+addItem($id_list, $description, $dueDate);
 ?>

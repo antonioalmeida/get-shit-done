@@ -64,9 +64,10 @@ function addItem($id_list, $description, $dueDate) {
     try {
         $stmt->execute(array($description, $dueDate, $id_list));
     } catch (Exception $e) {
-        print_r($e->errorInfo);
+        echo json_encode($e->errorInfo[2]); 
         return false;
     }
+    
     // return added list as JSON
     $newItem = getLastItem($id_list);
     $admins = getListAdmins($id_list);
@@ -174,7 +175,13 @@ function isItemAdmin($username, $itemID) {
 function updateItemPriority($itemID, $priority) {
     global $dbh;
     $stmt = $dbh->prepare('UPDATE Item set priority = ? where Item.id = ?');
-    $stmt->execute(array($priority,$itemID));
+
+    try {
+        $stmt->execute(array($priority, $itemID));
+    } catch (Exception $e) {
+        echo json_encode($e->errorInfo[2]); 
+        return false;
+    }
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);

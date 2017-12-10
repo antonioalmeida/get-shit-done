@@ -61,9 +61,8 @@ function addItemSubmitHandler (event) {
     let request = new XMLHttpRequest();
     let DOMString = './actions/action_add_item.php?' + encodeForAjax({'id': id_list, 'description': description, 'dueDate': dueDate});
     request.open('get', DOMString, true);
-    request.addEventListener('load', itemAdded);
+    request.addEventListener('load', addItemFinished);
     request.send();
-
 }
 
 function deleteItemHandler (event) {
@@ -72,13 +71,20 @@ function deleteItemHandler (event) {
     let request = new XMLHttpRequest();
     let DOMString = './actions/action_delete_item.php?' + encodeForAjax({'id': itemID});
     request.open('get', DOMString, true);
-    request.addEventListener('load', itemDeleted);
+    request.addEventListener('load', deleteItemFinished);
     request.send();
 }
 
-function itemAdded () {
-    console.log(this.responseText);
+function addItemFinished () {
+	console.log(this.responseText);
     let newItem = JSON.parse(this.responseText);
+
+	if(newItem.id == undefined) {
+    	setAlertMessage('error', newItem);
+    	return;
+    } else 
+    	setAlertMessage('success', 'Item successfully added!');
+
     let container = document.getElementById('listItems');
     let itemDiv = document.createElement('div');
 
@@ -100,10 +106,13 @@ function itemAdded () {
     container.append(itemDiv);
 }
 
-function itemDeleted () {
+function deleteItemFinished () {
     let itemID = this.responseText;
 
-    if (itemID == -1) { return; }
+    if (itemID == -1) { 
+	    setAlertMessage('error', 'Error deleting item!');
+    	return; 
+    }
 
     let item = document.getElementById('item' + itemID);
     item.parentNode.removeChild(item);
@@ -268,20 +277,28 @@ function checkboxUpdated () {
 
 function updateItemPriorityFinished() {
     let item = JSON.parse(this.responseText);
+
+    if(item.id == undefined) { 
+		setAlertMessage('error', item);
+		return;
+    }
     let priorityElem = document.getElementById("item"+item.id+"priority");
 
     switch(item.priority) {
       case '1':
         priorityElem.innerHTML = 'Low';
         priorityElem.classList.replace('priority-high', 'priority-low');
+    	setAlertMessage('success', 'Priority set to <strong>Low</strong>');
         return;
       case '2':
         priorityElem.innerHTML = 'Med';
         priorityElem.classList.replace('priority-low', 'priority-medium');
+    	setAlertMessage('success', 'Priority set to <strong>Medium</strong>');
         return;
       case '3':
         priorityElem.innerHTML = 'High';
         priorityElem.classList.replace('priority-medium', 'priority-high');
+    	setAlertMessage('success', 'Priority set to <strong>High</strong>');
         return;
     }
 }

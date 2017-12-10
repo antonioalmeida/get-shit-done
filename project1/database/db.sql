@@ -89,7 +89,7 @@ before update of priority on item
 for each row
 when new.complete = 1
 begin
-select raise(ignore);
+select raise(fail, "Item already complete, can't change priority!");
 end;
 
 --check item's due date is after the respective list's creation date
@@ -99,7 +99,7 @@ before insert on item
 for each row
 when new.duedate < (select creationdate from list where new.list == list.id)
 begin
-select raise(fail, 'item due date must be after list creation date!');
+select raise(fail, "Due date must be before list creation date!");
 end;
 
 drop trigger if exists itemduedateupdate;
