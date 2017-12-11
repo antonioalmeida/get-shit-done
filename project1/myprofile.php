@@ -44,7 +44,7 @@ $assignedItems = getUserAssignedItems($username);
       foreach ($assignedItems as $item) { ?>
       <div class="assigned-item flex-container">
         <div>
-          <h6><?= $item['description']?></h6>
+          <p><?= $item['description']?></p>
         </div>
         <div>
           <p><strong>Due </strong>
