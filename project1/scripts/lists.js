@@ -35,6 +35,13 @@ function addListFinished() {
     let newList = JSON.parse(this.responseText);
     let parent = document.getElementById('allLists');
     let addList = document.getElementById('addList');
+
+    if(newList.id == undefined) {
+      	setAlertMessage('error', newList);
+      	return;
+      } else
+      	setAlertMessage('success', 'List successfully added!');
+
     addList.querySelector('input[name=listTitle').value = '';
 
     let listDiv = document.createElement('div');
@@ -66,6 +73,10 @@ function deleteListFinished () {
     if(deletedID != -1) {
         listToDelete = document.getElementById('list'+deletedID);
         listToDelete.parentNode.removeChild(listToDelete);
+        setAlertMessage('success', 'List successfuly deleted!');
+    } else if (deletedID == -1) {
+	    setAlertMessage('error', 'Error deleting List!');
+    	return;
     }
 }
 

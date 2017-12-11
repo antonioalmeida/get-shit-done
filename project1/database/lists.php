@@ -28,12 +28,13 @@ function addList($username, $title, $creationDate, $category) {
     try {
         $stmt->execute(array($title, $creationDate, $category, $username));
     } catch (Exception $e) {
-        print_r($e->errorInfo);
-        return;
+        echo json_encode($e->errorInfo[2]);
+        return false;
     }
     // return added list as JSON
     $newList = getLastList($username);
     echo json_encode($newList);
+    return true;
 }
 
 function listAddAdmin($listID, $username) {
