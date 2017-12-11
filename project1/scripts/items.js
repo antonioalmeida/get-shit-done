@@ -203,13 +203,10 @@ function filterItemsBy (element) {
             deadlineDate = new Date(deadlineDate.getTime() + 30 * 86400000);
             break;
     }
-    //deadlineDate = deadlineDate.toISOString().split('T')[0]; //May not be the best solution for a general case, but works for ours
-    console.log(deadlineDate);
-
     let allItems = document.querySelectorAll("div[id^=item]");
-    let unfilter = element.classList.contains('filtered');
+    let unfilter = element.classList.contains('active');
     if(unfilter) {
-        element.classList.remove('filtered');
+        element.classList.remove('active');
         [].forEach.call(allItems, function(elem) {elem.classList.remove("hidden");});
         return;
     }
@@ -217,13 +214,12 @@ function filterItemsBy (element) {
     [].forEach.call(allItems, function(elem) {
         let elemDueDateArr = elem.children[3].children[1].textContent.split('-');
         let elemDueDate = new Date(elemDueDateArr[0], elemDueDateArr[1]-1, elemDueDateArr[2]);
-        console.log(elemDueDate);
         if(elemDueDate.getTime() > deadlineDate.getTime()) 
             elem.classList.add("hidden");
         else 
             elem.classList.remove("hidden");
     });
-    element.classList.add('filtered');
+    element.classList.add('active');
 }
 
 function updateItemComplete (event) {

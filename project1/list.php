@@ -34,7 +34,6 @@ $admins = getListAdmins($listID);
     <div class="sidebar">
       <h6><strong>Menu</strong></h6>
 
-
       <p><i class="fa fa-users"></i> <strong>Members</strong></p>
       <div class="members flex-column">
         <?php foreach ($admins as $admin) { ?>
@@ -52,18 +51,11 @@ $admins = getListAdmins($listID);
           <input type="text" placeholder="Username" name="addAdminUsername" required>
         </form> 
       </div>
+
       <p><i class="fa fa-calendar"></i> <strong>Next Due</strong></p>
-      <ul>
-        <li>
-          <p class="item-filter" onclick="filterItemsBy(this)">Due Today</p>
-        </li>
-        <li>
-          <p class="item-filter" onclick="filterItemsBy(this)">Due This Week</p>
-        </li>
-        <li>
-          <p class="item-filter" onclick="filterItemsBy(this)">Due This Month</p>
-        </li>
-      </ul>
+      <p class="item-filter" onclick="filterItemsBy(this)"> <i class="fa fa-caret-right"></i> Due Today</p>
+      <p class="item-filter" onclick="filterItemsBy(this)"> <i class="fa fa-caret-right"></i> Due This Week</p>
+      <p class="item-filter" onclick="filterItemsBy(this)"> <i class="fa fa-caret-right"></i> Due This Month</p>
     </div>
 
     <div class="items">
@@ -149,7 +141,7 @@ $admins = getListAdmins($listID);
               <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-low">Low</span>
               <?php
               break;
-              case 2:  ?>
+              case 2: ?>
               <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-medium">Med</span>
               <?php
               break;
