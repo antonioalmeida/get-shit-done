@@ -142,10 +142,17 @@ function getListItems($listId) {
 function setItemComplete($itemID, $value) {
     global $dbh;
     $stmt = $dbh->prepare('UPDATE Item SET complete = ? WHERE Item.id = ?;');
-    $stmt->execute(array($value, $itemID));
+
+    try {
+        $stmt->execute(array($value, $itemID));
+    } catch (Exception $e) {
+        echo json_encode($e->errorInfo[2]);
+        return false;
+    }
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);
+    return true;
 }
 
 function editItem($itemID, $description, $dueDate) {
@@ -237,7 +244,7 @@ function addCategory($username, $name, $color) {
     try {
         $stmt->execute(array($name, $color, $username));
     } catch (Exception $e) {
-        print_r($e->errorInfo);
+        echo json_encode(array('error', $name));
         return false;
     }
 

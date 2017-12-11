@@ -272,6 +272,16 @@ function updateItemPriority (elem) {
 function checkboxUpdated () {
 	console.log(this.responseText);
     let item = JSON.parse(this.responseText);
+    if(item.id == undefined) {
+      	setAlertMessage('error',item);
+      	return;
+      } else if(item.complete == 1){
+        setAlertMessage('success', 'Item successfully completed!');
+      } else {
+        setAlertMessage('success', 'Item successfully uncompleted!');
+      }
+
+
     setChecked(item.id, item.complete == 1);
 }
 
@@ -383,7 +393,7 @@ function addListAdminFinished () {
 		setAlertMessage('error', 'User <strong>@' + response[1] + '</strong> doesn\'t exist!');
 		return;
 	} else
-		setAlertMessage('success', 'Member <strong>@' + response[1] + ' successfully added!');
+		setAlertMessage('success', 'Member <strong>@' + response[1] + '</strong> successfully added!');
 
     let membersDiv = document.querySelector('.members');
     let newMember = document.createElement('div');

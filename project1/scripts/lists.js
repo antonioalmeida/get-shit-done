@@ -99,6 +99,13 @@ function addCategoryFinished() {
     let newCategory = JSON.parse(this.responseText);
     let categoriesDiv = document.querySelector('.categories');
 
+    if(newCategory[0] == 'error') {
+  		setAlertMessage('error', 'Category <strong>' + newCategory[1] + '</strong> already exist!');
+  		return;
+  	} else
+  		setAlertMessage('success', 'Category <strong>' + newCategory.name + '</strong> successfully added!');
+
+
     let newCategoryHTML = document.createElement('p');
     newCategoryHTML.innerHTML = '<i style="color: #' + newCategory.color +
                             '" class="fa fa-circle"></i> ' + newCategory.name;
