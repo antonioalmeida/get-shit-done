@@ -336,23 +336,24 @@ function editItemFinished () {
 }
 
 function assignUserFinished () {
-    let newItem = JSON.parse(this.responseText);
+    let response = JSON.parse(this.responseText);
 
-    if(newItem.response == 'error') {
-    	setAlertMessage('error', newItem);
+    if(response.result == 'error') {
+    	setAlertMessage('error', response.message);
     	return;
     } else
     	setAlertMessage('success', 'User successfully assigned!');
 
-    let itemID = newItem.itemID;
+    let itemID = response.item.id;
+    console.log(itemID);
     let itemDiv = document.getElementById('item' + itemID);
     let assignUser = document.getElementById('assignUser' + itemID);
 
-    if(newItem.assignedUser) {
+    if(response.item.assignedUser) {
       let newObject = document.createElement('img');
       newObject.id = assignUser.id;
       newObject.classList.add('assignUser','user-image');
-      newObject.src = newItem.profilePic.picture;
+      newObject.src = response.profilePic.picture;
       assignUser.parentNode.replaceChild(newObject,assignUser);
       itemDiv.querySelector('.assignUserForm').addEventListener('submit', assignUserSubmitHandler);
       itemDiv.querySelector('.user-image').addEventListener('click', assignUserHandler);

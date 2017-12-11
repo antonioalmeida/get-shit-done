@@ -188,8 +188,8 @@ function itemAssignUser($itemID, $assignedUser) {
         return false;
     }
 
-    $response['result'] = 'error';
-    $response['itemID'] = getItem($itemID);
+    $response['result'] = 'success';
+    $response['item'] = getItem($itemID);
     $response['profilePic'] = getUserPicture($assignedUser);
     echo json_encode($response);
     return true;
