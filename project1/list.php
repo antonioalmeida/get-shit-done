@@ -36,9 +36,13 @@ $admins = getListAdmins($listID);
 
 
       <p><i class="fa fa-users"></i> <strong>Members</strong></p>
-      <div class="members">
+      <div class="members flex-column">
         <?php foreach ($admins as $admin) { ?>
-        <p>@<?=$admin['user']?></p>
+        
+        <div>
+          <img class="member-image" src="<?=$admin['picture']?>"/> 
+          <span>@<?=$admin['username']?></span>
+        </div>
         <?php } ?>
       </div>
       <p><i class="fa fa-user-plus"></i> <strong>Invite</strong></p>

@@ -40,21 +40,25 @@ function addList($username, $title, $creationDate, $category) {
 function listAddAdmin($listID, $username) {
     global $dbh;
     $stmt = $dbh->prepare('INSERT INTO ListAdmin values(?, ?)');
+    $response['username'] = $username;
 
     try {
         $stmt->execute(array($listID, $username));
     } catch (Exception $e) {
+        $response['result'] = 'error';
         echo json_encode(array('error', $username));
         return;
     }
 
     // return username in case of success
-    echo json_encode(array('success', $username));
+    $response['result'] = 'success';
+    $response['profilePic'] = getUserPicture($username);
+    echo json_encode($response);
 }
 
 function getListAdmins($listID) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT User FROM ListAdmin WHERE List = ?');
+    $stmt = $dbh->prepare('SELECT User.username, User.picture FROM User, ListAdmin WHERE List = ? AND ListAdmin.user = User.username');
     $stmt->execute(array($listID));
     return $stmt->fetchAll();
 }

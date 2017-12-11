@@ -392,15 +392,20 @@ function addListAdminSubmitHandler (event) {
 function addListAdminFinished () {
 	let response = JSON.parse(this.responseText);
 
-	if(response[0] == 'error') {
-		setAlertMessage('error', 'User <strong>@' + response[1] + '</strong> doesn\'t exist!');
+	if(response.result == 'error') {
+		setAlertMessage('error', 'User <strong>@' + response.username + '</strong> doesn\'t exist!');
 		return;
 	} else
-		setAlertMessage('success', 'Member <strong>@' + response[1] + '</strong> successfully added!');
+		setAlertMessage('success', 'Member <strong>@' + response.username + '</strong> successfully added!');
 
     let membersDiv = document.querySelector('.members');
     let newMember = document.createElement('div');
-    newMember.innerHTML = '<p>@' + response[1] + '</p>';
+    let image = document.createElement('img');
+    image.classList.add('member-image');
+    image.src = response.profilePic.picture;
+
+    newMember.append(image);
+    newMember.innerHTML += '<span>@' + response.username + '</span>';
 
     membersDiv.append(newMember);
 }
