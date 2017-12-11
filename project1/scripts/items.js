@@ -194,16 +194,17 @@ function assignUserSubmitHandler (event) {
 function filterItemsBy (element) {
     let deadlineDate = new Date();
     switch(element.textContent) {
-        case ' Due Today':
+        case 'Due Today':
             break;
-        case ' Due This Week':
+        case 'Due This Week':
             deadlineDate = new Date(deadlineDate.getTime() + 7 * 86400000);
             break;
-        case ' Due This Month':
+        case 'Due This Month':
             deadlineDate = new Date(deadlineDate.getTime() + 30 * 86400000);
             break;
     }
-    deadlineDate = deadlineDate.toISOString().split('T')[0]; //May not be the best solution for a general case, but works for ours
+    //deadlineDate = deadlineDate.toISOString().split('T')[0]; //May not be the best solution for a general case, but works for ours
+    console.log(deadlineDate);
 
     let allItems = document.querySelectorAll("div[id^=item]");
     let unfilter = element.classList.contains('filtered');
@@ -214,10 +215,12 @@ function filterItemsBy (element) {
     }
 
     [].forEach.call(allItems, function(elem) {
-        let elemDueDate = elem.children[3].children[1].textContent;
-        if(elemDueDate > deadlineDate)
+        let elemDueDateArr = elem.children[3].children[1].textContent.split('-');
+        let elemDueDate = new Date(elemDueDateArr[0], elemDueDateArr[1]-1, elemDueDateArr[2]);
+        console.log(elemDueDate);
+        if(elemDueDate.getTime() > deadlineDate.getTime()) 
             elem.classList.add("hidden");
-        else
+        else 
             elem.classList.remove("hidden");
     });
     element.classList.add('filtered');
