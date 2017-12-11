@@ -304,19 +304,22 @@ function updateItemPriorityFinished() {
 }
 
 function editItemFinished () {
-	console.log(this.responseText);
-    let newItem = JSON.parse(this.responseText);
-    let itemID = newItem.id;
+    let response = JSON.parse(this.responseText);
+
+    if(response.id == undefined) {
+    	setAlertMessage('error', response);
+    	return;
+    } else 
+    	setAlertMessage('success', 'Task successfully changed!');
+
+    let itemID = response.id;
     let itemDiv = document.getElementById('item' + itemID);
 
     let description = itemDiv.querySelectorAll('.itemDescription')[0];
     let dueDate = itemDiv.querySelectorAll('.itemDueDate')[0];
 
-    description.innerHTML = newItem.description;
-    dueDate.innerHTML = newItem.dueDate;
-
-    console.log(description);
-    console.log(dueDate);
+    description.innerHTML = response.description;
+    dueDate.innerHTML = response.dueDate;
 
     let itemEditArea = itemDiv.querySelector('.item-edit');
     itemEditArea.classList.add('hidden');

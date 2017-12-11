@@ -151,7 +151,13 @@ function editItem($itemID, $description, $dueDate) {
     global $dbh;
     //TODO: add update due date
     $stmt = $dbh->prepare('UPDATE Item SET description = ?, dueDate = ? WHERE Item.id = ?;');
-    $stmt->execute(array($description, $dueDate, $itemID));
+
+    try {
+        $stmt->execute(array($description, $dueDate, $itemID));
+    } catch (Exception $e) {
+        echo json_encode($e->errorInfo[2]); 
+        return false;
+    }
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);

@@ -55,7 +55,7 @@ $categoriesUser = getUserCategories($user['username']);
 
 <div class="lists">
   <?php if ($isLoggedIn) { ?>
-  <h4> My Lists </h4>
+  <h4><strong> My Lists </strong></h4>
   <?php } ?>
 
   <div id="allLists" class="flex-container">

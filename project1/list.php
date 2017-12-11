@@ -48,17 +48,28 @@ $admins = getListAdmins($listID);
           <input type="text" placeholder="Username" name="addAdminUsername" required>
         </form>
       </div>
-      <h6><strong>Filter items:</strong></h6>
-      <p class="item-filter" onclick="filterItemsBy(this)"><i class="fa fa-calendar-alt"></i> <strong>Due Today</strong></p>
-      <p class="item-filter" onclick="filterItemsBy(this)"><i class="fa fa-calendar-alt"></i> <strong>Due This Week</strong></p>
-      <p class="item-filter" onclick="filterItemsBy(this)"><i class="fa fa-calendar-alt"></i> <strong>Due This Month</strong></p>
+      <p><i class="fa fa-calendar"></i> <strong>Next Due</strong></p>
+      <ul>
+        <li>
+          <p class="item-filter" onclick="filterItemsBy(this)">Due Today</p>
+        </li>
+        <li>
+          <p class="item-filter" onclick="filterItemsBy(this)">Due This Week</p>
+        </li>
+        <li>
+          <p class="item-filter" onclick="filterItemsBy(this)">Due This Month</p>
+        </li>
+      </ul>
     </div>
 
     <div class="items">
       <div id="listItems">
         <?php if ($isLoggedIn) { ?>
         <h4>
-          <?=$list['title']?>
+          <strong>
+            <?=$list['title']?> 
+          </strong>
+          <small><?=date('M Y', strtotime($list['creationDate']))?></small>
         </h4>
 
         <?php } else { ?>
@@ -68,21 +79,21 @@ $admins = getListAdmins($listID);
         <div class="item flex-container" id="item<?=$item['id']?>">
           <div class="item-left flex-container">
             <div>
-            <label class="label">
-              <input id="<?=$item['id']?>" name="complete" class="label-checkbox hidden" type="checkbox" <?php if($item['complete'] == 1) { ?>
-            checked
-            <?php } ?>
-            />
-              <span class="label-text">
-                <span class="label-check">
-                  <i class="fa fa-check icon"></i>
+              <label class="label">
+                <input id="<?=$item['id']?>" name="complete" class="label-checkbox hidden" type="checkbox" <?php if($item['complete'] == 1) { ?>
+                checked
+                <?php } ?>
+                />
+                <span class="label-text">
+                  <span class="label-check">
+                    <i class="fa fa-check icon"></i>
+                  </span>
                 </span>
-              </span>
-            </label>
-          </div>
-           <div>
-            <span class="itemDescription"><?=$item['description']?></span>
-          </div>
+              </label>
+            </div>
+            <div>
+              <span class="itemDescription"><?=$item['description']?></span>
+            </div>
           </div>
 
           <div class="item-edit hidden">

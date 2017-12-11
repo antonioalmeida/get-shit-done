@@ -99,7 +99,7 @@ before insert on item
 for each row
 when new.duedate < (select creationdate from list where new.list == list.id)
 begin
-select raise(fail, "Due date must be before list creation date!");
+select raise(fail, "Due date must be after list creation date!");
 end;
 
 drop trigger if exists itemduedateupdate;
@@ -108,7 +108,7 @@ before update of duedate on item
 for each row
 when new.duedate < (select creationdate from list where old.list == list.id)
 begin
-select raise(fail, 'item due dueDate must be after list creation date!');
+select raise(fail, 'Due date must be after list creation date!');
 end ;
 
 --sets list creator automatically as list admin
