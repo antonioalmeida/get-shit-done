@@ -30,7 +30,7 @@ $categoriesUser = getUserCategories($user['username']);
     <p><strong>Categories</strong></p>
     <div class="categories">
      <?php foreach ($categoriesUser as $category) { ?>
-     <p onclick="filterListsByCategory(this)"><i style="color: #<?=$category['color']?>" class="fa fa-circle"></i> <?=$category['name']?></p>
+     <p class="category-filter" onclick="filterListsByCategory(this)"><i style="color: #<?=$category['color']?>" class="fa fa-circle"></i> <?=$category['name']?></p>
      <?php } ?>
    </div>
    <div>

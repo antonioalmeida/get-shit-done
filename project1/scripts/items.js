@@ -193,13 +193,14 @@ function assignUserSubmitHandler (event) {
 
 function filterItemsBy (element) {
     let deadlineDate = new Date();
-    switch(element.textContent) {
-        case 'Due Today':
+    let deadlineText = element.textContent.replace(/\s/g, '');
+    switch(deadlineText) {
+        case 'DueToday':
             break;
-        case 'Due This Week':
+        case 'DueThisWeek':
             deadlineDate = new Date(deadlineDate.getTime() + 7 * 86400000);
             break;
-        case 'Due This Month':
+        case 'DueThisMonth':
             deadlineDate = new Date(deadlineDate.getTime() + 30 * 86400000);
             break;
     }
@@ -214,9 +215,9 @@ function filterItemsBy (element) {
     [].forEach.call(allItems, function(elem) {
         let elemDueDateArr = elem.children[3].children[1].textContent.split('-');
         let elemDueDate = new Date(elemDueDateArr[0], elemDueDateArr[1]-1, elemDueDateArr[2]);
-        if(elemDueDate.getTime() > deadlineDate.getTime()) 
+        if(elemDueDate.getTime() > deadlineDate.getTime())
             elem.classList.add("hidden");
-        else 
+        else
             elem.classList.remove("hidden");
     });
     element.classList.add('active');

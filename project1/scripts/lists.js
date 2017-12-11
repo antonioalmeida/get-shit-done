@@ -128,9 +128,9 @@ function filterListsByTitle(title) {
 
 function filterListsByCategory(categoryElement) {
     let allLists = document.querySelectorAll('div[id^=list]');
-    let unfilter = categoryElement.classList.contains('filtered');
+    let unfilter = categoryElement.classList.contains('active');
     if(unfilter) {
-        categoryElement.classList.remove('filtered');
+        categoryElement.classList.remove('active');
         [].forEach.call(allLists, function(elem) {elem.classList.remove("hidden");});
         return;
     }
@@ -143,7 +143,7 @@ function filterListsByCategory(categoryElement) {
         else
             elem.classList.remove("hidden");
     });
-    categoryElement.classList.add('filtered');
+    categoryElement.classList.add('active');
 }
 
 function colorPickerHandler(event) {

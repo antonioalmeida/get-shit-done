@@ -167,6 +167,6 @@
 		background-color: $red-color;
 	}
 
-	.item-filter:hover {
+	.item-filter:hover, .category-filter:hover{
 		cursor: pointer;
 	}
