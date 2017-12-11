@@ -174,11 +174,18 @@ function editItem($itemID, $description, $dueDate) {
 function itemAssignUser($itemID, $assignedUser) {
     global $dbh;
     $stmt = $dbh->prepare('UPDATE Item SET assignedUser = ? WHERE Item.id = ?;');
-    $stmt->execute(array($assignedUser, $itemID));
+
+    try {
+      $stmt->execute(array($assignedUser, $itemID));
+    } catch (Exception $e) {
+        echo json_encode($e->errorInfo[2]);
+        return false;
+    }
 
     $newItem = getItem($itemID);
     $newItem['profilePic'] = getUserPicture($assignedUser);
     echo json_encode($newItem);
+    return true;
 }
 
 function isItemAdmin($username, $itemID) {

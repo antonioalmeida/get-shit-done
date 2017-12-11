@@ -344,6 +344,12 @@ function assignUserFinished () {
     let itemDiv = document.getElementById('item' + itemID);
     let assignUser = document.getElementById('assignUser' + itemID);
 
+    if(newItem.id == undefined) {
+    	setAlertMessage('error', newItem);
+    	return;
+    } else
+    	setAlertMessage('success', 'User successfully assigned!');
+
     if(newItem.assignedUser) {
       let newObject = document.createElement('img');
       newObject.id = assignUser.id;
