@@ -7,6 +7,9 @@ include_once('templates/common/navbar.php');
 include_once('templates/common/alerts.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
+if(!$isLoggedIn){
+    header('Location: ' . './index.php');
+}
 $username = $_SESSION['username'];
 $user = getUser($username);
 $assignedItems = getUserAssignedItems($username);
@@ -19,8 +22,6 @@ $assignedItems = getUserAssignedItems($username);
    </div>
 
    <div id="profile-info">
-     <?php if ($isLoggedIn) { ?>
-
      <h4><strong>
       <?=$user['name'] ?> </strong>
       <br>
@@ -29,10 +30,6 @@ $assignedItems = getUserAssignedItems($username);
     <p><?=$user['bio'] ?></p>
     <a class="button button-primary" href="./edit-profile.php">Edit</a>
     <a class="button" href="./actions/action_logout.php">Logout</a>
-
-    <?php } else { ?>
-    <!-- else here -->
-    <?php } ?>
   </div>
 </div>
 
@@ -62,7 +59,7 @@ $assignedItems = getUserAssignedItems($username);
                 <?php
                 break;
                 case 3: ?>
-                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-high">High</span> 
+                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-high">High</span>
                 <?php
                 break;
               } ?>

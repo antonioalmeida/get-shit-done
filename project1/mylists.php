@@ -12,6 +12,9 @@ include_once('templates/common/navbar.php');
 include_once('templates/common/alerts.php');
 include_once('templates/common/bottom-alerts.php');
 $isLoggedIn = (isset($_SESSION['username']));
+if(!$isLoggedIn){
+    header('Location: ' . './index.php');
+}
 $username = $_SESSION['username'];
 $user = getUser($username);
 $lists = getUserLists($user['username']);

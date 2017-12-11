@@ -3,6 +3,11 @@ include_once('includes/init.php');
 include_once('templates/common/header.php');
 include_once('templates/common/navbar.php');
 include_once('templates/common/alerts.php');
+
+$isLoggedIn = (isset($_SESSION['username']));
+if($isLoggedIn){
+    header('Location: ' . './index.php');
+}
 ?>
 
 <!-- Typography -->

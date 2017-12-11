@@ -4,6 +4,11 @@ include_once('database/user.php');
 
 
 $isLoggedIn = (isset($_SESSION['username']));
+
+if(!$isLoggedIn){
+    header('Location: ' . './index.php');
+}
+
 $username = $_SESSION['username'];
 try {
   $user = getUser($username);

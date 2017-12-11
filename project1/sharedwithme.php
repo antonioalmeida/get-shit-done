@@ -10,6 +10,11 @@ include_once('templates/common/header.php');
 <?php
 include_once('templates/common/navbar.php');
 include_once('templates/common/alerts.php');
+
+if($_SESSION['username'] == null){
+    header('Location: ' . './index.php');
+}
+
 $isLoggedIn = (isset($_SESSION['username']));
 $username = $_SESSION['username'];
 $user = getUser($username);
@@ -47,7 +52,7 @@ $categoriesUser = getUserSharedCategories($user['username']);
           <p> <?=$list['creationDate']?></p>
           <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
         </div>
-        <?php } 
+        <?php }
       } else { ?>
       <h6>Noone shared any lists with you. <i class="fa fa-frown-o"></i></h6>
       <?php } ?>

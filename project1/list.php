@@ -13,6 +13,9 @@ include_once('templates/common/alerts.php');
 include_once('templates/common/bottom-alerts.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
+if(!$isLoggedIn){
+    header('Location: ' . './index.php');
+}
 $username = $_SESSION['username'];
 $user = getUser($username);
 
@@ -37,9 +40,9 @@ $admins = getListAdmins($listID);
       <p><i class="fa fa-users"></i> <strong>Members</strong></p>
       <div class="members flex-column">
         <?php foreach ($admins as $admin) { ?>
-        
+
         <div>
-          <img class="member-image" src="<?=$admin['picture']?>"/> 
+          <img class="member-image" src="<?=$admin['picture']?>"/>
           <span>@<?=$admin['username']?></span>
         </div>
         <?php } ?>
@@ -49,7 +52,7 @@ $admins = getListAdmins($listID);
         <form id="addListAdmin">
           <input type="hidden" name="listID" value="<?=$listID?>" required>
           <input type="text" placeholder="Username" name="addAdminUsername" required>
-        </form> 
+        </form>
       </div>
 
       <p><i class="fa fa-calendar"></i> <strong>Next Due</strong></p>
@@ -63,7 +66,7 @@ $admins = getListAdmins($listID);
         <?php if ($isLoggedIn) { ?>
         <h4>
           <strong>
-            <?=$list['title']?> 
+            <?=$list['title']?>
           </strong>
           <small><?=date('M Y', strtotime($list['creationDate']))?></small>
         </h4>
