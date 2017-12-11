@@ -69,7 +69,6 @@ function deleteListHandler(event) {
 function deleteListFinished () {
     let deletedID = this.responseText;
     let listToDelete;
-    console.log(deletedID);
     if(deletedID != -1) {
         listToDelete = document.getElementById('list'+deletedID);
         listToDelete.parentNode.removeChild(listToDelete);
@@ -85,7 +84,6 @@ function addCategoryHandler(event) {
     let form = event.target;
     let categoryName = form.querySelector('input[name=categoryName]').value;
     let categoryColor = form.querySelector('input[name=categoryColor]').value.substr(1);
-    console.log(categoryColor);
     let csrf = form.querySelector('input[name=csrf]').value;
 
     let request = new XMLHttpRequest();
@@ -154,7 +152,6 @@ function colorPickerHandler(event) {
 }
 
 function updateColorHandler (event) {
-    console.log(event.target);
     document.getElementById('colorPicker').style.color = event.target.value;
 }
 

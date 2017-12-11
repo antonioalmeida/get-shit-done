@@ -55,8 +55,6 @@ function addItemSubmitHandler (event) {
     let id_list = document.querySelector('input[name=id]').value;
     let description = document.querySelector('input[name=addItemDescription]').value;
     let dueDate = document.querySelector('input[name=addItemDueDate]').value;
-    console.log(description);
-    console.log(dueDate);
 
     let request = new XMLHttpRequest();
     let DOMString = './actions/action_add_item.php?' + encodeForAjax({'id': id_list, 'description': description, 'dueDate': dueDate});
@@ -76,8 +74,7 @@ function deleteItemHandler (event) {
 }
 
 function addItemFinished () {
-	console.log(this.responseText);
-    let newItem = JSON.parse(this.responseText);
+  let newItem = JSON.parse(this.responseText);
 
 	if(newItem.id == undefined) {
     	setAlertMessage('error', newItem);
@@ -130,7 +127,6 @@ function cancelAddItemHandler (event) {
 }
 
 function editItemHandler (event) {
-	console.log("CEnas");
     let itemID = event.target.id.substr(4);
     let item = document.getElementById('item' + itemID);
 
@@ -219,7 +215,6 @@ function filterItemsBy (element) {
 
     [].forEach.call(allItems, function(elem) {
         let elemDueDate = elem.children[3].children[1].textContent;
-        console.log(elemDueDate);
         if(elemDueDate > deadlineDate)
             elem.classList.add("hidden");
         else
@@ -270,7 +265,6 @@ function updateItemPriority (elem) {
 }
 
 function checkboxUpdated () {
-	console.log(this.responseText);
     let item = JSON.parse(this.responseText);
     if(item.id == undefined) {
       	setAlertMessage('error',item);
