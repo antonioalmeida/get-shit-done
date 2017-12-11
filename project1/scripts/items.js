@@ -370,9 +370,17 @@ function addListAdminSubmitHandler (event) {
 }
 
 function addListAdminFinished () {
+	let response = JSON.parse(this.responseText);
+
+	if(response[0] == 'error') {
+		setAlertMessage('error', 'User <strong>@' + response[1] + '</strong> doesn\'t exist!');
+		return;
+	} else
+		setAlertMessage('success', 'Member <strong>@' + response[1] + ' successfully added!');
+
     let membersDiv = document.querySelector('.members');
     let newMember = document.createElement('div');
-    newMember.innerHTML = '<p>@' + this.responseText + '</p>';
+    newMember.innerHTML = '<p>@' + response[1] + '</p>';
 
     membersDiv.append(newMember);
 }

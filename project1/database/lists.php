@@ -43,11 +43,12 @@ function listAddAdmin($listID, $username) {
     try {
         $stmt->execute(array($listID, $username));
     } catch (Exception $e) {
-        print_r($e->errorInfo);
+        echo json_encode(array('error', $username));
         return;
     }
+
     // return username in case of success
-    echo $username;
+    echo json_encode(array('success', $username));
 }
 
 function getListAdmins($listID) {
@@ -67,7 +68,7 @@ function addItem($id_list, $description, $dueDate) {
         echo json_encode($e->errorInfo[2]); 
         return false;
     }
-    
+
     // return added list as JSON
     $newItem = getLastItem($id_list);
     $admins = getListAdmins($id_list);
