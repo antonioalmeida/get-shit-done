@@ -82,7 +82,7 @@ function addItemFinished () {
 	if(newItem.id == undefined) {
     	setAlertMessage('error', newItem);
     	return;
-    } else 
+    } else
     	setAlertMessage('success', 'Item successfully added!');
 
     let container = document.getElementById('listItems');
@@ -109,9 +109,9 @@ function addItemFinished () {
 function deleteItemFinished () {
     let itemID = this.responseText;
 
-    if (itemID == -1) { 
+    if (itemID == -1) {
 	    setAlertMessage('error', 'Error deleting item!');
-    	return; 
+    	return;
     }
 
     let item = document.getElementById('item' + itemID);
@@ -278,7 +278,7 @@ function checkboxUpdated () {
 function updateItemPriorityFinished() {
     let item = JSON.parse(this.responseText);
 
-    if(item.id == undefined) { 
+    if(item.id == undefined) {
 		setAlertMessage('error', item);
 		return;
     }
@@ -309,7 +309,7 @@ function editItemFinished () {
     if(response.id == undefined) {
     	setAlertMessage('error', response);
     	return;
-    } else 
+    } else
     	setAlertMessage('success', 'Task successfully changed!');
 
     let itemID = response.id;
@@ -335,9 +335,13 @@ function assignUserFinished () {
     let assignUser = document.getElementById('assignUser' + itemID);
 
     if(newItem.assignedUser) {
-    	assignUser.innerHTML = '@' + newItem.assignedUser;
-    	assignUser.classList.remove('fa-user-plus');
-    	assignUser.classList.remove('fa');
+      let newObject = document.createElement('img');
+      newObject.id = assignUser.id;
+      newObject.classList.add('assignUser','user-image');
+      newObject.src = newItem.profilePic.picture;
+      assignUser.parentNode.replaceChild(newObject,assignUser);
+      itemDiv.querySelector('.assignUserForm').addEventListener('submit', assignUserSubmitHandler);
+      itemDiv.querySelector('.user-image').addEventListener('click', assignUserHandler);
     }
     else {
     	assignUser.classList.add('fa-user-plus');
@@ -389,9 +393,10 @@ function addListAdminFinished () {
 }
 
 function getItemHTML (newItem) {
-    return '<div class="item-left">' +
-			'<input type="checkbox" id="' + newItem.id + '" name="complete">' +
-			'<span class="itemDescription">' + newItem.description + '</span>' +
+    return '<div class="item-left flex-container"> <div> <label class="label">' +
+			'<input type="checkbox" id="' + newItem.id + '" name="complete" class="label-checkbox hidden">' +
+      '<span class="label-text"> <span class="label-check"> <i class="fa fa-check icon"></i> </span> </span> </label></div>'+
+			'<div><span class="itemDescription">' + newItem.description + '</span></div>' +
 
     '</div>	<div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">' +
 			'<input type="hidden" name="itemID" value="' + newItem.id + '"><div>' +
@@ -410,6 +415,7 @@ function getItemHTML (newItem) {
 
       '<div class="item-right">' +
       '<span class="itemDueDate">' + newItem.dueDate + '</span>'+
+      '<span hidden="hidden">'+newItem.dueDate + '</span>'+
       '<span id="item' + newItem.id + 'priority" onclick="updateItemPriority(this)" class="itemPriority priority-low">Low</span>'+
       '<span><i id="assignUser' + newItem.id + '" class="fa fa-user-plus"></i></span>' +
 			'<span><i id="edit' + newItem.id + '" class="fa fa-edit editItem"></i></span>' +

@@ -65,7 +65,7 @@ function addItem($id_list, $description, $dueDate) {
     try {
         $stmt->execute(array($description, $dueDate, $id_list));
     } catch (Exception $e) {
-        echo json_encode($e->errorInfo[2]); 
+        echo json_encode($e->errorInfo[2]);
         return false;
     }
 
@@ -155,7 +155,7 @@ function editItem($itemID, $description, $dueDate) {
     try {
         $stmt->execute(array($description, $dueDate, $itemID));
     } catch (Exception $e) {
-        echo json_encode($e->errorInfo[2]); 
+        echo json_encode($e->errorInfo[2]);
         return false;
     }
 
@@ -169,6 +169,7 @@ function itemAssignUser($itemID, $assignedUser) {
     $stmt->execute(array($assignedUser, $itemID));
 
     $newItem = getItem($itemID);
+    $newItem['profilePic'] = getUserPicture($assignedUser);
     echo json_encode($newItem);
 }
 
@@ -186,7 +187,7 @@ function updateItemPriority($itemID, $priority) {
     try {
         $stmt->execute(array($priority, $itemID));
     } catch (Exception $e) {
-        echo json_encode($e->errorInfo[2]); 
+        echo json_encode($e->errorInfo[2]);
         return false;
     }
 

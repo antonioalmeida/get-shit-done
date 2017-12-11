@@ -35,6 +35,13 @@ function getUser($username) {
   return $stmt->fetch();
 }
 
+function getUserPicture($username) {
+  global $dbh;
+  $stmt = $dbh->prepare('SELECT picture FROM User WHERE userName = ?');
+  $stmt->execute(array(strtolower($username)));
+  return $stmt->fetch();
+}
+
 function updateUser($username, $picture,$name, $bio) {
   global $dbh;
   $stmt = $dbh->prepare('UPDATE User SET picture = ?, name = ?, bio = ? WHERE username = ?');
