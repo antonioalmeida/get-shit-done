@@ -23,22 +23,22 @@ include_once('templates/common/alerts.php');
                 <div>
                     <div class="form-element">
                         <label for="username">Username</label>
-                        <input type="text" placeholder="johndoe" name="username" value="<?=$user['username']?>" required>
+                        <input type="text" placeholder="johndoe" name="username" value="<?=htmlentities($user['username'])?>" required>
                     </div>
 
                     <div class="form-element">
                         <label for="email">Email</label>
-                        <input type="email" placeholder="email@example.com" name="email" value="<?=$user['email']?>" required>
+                        <input type="email" placeholder="email@example.com" name="email" value="<?=htmlentities($user['email'])?>" required>
                     </div>
 
                     <div class="form-element">
                         <label for="name">Name</label>
-                        <input type="text" placeholder="John Doe" name="name" value="<?=$user['name']?>" required>
+                        <input type="text" placeholder="John Doe" name="name" value="<?=htmlentities($user['name'])?>" required>
                     </div>
 
                     <div class="form-element">
                         <label for="bio">Bio</label>
-                        <input type="text" name="bio" placeholder="'I'll be back!'" value="<?=$user['bio']?>" required>
+                        <input type="text" name="bio" placeholder="'I'll be back!'" value="<?=htmlentities($user['bio'])?>" required>
                     </div>
                 </div>
                 <div>
@@ -50,7 +50,7 @@ include_once('templates/common/alerts.php');
         <div class="upload">
             <form action="actions/action_uploadPPic.php" method="post" enctype="multipart/form-data">
                 <br><label>Profile Picture:</label>
-                <input type="hidden" name="username" value="<?=$user['username']?>"/>
+                <input type="hidden" name="username" value="<?=htmlentities($user['username'])?>"/>
                 <input type="url" name="picture" placeholder="Insert the URL !" required>
                 <input type="submit" class="button-primary" value="Upload">
             </form>
