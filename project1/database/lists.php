@@ -182,13 +182,16 @@ function itemAssignUser($itemID, $assignedUser) {
     try {
       $stmt->execute(array($assignedUser, $itemID));
     } catch (Exception $e) {
-        echo json_encode($e->errorInfo[2]);
+        $response['result'] = 'error';
+        $response['message'] = $e->errorInfo[2];
+        echo json_encode($response);
         return false;
     }
 
-    $newItem = getItem($itemID);
-    $newItem['profilePic'] = getUserPicture($assignedUser);
-    echo json_encode($newItem);
+    $response['result'] = 'error';
+    $response['itemID'] = getItem($itemID);
+    $response['profilePic'] = getUserPicture($assignedUser);
+    echo json_encode($response);
     return true;
 }
 

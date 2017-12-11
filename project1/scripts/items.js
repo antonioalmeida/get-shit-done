@@ -337,15 +337,16 @@ function editItemFinished () {
 
 function assignUserFinished () {
     let newItem = JSON.parse(this.responseText);
-    let itemID = newItem.id;
-    let itemDiv = document.getElementById('item' + itemID);
-    let assignUser = document.getElementById('assignUser' + itemID);
 
-    if(newItem.id == undefined) {
+    if(newItem.response == 'error') {
     	setAlertMessage('error', newItem);
     	return;
     } else
     	setAlertMessage('success', 'User successfully assigned!');
+
+    let itemID = newItem.itemID;
+    let itemDiv = document.getElementById('item' + itemID);
+    let assignUser = document.getElementById('assignUser' + itemID);
 
     if(newItem.assignedUser) {
       let newObject = document.createElement('img');
@@ -444,7 +445,7 @@ function getAllAdmin(newItem){
   let admins = newItem.admins;
   let options = '';
   for (let admin of admins) {
-    options += '<option value="'+ admin['user'] + '">'+ admin['user'] + '</option>';
+    options += '<option value="'+ admin['username'] + '">'+ admin['username'] + '</option>';
   }
   return options;
 }

@@ -50,7 +50,7 @@ $admins = getListAdmins($listID);
         <form id="addListAdmin">
           <input type="hidden" name="listID" value="<?=$listID?>" required>
           <input type="text" placeholder="Username" name="addAdminUsername" required>
-        </form>
+        </form> 
       </div>
       <p><i class="fa fa-calendar"></i> <strong>Next Due</strong></p>
       <ul>
@@ -129,7 +129,7 @@ $admins = getListAdmins($listID);
                   <select name="assignedUser" >
                     <option value="">None</option>
                     <?php foreach ($admins as $admin) { ?>
-                    <option value="<?=$admin['user']?>"><?=$admin['user']?></option>
+                    <option value="<?=$admin['username']?>"><?=$admin['username']?></option>
                     <?php } ?>
                   </select>
                 </div>

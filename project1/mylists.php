@@ -70,7 +70,7 @@ $categoriesUser = getUserCategories($user['username']);
           <i class="fa fa-times"></i>
         </div>
       </div>
-      <p> <?=$list['creationDate']?></p>
+      <p> <?=date('M Y', strtotime($list['creationDate']))?></p>
       <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
     </div>
     <?php } ?>
