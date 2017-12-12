@@ -48,7 +48,7 @@ $admins = getListAdmins($listID);
 
         <div>
           <img class="member-image" src="<?=$admin['picture']?>"/>
-          <span><a href="/userprofile.php?username=<?=$admin['username']?>">@<?=$admin['username']?></a></span>
+          <span><a href="./userprofile.php?username=<?=$admin['username']?>">@<?=$admin['username']?></a></span>
         </div>
         <?php } ?>
       </div>

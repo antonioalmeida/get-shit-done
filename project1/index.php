@@ -23,8 +23,8 @@ $isLoggedIn = (isset($_SESSION['username'])); ?>
             <h1><strong><i class="fa fa-check-circle text-primary"></i> Get Shit Done</strong></h1>
             <h4>Do your shit. Do it right.</h4>
             <div>
-                    <a href="/login.php"><button class="button button-primary">Login</button></a>
-                    <a href="/register.php"><button class="button">Sign Up</button></a>
+                    <a href="./login.php"><button class="button button-primary">Login</button></a>
+                    <a href="./register.php"><button class="button">Sign Up</button></a>
             </div>
         </div>
     <?php } ?>

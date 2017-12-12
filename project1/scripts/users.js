@@ -22,7 +22,7 @@ function showSimilarUsersFinished() {
     showNoUsers();
     searchResults.innerHTML += '<ul>';
     for(let id in allNames)
-        searchResults.innerHTML += '<li class="no-bullets"><a href=/userprofile.php?username='+allNames[id].username+'>@'+allNames[id].username+'</a></li>';
+        searchResults.innerHTML += '<li class="no-bullets"><a href=./userprofile.php?username='+allNames[id].username+'>@'+allNames[id].username+'</a></li>';
     searchResults.innerHTML += '</ul>';
 }
 
