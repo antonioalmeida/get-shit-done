@@ -9,7 +9,7 @@ function getUserLists($username) {
 
 function getUserSharedLists($username) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT Category.name as categoryName, Category.color as categoryColor, List.id as listId, List.title as listName, List.creationDate as creadtionDate from Category, List, ListAdmin where List.id = ListAdmin.list and ListAdmin.user = ? and List.creator <> ? and List.category = Category.id');
+    $stmt = $dbh->prepare('SELECT Category.name as categoryName, Category.color as categoryColor, List.id as listId, List.title as listName, List.creationDate as creationDate from Category, List, ListAdmin where List.id = ListAdmin.list and ListAdmin.user = ? and List.creator <> ? and List.category = Category.id');
     $stmt->execute(array($username, $username));
     return $stmt->fetchAll();
 }

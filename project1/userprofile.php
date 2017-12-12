@@ -47,7 +47,10 @@ $assignedItems = getUserAssignedItems($username);
     <?php if(sizeof($assignedItems) > 0) {
 
       foreach ($assignedItems as $item) {
-          $currentItemListInfo = getListInfoFromItem($item['id']);?>
+          $currentItemListInfo = getListInfoFromItem($item['id']);
+          if($item['complete'] == 1) {
+            continue;
+          }?>
       <div class="assigned-item flex-container">
         <div>
           <p><?= $item['description']?></p>
@@ -80,7 +83,7 @@ $assignedItems = getUserAssignedItems($username);
             <p><strong>Owned by </strong><?=$_SESSION['username'] == $currentItemListInfo['creator'] ? 'you' : $currentItemListInfo['creator']?></p>
           </div>
         </div>
-        <?php }
+      <?php }
       } else { ?>
       <h6><?=$username?> doesn't have shit to do!</h6>
       <?php } ?>

@@ -41,7 +41,10 @@ $assignedItems = getUserAssignedItems($username);
     <?php if(sizeof($assignedItems) > 0) {
 
       foreach ($assignedItems as $item) {
-          $currentItemListInfo = getListInfoFromItem($item['id']);?>
+          $currentItemListInfo = getListInfoFromItem($item['id']);
+          if($item['complete'] == 1) {
+            continue;
+          }?>
       <div class="assigned-item flex-container">
         <div>
           <p><?= $item['description']?></p>
