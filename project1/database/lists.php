@@ -125,15 +125,8 @@ function deleteItem($itemID) {
 
 function getList($id) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT * FROM List WHERE creator = ? AND id =?');
-    $stmt->execute(array($username,$id));
-    return $stmt->fetch();
-}
-
-function getAdminList($id) {
-    global $dbh;
-    $stmt = $dbh->prepare('SELECT * FROM List WHERE creator = ? AND id =?');
-    $stmt->execute(array($username,$id));
+    $stmt = $dbh->prepare('SELECT * FROM List WHERE id = ?');
+    $stmt->execute(array($id));
     return $stmt->fetch();
 }
 

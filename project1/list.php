@@ -32,7 +32,7 @@ include_once('templates/common/alerts.php');
 include_once('templates/common/bottom-alerts.php');
 
 $listID = $_GET['id'];
-$list = getList($user['username'], $listID);
+$list = getList($listID);
 $items = getListItems($listID);
 $admins = getListAdmins($listID);
 ?>
