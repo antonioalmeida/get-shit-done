@@ -43,12 +43,9 @@ $categoriesUser = getUserSharedCategories($user['username']);
       <?php if(sizeof($lists) > 0) {
         foreach ($lists as $list) { ?>
         <div class="list">
-          <div class="flex-container">
             <div class="title">
               <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
             </div>
-            <div class="deleteList"><i class="fa fa-times"></i></div>
-          </div>
           <p> <?=$list['creationDate']?></p>
           <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
         </div>

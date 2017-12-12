@@ -63,7 +63,6 @@ $admins = getListAdmins($listID);
 
     <div class="items">
       <div id="listItems">
-        <?php if ($isLoggedIn) { ?>
         <h4>
           <strong>
             <?=$list['title']?>
@@ -71,9 +70,6 @@ $admins = getListAdmins($listID);
           <small><?=date('M Y', strtotime($list['creationDate']))?></small>
         </h4>
 
-        <?php } else { ?>
-        <!-- else here -->
-        <?php } ?>
         <?php foreach($items as $item) { ?>
         <div class="item flex-container" id="item<?=$item['id']?>">
           <div class="item-left flex-container">
