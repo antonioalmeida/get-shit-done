@@ -39,7 +39,7 @@ function addList($username, $title, $creationDate, $category) {
 
 function getListInfoFromItem($itemID) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT List.title as title, List.creator as creator from Item, List where Item.id = ? and Item.list = List.id');
+    $stmt = $dbh->prepare('SELECT List.id as id, List.title as title, List.creator as creator from Item, List where Item.id = ? and Item.list = List.id');
     $stmt->execute(array($itemID));
     return $stmt->fetch();
 }
