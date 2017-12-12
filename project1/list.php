@@ -8,9 +8,6 @@ include_once('templates/common/header.php');
 <script type="text/javascript" src="scripts/items.js" defer></script>
 
 <?php
-include_once('templates/common/navbar.php');
-include_once('templates/common/alerts.php');
-include_once('templates/common/bottom-alerts.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
 if(!$isLoggedIn){
@@ -26,8 +23,16 @@ if ( !preg_match ("/^\d+$/", $_GET['id'])) {
   die("ERROR: ID can only contain numbers");
 }
 
+if (!isAdmin($username,$_GET['id'])) {
+    header('Location: ' . './404.php');
+}
+
+include_once('templates/common/navbar.php');
+include_once('templates/common/alerts.php');
+include_once('templates/common/bottom-alerts.php');
+
 $listID = $_GET['id'];
-$list = getUserList($user['username'], $listID);
+$list = getList($user['username'], $listID);
 $items = getListItems($listID);
 $admins = getListAdmins($listID);
 ?>

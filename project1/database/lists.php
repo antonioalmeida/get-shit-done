@@ -116,7 +116,7 @@ function deleteItem($itemID) {
     }
 }
 
-function getUserList($username, $id) {
+function getList($id) {
     global $dbh;
     $stmt = $dbh->prepare('SELECT * FROM List WHERE creator = ? AND id =?');
     $stmt->execute(array($username,$id));
