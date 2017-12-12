@@ -1,6 +1,5 @@
 <?php
 include_once(dirname(__DIR__) . '/includes/init.php');
-include_once(dirname(__DIR__) . '/database/user.php');
 include_once(dirname(__DIR__) . '/database/lists.php');
 
 if(!isset($_SESSION['username'])) {
@@ -11,7 +10,7 @@ if(!isset($_SESSION['username'])) {
 	$username = $_SESSION['username'];
 
 	if ( !preg_match ("/^\d+$/", $_GET['listID'])) {
-	  die("ERROR: ID can only contain numbers");
+	  die("ERROR: listID can only contain numbers");
 	}
 
 	if ($_SESSION['csrf'] !== $_GET['csrf']){

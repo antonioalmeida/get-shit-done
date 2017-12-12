@@ -42,10 +42,16 @@ function getUserPicture($username) {
   return $stmt->fetch();
 }
 
-function updateUser($username, $picture,$name, $bio) {
+function updateUser($username,$name, $bio) {
   global $dbh;
-  $stmt = $dbh->prepare('UPDATE User SET picture = ?, name = ?, bio = ? WHERE username = ?');
-  $stmt->execute(array($picture, $name, $bio, strtolower($username)));
+  $stmt = $dbh->prepare('UPDATE User SET name = ?, bio = ? WHERE username = ?');
+  try {
+  $stmt->execute(array($name, $bio, strtolower($username)));
+  return true;
+} catch (Exception $e) {
+  die($e->getMessage());
+  return false;
+}
 }
 
 function updatePictureUser($username, $picture) {

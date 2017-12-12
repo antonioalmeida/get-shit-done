@@ -14,8 +14,6 @@ if ( !preg_match ("/^https?:\/\/(?:[a-z-]+.)+[a-z]{2,6}(?:\/[^\#?]+)+.(?:jpe?g|g
    die("ERROR: Picture URL invalid");
 }
 
-//$encode_data = base64_encode(file_get_contents($_POST['picture']));
-//$original_image = "data:image/png;base64,$encode_data";
 $temp_image = imagecreatefromstring(file_get_contents($_POST['picture']));
 
 $max_width = 500;
@@ -44,14 +42,10 @@ ob_end_clean();
 $final_encoding = base64_encode($contents);
 $final_image = "data:image/png;base64,$final_encoding";
 
-try {
-  if(updatePictureUser($_POST['username'], $final_image))
-  	$_SESSION['success_messages'][] = "Image updated!";
-  else
-    $_SESSION['error_messages'][] = "Error updating image!";
-} catch (PDOException $e) {
-  die($e->getMessage());
-}
+if(updatePictureUser($_POST['username'], $final_image))
+	$_SESSION['success_messages'][] = "Image updated!";
+else
+  $_SESSION['error_messages'][] = "Error updating image!";
 
 $referer = '../myprofile.php';
 header('Location: ' . $referer);

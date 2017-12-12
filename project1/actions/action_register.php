@@ -27,7 +27,6 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 $confirmPassword = $_POST["confirmPassword"];
 
-
 if (usernameExists($username)) {
   $_SESSION['error_messages'][] = "Invalid Username!"; $referer = '../register.php';
 } else if(emailInUse($email)){

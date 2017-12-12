@@ -1,6 +1,5 @@
 <?php
 include_once(dirname(__DIR__) . '/includes/init.php');
-include_once(dirname(__DIR__) . '/database/user.php');
 include_once(dirname(__DIR__) . '/database/lists.php');
 
 if(!isset($_SESSION['username'])) {
@@ -14,7 +13,7 @@ if ( !preg_match ("/^0|1$/", $_GET['complete'])) {
   die("ERROR: Complete invalid ");
 }
 
-if(!(isset($_SESSION['username']) && isItemAdmin($_SESSION['username'], $_GET['itemID']))) {
+if(!(isItemAdmin($_SESSION['username'], $_GET['itemID']))) {
     die("ERROR: You can't perform this operation");
 }
 

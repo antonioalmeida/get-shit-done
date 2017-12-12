@@ -1,6 +1,5 @@
 <?php
 include_once(dirname(__DIR__) . '/includes/init.php');
-include_once(dirname(__DIR__) . '/database/user.php');
 include_once(dirname(__DIR__) . '/database/lists.php');
 
 if(!isset($_SESSION['username'])) {
@@ -14,7 +13,7 @@ if ( !preg_match ("/^1|2|3$/", $_GET['priority'])) {
     die("ERROR: priority can only contain letters, numbers and most common punctuaction");
 }
 
-if(!(isset($_SESSION['username']) && isItemAdmin($_SESSION['username'], $_GET['itemID']))) {
+if(!(isItemAdmin($_SESSION['username'], $_GET['itemID']))) {
     die("ERROR: You can't perform this operation");
 }
 

@@ -1,6 +1,5 @@
 <?php
 include_once(dirname(__DIR__) . '/includes/init.php');
-include_once(dirname(__DIR__) . '/database/user.php');
 include_once(dirname(__DIR__) . '/database/lists.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
@@ -15,7 +14,7 @@ if ( !preg_match ("/^\d+$/", $_GET['id'])) {
 }
 
 if ( !preg_match ("/^[\w\s-?!\.()]*$/", $_GET['description'])) {
-  die("ERROR: categoryName can only contain letters, numbers and most common punctuaction");
+  die("ERROR: description can only contain letters, numbers and most common punctuaction");
 }
 
 if ( !preg_match ("/^\d\d\d\d-\d{1,2}-\d{1,2}$/", $_GET['dueDate'])) {
