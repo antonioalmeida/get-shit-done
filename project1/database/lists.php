@@ -37,6 +37,13 @@ function addList($username, $title, $creationDate, $category) {
     return true;
 }
 
+function getListInfoFromItem($itemID) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT List.title as title, List.creator as creator from Item, List where Item.id = ? and Item.list = List.id');
+    $stmt->execute(array($itemID));
+    return $stmt->fetch();
+}
+
 function listAddAdmin($listID, $username) {
     global $dbh;
     $stmt = $dbh->prepare('INSERT INTO ListAdmin values(?, ?)');
@@ -246,7 +253,7 @@ function getUserSharedCategories($username) {
 
 function getUserAssignedItems($username) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT Item.description as description, Item.complete as complete, Item.dueDate as dueDate, Item.priority as priority FROM Item WHERE Item.assignedUser = ?');
+    $stmt = $dbh->prepare('SELECT Item.id, Item.description as description, Item.complete as complete, Item.dueDate as dueDate, Item.priority as priority FROM Item WHERE Item.assignedUser = ?');
     $stmt->execute(array($username));
     return $stmt->fetchAll();
 }
