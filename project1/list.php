@@ -2,11 +2,7 @@
 include_once('includes/init.php');
 include_once('database/user.php');
 include_once('database/lists.php');
-include_once('templates/common/header.php');
 ?>
-
-<script type="text/javascript" src="scripts/items.js" defer></script>
-
 <?php
 
 $isLoggedIn = (isset($_SESSION['username']));
@@ -26,7 +22,12 @@ if ( !preg_match ("/^\d+$/", $_GET['id'])) {
 if (!isAdmin($username,$_GET['id'])) {
     header('Location: ' . './404.php');
 }
+include_once('templates/common/header.php');
+?>
 
+<script type="text/javascript" src="scripts/items.js" defer></script>
+
+<?php
 include_once('templates/common/navbar.php');
 include_once('templates/common/alerts.php');
 include_once('templates/common/bottom-alerts.php');
