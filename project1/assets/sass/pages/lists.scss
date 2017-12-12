@@ -127,6 +127,18 @@
 		div {
 			margin: 0 0 1.2em 0;
 		}
+
+		a {
+			color: $black-color;
+		}
+	}
+
+	#searchResults {
+		padding-left: 1em;
+
+		p:hover {
+			cursor: pointer;
+		}
 	}
 
 	.member-image {
@@ -173,8 +185,4 @@
 
 	.text-primary {
 		color: $primary-color;
-	}
-
-	.no-bullets {
-		list-style-type: none;
 	}
