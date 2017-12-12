@@ -4,6 +4,9 @@ include_once(dirname(__DIR__) . '/database/user.php');
 include_once(dirname(__DIR__) . '/database/lists.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
+if(!$isLoggedIn){
+    header('Location: ' . '../404.php');
+}
 $username = $_SESSION['username'];
 
 if ( !preg_match ("/^[\w\s-?!\.()]*$/", $_GET['categoryName'])) {

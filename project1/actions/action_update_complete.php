@@ -3,6 +3,10 @@ include_once(dirname(__DIR__) . '/includes/init.php');
 include_once(dirname(__DIR__) . '/database/user.php');
 include_once(dirname(__DIR__) . '/database/lists.php');
 
+if(!isset($_SESSION['username'])) {
+	    header('Location: ' . '../404.php');
+}
+
 if ( !preg_match ("/^\d+$/", $_GET['itemID'])) {
   die("ERROR: itemID can only contain numbers ");
 }
