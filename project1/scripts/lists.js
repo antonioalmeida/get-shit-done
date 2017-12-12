@@ -3,21 +3,20 @@
 let addListForm = document.getElementById('addListForm');
 let deleteListTargets = document.querySelectorAll('.deleteList');
 let addCategoryForm = document.getElementById('addCategoryForm');
-let colorPicker = document.getElementById('colorPicker')
+let colorPicker = document.getElementById('colorPicker');
 let nativeColorPicker = document.getElementById('nativeColorPicker');
 
-addList.addEventListener('submit', addListHandler);
+addListForm.addEventListener('submit', addListHandler);
 addCategoryForm.addEventListener('submit', addCategoryHandler);
 
 deleteListTargets.forEach(function(element) {
     element.addEventListener('click', deleteListHandler);
-})
+});
 
 colorPicker.addEventListener('click', colorPickerHandler);
 nativeColorPicker.addEventListener('change', updateColorHandler);
 
 function addListHandler(event) {
-    // TODO: Update this
     let listTitle = document.querySelector('input[name=listTitle]').value;
     let category = document.querySelector('select[name=category]').value;
     let csrf = document.querySelector('input[name=csrf]').value;
@@ -37,10 +36,10 @@ function addListFinished() {
     let addList = document.getElementById('addList');
 
     if(newList.id == undefined) {
-      	setAlertMessage('error', newList);
-      	return;
-      } else
-      	setAlertMessage('success', 'List successfully added!');
+        setAlertMessage('error', newList);
+        return;
+    } else
+        setAlertMessage('success', 'List successfully added!');
 
     addList.querySelector('input[name=listTitle').value = '';
 
@@ -74,8 +73,8 @@ function deleteListFinished () {
         listToDelete.parentNode.removeChild(listToDelete);
         setAlertMessage('success', 'List successfuly deleted!');
     } else if (deletedID == -1) {
-	    setAlertMessage('error', 'Error deleting List!');
-    	return;
+        setAlertMessage('error', 'Error deleting List!');
+        return;
     }
 }
 
@@ -98,10 +97,10 @@ function addCategoryFinished() {
     let categoriesDiv = document.querySelector('.categories');
 
     if(newCategory[0] == 'error') {
-  		setAlertMessage('error', 'Category <strong>' + newCategory[1] + '</strong> already exist!');
-  		return;
-  	} else
-  		setAlertMessage('success', 'Category <strong>' + newCategory.name + '</strong> successfully added!');
+        setAlertMessage('error', 'Category <strong>' + newCategory[1] + '</strong> already exist!');
+        return;
+    } else
+        setAlertMessage('success', 'Category <strong>' + newCategory.name + '</strong> successfully added!');
 
 
     let newCategoryHTML = document.createElement('p');
@@ -119,10 +118,10 @@ function filterListsByTitle(title) {
     let titleRegex = new RegExp(title, 'i');
     let allLists = document.querySelectorAll('div[id^=list]');
     [].forEach.call(allLists, function(elem) {
-        if(!elem.querySelector("a").innerHTML.match(titleRegex))
-            elem.classList.add("hidden");
+        if(!elem.querySelector('a').innerHTML.match(titleRegex))
+            elem.classList.add('hidden');
         else
-            elem.classList.remove("hidden");
+            elem.classList.remove('hidden');
     });
 }
 
@@ -131,7 +130,7 @@ function filterListsByCategory(categoryElement) {
     let unfilter = categoryElement.classList.contains('active');
     if(unfilter) {
         categoryElement.classList.remove('active');
-        [].forEach.call(allLists, function(elem) {elem.classList.remove("hidden");});
+        [].forEach.call(allLists, function(elem) {elem.classList.remove('hidden');});
         return;
     }
 
@@ -139,25 +138,24 @@ function filterListsByCategory(categoryElement) {
     [].forEach.call(allLists, function(elem) {
         let elemCategory = elem.children[2].textContent.replace(/\s/g,'');
         if(elemCategory !== categoryFiltered)
-            elem.classList.add("hidden");
+            elem.classList.add('hidden');
         else
-            elem.classList.remove("hidden");
+            elem.classList.remove('hidden');
     });
     categoryElement.classList.add('active');
 }
 
-function colorPickerHandler(event) {
+function colorPickerHandler () {
     let picker = document.querySelector('input[name=categoryColor]');
     picker.click();
 }
 
-function updateColorHandler (event) {
+function updateColorHandler(event) {
     document.getElementById('colorPicker').style.color = event.target.value;
 }
 
 function getListHTML(newList){
-
-  return '<div class="flex-container"> <div class="title"> <h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
+    return '<div class="flex-container"> <div class="title"> <h6><a href="list.php?id=' + newList.id + '">' + newList.title + '</a></h6>' +
   '</div><div class="deleteList"><i class="fa fa-times"></i>'+
   '</div></div><p>' + newList.creationDate + '</p>' +
   '<p><i style="color: #' + newList.color + '" class="fa fa-circle"></i> ' + newList.name + '</p></div>';

@@ -74,13 +74,13 @@ function deleteItemHandler (event) {
 }
 
 function addItemFinished () {
-  let newItem = JSON.parse(this.responseText);
+    let newItem = JSON.parse(this.responseText);
 
-	if(newItem.id == undefined) {
-    	setAlertMessage('error', newItem);
-    	return;
+    if(newItem.id == undefined) {
+        setAlertMessage('error', newItem);
+        return;
     } else
-    	setAlertMessage('success', 'Item successfully added!');
+        setAlertMessage('success', 'Item successfully added!');
 
     let container = document.getElementById('listItems');
     let itemDiv = document.createElement('div');
@@ -107,8 +107,8 @@ function deleteItemFinished () {
     let itemID = this.responseText;
 
     if (itemID == -1) {
-	    setAlertMessage('error', 'Error deleting item!');
-    	return;
+        setAlertMessage('error', 'Error deleting item!');
+        return;
     }
 
     let item = document.getElementById('item' + itemID);
@@ -195,20 +195,20 @@ function filterItemsBy (element) {
     let deadlineDate = new Date();
     let deadlineText = element.textContent.replace(/\s/g, '');
     switch(deadlineText) {
-        case 'DueToday':
-            break;
-        case 'DueThisWeek':
-            deadlineDate = new Date(deadlineDate.getTime() + 7 * 86400000);
-            break;
-        case 'DueThisMonth':
-            deadlineDate = new Date(deadlineDate.getTime() + 30 * 86400000);
-            break;
+    case 'DueToday':
+        break;
+    case 'DueThisWeek':
+        deadlineDate = new Date(deadlineDate.getTime() + 7 * 86400000);
+        break;
+    case 'DueThisMonth':
+        deadlineDate = new Date(deadlineDate.getTime() + 30 * 86400000);
+        break;
     }
-    let allItems = document.querySelectorAll("div[id^=item]");
+    let allItems = document.querySelectorAll('div[id^=item]');
     let unfilter = element.classList.contains('active');
     if(unfilter) {
         element.classList.remove('active');
-        [].forEach.call(allItems, function(elem) {elem.classList.remove("hidden");});
+        [].forEach.call(allItems, function(elem) {elem.classList.remove('hidden');});
         return;
     }
 
@@ -216,9 +216,9 @@ function filterItemsBy (element) {
         let elemDueDateArr = elem.children[3].children[1].textContent.split('-');
         let elemDueDate = new Date(elemDueDateArr[0], elemDueDateArr[1]-1, elemDueDateArr[2]);
         if(elemDueDate.getTime() > deadlineDate.getTime())
-            elem.classList.add("hidden");
+            elem.classList.add('hidden');
         else
-            elem.classList.remove("hidden");
+            elem.classList.remove('hidden');
     });
     element.classList.add('active');
 }
@@ -234,20 +234,20 @@ function updateItemComplete (event) {
 
     let request = new XMLHttpRequest();
     request.open('get', DOMString, true);
-    request.addEventListener('load', checkboxUpdated);
+    request.addEventListener('load', updateItemCompleteFinished);
     request.send();
 }
 
 function updateItemPriority (elem) {
     let currentPriority;
     switch(elem.innerHTML) {
-      case 'Low':
+    case 'Low':
         currentPriority = 1;
         break;
-      case 'Med':
+    case 'Med':
         currentPriority = 2;
         break;
-      case 'High':
+    case 'High':
         currentPriority = 3;
         break;
     }
@@ -264,16 +264,16 @@ function updateItemPriority (elem) {
     request.send();
 }
 
-function checkboxUpdated () {
+function updateItemCompleteFinished () {
     let item = JSON.parse(this.responseText);
     if(item.id == undefined) {
-      	setAlertMessage('error',item);
-      	return;
-      } else if(item.complete == 1){
+        setAlertMessage('error',item);
+        return;
+    } else if(item.complete == 1){
         setAlertMessage('success', 'Item successfully completed!');
-      } else {
+    } else {
         setAlertMessage('success', 'Item successfully uncompleted!');
-      }
+    }
 
 
     setChecked(item.id, item.complete == 1);
@@ -283,26 +283,26 @@ function updateItemPriorityFinished() {
     let item = JSON.parse(this.responseText);
 
     if(item.id == undefined) {
-		setAlertMessage('error', item);
-		return;
+        setAlertMessage('error', item);
+        return;
     }
-    let priorityElem = document.getElementById("item"+item.id+"priority");
+    let priorityElem = document.getElementById('item'+item.id+'priority');
 
     switch(item.priority) {
-      case '1':
+    case '1':
         priorityElem.innerHTML = 'Low';
         priorityElem.classList.replace('priority-high', 'priority-low');
-    	setAlertMessage('success', 'Priority set to <strong>Low</strong>');
+        setAlertMessage('success', 'Priority set to <strong>Low</strong>');
         return;
-      case '2':
+    case '2':
         priorityElem.innerHTML = 'Med';
         priorityElem.classList.replace('priority-low', 'priority-medium');
-    	setAlertMessage('success', 'Priority set to <strong>Medium</strong>');
+        setAlertMessage('success', 'Priority set to <strong>Medium</strong>');
         return;
-      case '3':
+    case '3':
         priorityElem.innerHTML = 'High';
         priorityElem.classList.replace('priority-medium', 'priority-high');
-    	setAlertMessage('success', 'Priority set to <strong>High</strong>');
+        setAlertMessage('success', 'Priority set to <strong>High</strong>');
         return;
     }
 }
@@ -311,10 +311,10 @@ function editItemFinished () {
     let response = JSON.parse(this.responseText);
 
     if(response.id == undefined) {
-    	setAlertMessage('error', response);
-    	return;
+        setAlertMessage('error', response);
+        return;
     } else
-    	setAlertMessage('success', 'Task successfully changed!');
+        setAlertMessage('success', 'Task successfully changed!');
 
     let itemID = response.id;
     let itemDiv = document.getElementById('item' + itemID);
@@ -336,29 +336,28 @@ function assignUserFinished () {
     let response = JSON.parse(this.responseText);
 
     if(response.result == 'error') {
-    	setAlertMessage('error', response.message);
-    	return;
+        setAlertMessage('error', response.message);
+        return;
     } else
-    	setAlertMessage('success', 'User successfully assigned!');
+        setAlertMessage('success', 'User successfully assigned!');
 
     let itemID = response.item.id;
-    console.log(itemID);
     let itemDiv = document.getElementById('item' + itemID);
     let assignUser = document.getElementById('assignUser' + itemID);
 
     if(response.item.assignedUser) {
-      let newObject = document.createElement('img');
-      newObject.id = assignUser.id;
-      newObject.classList.add('assignUser','user-image');
-      newObject.src = response.profilePic.picture;
-      assignUser.parentNode.replaceChild(newObject,assignUser);
-      itemDiv.querySelector('.assignUserForm').addEventListener('submit', assignUserSubmitHandler);
-      itemDiv.querySelector('.user-image').addEventListener('click', assignUserHandler);
+        let newObject = document.createElement('img');
+        newObject.id = assignUser.id;
+        newObject.classList.add('assignUser','user-image');
+        newObject.src = response.profilePic.picture;
+        assignUser.parentNode.replaceChild(newObject,assignUser);
+        itemDiv.querySelector('.assignUserForm').addEventListener('submit', assignUserSubmitHandler);
+        itemDiv.querySelector('.user-image').addEventListener('click', assignUserHandler);
     }
     else {
-    	assignUser.classList.add('fa-user-plus');
-    	assignUser.classList.add('fa');
-    	assignUser.innerHTML = '';
+        assignUser.classList.add('fa-user-plus');
+        assignUser.classList.add('fa');
+        assignUser.innerHTML = '';
     }
 
     let itemUserArea = itemDiv.querySelector('.item-user');
@@ -389,13 +388,13 @@ function addListAdminSubmitHandler (event) {
 }
 
 function addListAdminFinished () {
-	let response = JSON.parse(this.responseText);
+    let response = JSON.parse(this.responseText);
 
-	if(response.result == 'error') {
-		setAlertMessage('error', 'User <strong>@' + response.username + '</strong> doesn\'t exist!');
-		return;
-	} else
-		setAlertMessage('success', 'Member <strong>@' + response.username + '</strong> successfully added!');
+    if(response.result == 'error') {
+        setAlertMessage('error', 'User <strong>@' + response.username + '</strong> doesn\'t exist!');
+        return;
+    } else
+        setAlertMessage('success', 'Member <strong>@' + response.username + '</strong> successfully added!');
 
     let membersDiv = document.querySelector('.members');
     let newMember = document.createElement('div');
@@ -411,18 +410,18 @@ function addListAdminFinished () {
 
 function getItemHTML (newItem) {
     return '<div class="item-left flex-container"> <div> <label class="label">' +
-			'<input type="checkbox" id="' + newItem.id + '" name="complete" class="label-checkbox hidden">' +
+            '<input type="checkbox" id="' + newItem.id + '" name="complete" class="label-checkbox hidden">' +
       '<span class="label-text"> <span class="label-check"> <i class="fa fa-check icon"></i> </span> </span> </label></div>'+
-			'<div><span class="itemDescription">' + newItem.description + '</span></div>' +
+            '<div><span class="itemDescription">' + newItem.description + '</span></div>' +
 
-    '</div>	<div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">' +
-			'<input type="hidden" name="itemID" value="' + newItem.id + '"><div>' +
-			'<label for="editDescription">Description</label>' +
-			'<input type="text" name="editDescription" value="' + newItem.description + '" required></div>' +
-		'<div><label for="editDate">Due Date</label>' +
-			'<input type="date" name="editDate" value="' + newItem.dueDate +
-			'" required></div></div><div><input class="button-primary" type="submit" value="Save">' +
-			'<a class="button cancelEditItem">Cancel</a> </div></form></div>'+
+    '</div> <div class="item-edit hidden"><form class="editItemForm"> <div class="flex-equal">' +
+            '<input type="hidden" name="itemID" value="' + newItem.id + '"><div>' +
+            '<label for="editDescription">Description</label>' +
+            '<input type="text" name="editDescription" value="' + newItem.description + '" required></div>' +
+        '<div><label for="editDate">Due Date</label>' +
+            '<input type="date" name="editDate" value="' + newItem.dueDate +
+            '" required></div></div><div><input class="button-primary" type="submit" value="Save">' +
+            '<a class="button cancelEditItem">Cancel</a> </div></form></div>'+
 
       '<div class="item-user hidden"><form class="assignUserForm"><div class="flex-equal">'+
             '<input type="hidden" name="itemID" value="' + newItem.id + '"><div><label for="assignedUser">Assign User</label>'+
@@ -435,17 +434,17 @@ function getItemHTML (newItem) {
       '<span hidden="hidden">'+newItem.dueDate + '</span>'+
       '<span id="item' + newItem.id + 'priority" onclick="updateItemPriority(this)" class="itemPriority priority-low">Low</span>'+
       '<span><i id="assignUser' + newItem.id + '" class="fa fa-user-plus"></i></span>' +
-			'<span><i id="edit' + newItem.id + '" class="fa fa-edit editItem"></i></span>' +
-			'<span><i id="delete' + newItem.id + '" class="fa fa-times deleteItem"></i></span>' + '</div>';
+            '<span><i id="edit' + newItem.id + '" class="fa fa-edit editItem"></i></span>' +
+            '<span><i id="delete' + newItem.id + '" class="fa fa-times deleteItem"></i></span>' + '</div>';
 }
 
 function getAllAdmin(newItem){
-  let admins = newItem.admins;
-  let options = '';
-  for (let admin of admins) {
-    options += '<option value="'+ admin['username'] + '">'+ admin['username'] + '</option>';
-  }
-  return options;
+    let admins = newItem.admins;
+    let options = '';
+    for (let admin of admins) {
+        options += '<option value="'+ admin['username'] + '">'+ admin['username'] + '</option>';
+    }
+    return options;
 }
 
 function encodeForAjax (data) {

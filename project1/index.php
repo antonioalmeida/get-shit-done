@@ -16,7 +16,6 @@ include_once('templates/common/alerts.php');
     </div>
 </div>
 
-
 <?php
 include_once('templates/common/footer.php');
 ?>

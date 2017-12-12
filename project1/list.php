@@ -2,8 +2,6 @@
 include_once('includes/init.php');
 include_once('database/user.php');
 include_once('database/lists.php');
-?>
-<?php
 
 $isLoggedIn = (isset($_SESSION['username']));
 if(!$isLoggedIn){

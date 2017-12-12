@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/main.css">
   <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
-  <script src="scripts/alerts.js" defer></script>
+  <script type="text/javascript" src="scripts/alerts.js" defer></script>
 
     <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
