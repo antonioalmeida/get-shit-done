@@ -2,7 +2,6 @@
 include_once('includes/init.php');
 include_once('database/user.php');
 
-
 $isLoggedIn = (isset($_SESSION['username']));
 
 if(!$isLoggedIn){
@@ -10,11 +9,7 @@ if(!$isLoggedIn){
 }
 
 $username = $_SESSION['username'];
-try {
-  $user = getUser($username);
-} catch (PDOException $e) {
-  die($e->getMessage());
-}
+$user = getUser($username);
 
 include_once('templates/common/header.php');
 include_once('templates/common/navbar.php');
