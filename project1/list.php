@@ -23,6 +23,7 @@ if (!isAdmin($username,$_GET['id'])) {
 include_once('templates/common/header.php');
 ?>
 
+<script type="text/javascript" src="scripts/users.js" defer></script>
 <script type="text/javascript" src="scripts/items.js" defer></script>
 
 <?php
@@ -55,7 +56,8 @@ $admins = getListAdmins($listID);
       <div>
         <form id="addListAdmin">
           <input type="hidden" name="listID" value="<?=$listID?>" required>
-          <input type="text" placeholder="Username" name="addAdminUsername" required>
+          <input onkeyup=showSimilarUsers(this.value) type="text" placeholder="Username" name="addAdminUsername" required>
+          <div id="searchResults"></div>
         </form>
       </div>
 
