@@ -1,6 +1,6 @@
 </div> <!-- close .content -->
 <footer class="footer">
-  <p>&copy; Get Shit Done App</p>
+  <p><strong>&copy; Get Shit Done</strong></p>
 </footer>
 
 </body>

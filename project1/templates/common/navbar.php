@@ -5,7 +5,7 @@
         <div class="navbar" >
             <div class="container-large">
                 <ul>
-                    <li><a href="mylists.php"><i class="fa fa-check-circle"></i> Get Shit Done</a></li>
+                    <li><a href="index.php"><i class="fa fa-check-circle"></i> Get Shit Done</a></li>
                 </ul>
 
                 <div class="nav-right">

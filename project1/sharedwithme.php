@@ -54,7 +54,7 @@ $categoriesUser = getUserSharedCategories($user['username']);
         </div>
         <?php }
       } else { ?>
-      <h6>Noone shared any lists with you. <i class="fa fa-frown-o"></i></h6>
+      <h6>No one shared any lists with you. <i class="fa fa-frown-o"></i></h6>
       <?php } ?>
 
     </div>

@@ -4,13 +4,12 @@
     include_once('templates/common/navbar.php');
 ?>
 
-<div class="container">
+<div class="flex-center">
     <div>
-        <h4>404</h4>
-        <h6>Sorry, page not found.</h6>
+        <h1><strong>404</strong></h1>
+        <h4>Sorry, that page doesn't exist.</h4>
     </div>
 </div>
-
 
 <?php
     include_once('templates/common/footer.php');

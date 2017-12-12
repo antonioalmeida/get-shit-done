@@ -1,6 +1,6 @@
 <div id="alerts">
   <?php $errors = getErrorMessages();foreach ($errors as $error) { ?>
-  <div></div> class="alert alert-error">
+  <div class="alert-top alert-error">
     <div class="small-container">
       <p><?=$error?></p>
     </div>

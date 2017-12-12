@@ -7,7 +7,7 @@ include_once('templates/common/alerts.php');
 
 <div class="flex-center">
     <div>
-        <h1><strong>Get Shit Done</strong></h1>
+        <h1><strong><i class="fa fa-check-circle text-primary"></i> Get Shit Done</strong></h1>
         <h4>Do your shit. Do it right.</h4>
         <div>
                 <a href="/login.php"><button class="button button-primary">Login</button></a>
