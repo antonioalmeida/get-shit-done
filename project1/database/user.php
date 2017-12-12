@@ -25,7 +25,13 @@ function newUser($username, $password, $email){
     global $dbh;
     $options = ['cost' => 12];
     $stmt = $dbh->prepare('INSERT INTO User (userName, password, email) values(?, ?, ?)');
-    $stmt->execute(array(strtolower($username), password_hash($password, PASSWORD_DEFAULT, $options), strtolower($email)));
+    try {
+          $stmt->execute(array(strtolower($username), password_hash($password, PASSWORD_DEFAULT, $options), strtolower($email)));
+        return true;
+    }
+    catch (Exception $e) {
+        return false;
+    }
 }
 
 function getUser($username) {

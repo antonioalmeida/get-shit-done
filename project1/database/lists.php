@@ -54,13 +54,14 @@ function listAddAdmin($listID, $username) {
     } catch (Exception $e) {
         $response['result'] = 'error';
         echo json_encode(array('error', $username));
-        return;
+        return false;
     }
 
     // return username in case of success
     $response['result'] = 'success';
     $response['profilePic'] = getUserPicture($username);
     echo json_encode($response);
+    return true;
 }
 
 function getListAdmins($listID) {
@@ -172,6 +173,7 @@ function editItem($itemID, $description, $dueDate) {
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);
+    return true;
 }
 
 function itemAssignUser($itemID, $assignedUser) {
@@ -214,6 +216,7 @@ function updateItemPriority($itemID, $priority) {
 
     $newItem = getItem($itemID);
     echo json_encode($newItem);
+    return true;
 }
 
 function deleteList($listId) {
