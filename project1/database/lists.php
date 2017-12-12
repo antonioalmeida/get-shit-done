@@ -168,7 +168,6 @@ function setItemComplete($itemID, $value) {
 
 function editItem($itemID, $description, $dueDate) {
     global $dbh;
-    //TODO: add update due date
     $stmt = $dbh->prepare('UPDATE Item SET description = ?, dueDate = ? WHERE Item.id = ?;');
 
     try {

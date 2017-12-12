@@ -8,11 +8,19 @@ if(!$isLoggedIn){
     header('Location: ' . './index.php');
 }
 
+if ( !preg_match ("/^[a-zA-Z][\w-]{1,18}(?![-_])\w$/", $_GET['username'])) {
+    die("ERROR: Username invalid");
+}
+
+if($_SESSION['username'] == $_GET['username']) {
+    header('Location: ' . './myprofile.php');
+}
+
 include_once('templates/common/header.php');
 include_once('templates/common/navbar.php');
 include_once('templates/common/alerts.php');
 
-$username = $_SESSION['username'];
+$username = $_GET['username'];
 $user = getUser($username);
 $assignedItems = getUserAssignedItems($username);
 ?>
@@ -30,13 +38,11 @@ $assignedItems = getUserAssignedItems($username);
       <small>@<?=$user['username'] ?></small>
     </h4>
     <p><?=$user['bio'] ?></p>
-    <a class="button button-primary" href="./edit-profile.php">Edit</a>
-    <a class="button" href="./actions/action_logout.php">Logout</a>
   </div>
 </div>
 
 <div>
-  <h4>Shit To Do</h4>
+  <h4>Shit <?=$username?> Has To Do</h4>
   <div>
     <?php if(sizeof($assignedItems) > 0) {
 
@@ -69,13 +75,15 @@ $assignedItems = getUserAssignedItems($username);
             </p>
           </div>
           <div>
-            <p><strong>Part of </strong><a href="/list.php?id=<?=$currentItemListInfo['id']?>"><?=$currentItemListInfo['title']?></a></p>
+            <?php $isCurrentListAdmin = isAdmin($_SESSION['username'], $currentItemListInfo['id']); ?>
+            <!--    TODO: Ternary below not working properly    -->
+            <p><strong>Part of </strong><a href=<?php ($isCurrentListAdmin ? "/list.php?id=".$currentItemListInfo['id'] : "#")?>><?=$currentItemListInfo['title']?></a></p>
             <p><strong>Owned by </strong><?=$_SESSION['username'] == $currentItemListInfo['creator'] ? 'you' : $currentItemListInfo['creator']?></p>
           </div>
         </div>
         <?php }
       } else { ?>
-      <h6>You don't have shit to do, congrats!</h6>
+      <h6><?=$username?> doesn't have shit to do!</h6>
       <?php } ?>
 
     </div>

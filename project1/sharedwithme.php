@@ -2,19 +2,19 @@
 include_once('includes/init.php');
 include_once('database/user.php');
 include_once('database/lists.php');
-include_once('templates/common/header.php');
-?>
-
-<script type="text/javascript" src="scripts/lists.js" defer></script>
-
-<?php
-include_once('templates/common/navbar.php');
-include_once('templates/common/alerts.php');
 
 if($_SESSION['username'] == null){
     header('Location: ' . './index.php');
 }
 
+include_once('templates/common/header.php');
+include_once('templates/common/navbar.php');
+include_once('templates/common/alerts.php');
+?>
+
+<script type="text/javascript" src="scripts/lists.js" defer></script>
+
+<?php
 $isLoggedIn = (isset($_SESSION['username']));
 $username = $_SESSION['username'];
 $user = getUser($username);
