@@ -403,8 +403,8 @@ function addListAdminFinished () {
     image.src = response.profilePic.picture;
 
     newMember.append(image);
-    newMember.innerHTML += '<span>@' + response.username + '</span>';
-
+    newMember.innerHTML += '<span><a href="/userprofile.php?username=' + response.username + '">@'+ response.username +'</a></span>';
+      
     membersDiv.append(newMember);
 }
 

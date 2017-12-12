@@ -63,7 +63,7 @@ function updatePictureUser($username, $picture) {
 
 function getUsersWithNameLike($name) {
     global $dbh;
-    $stmt = $dbh->prepare('SELECT username from User where username like ?');
+    $stmt = $dbh->prepare('SELECT username FROM User WHERE username LIKE ? LIMIT 2');
     $stmt->execute(array('%'.strtolower($name).'%'));
     $names = $stmt->fetchAll();
 
