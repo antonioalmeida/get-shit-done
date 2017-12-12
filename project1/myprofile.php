@@ -72,7 +72,7 @@ $assignedItems = getUserAssignedItems($username);
             </p>
           </div>
           <div>
-            <p><strong>Part of </strong><a href="/list.php?id=<?=$currentItemListInfo['id']?>"><?=$currentItemListInfo['title']?></a></p>
+            <p><strong>Part of </strong><a href="./list.php?id=<?=$currentItemListInfo['id']?>"><?=$currentItemListInfo['title']?></a></p>
             <p><strong>Owned by </strong><?=$_SESSION['username'] == $currentItemListInfo['creator'] ? 'you' : $currentItemListInfo['creator']?></p>
           </div>
         </div>
