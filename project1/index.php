@@ -6,12 +6,16 @@ include_once('templates/common/alerts.php');
 
 $isLoggedIn = (isset($_SESSION['username'])); ?>
 
+<script type="text/javascript" src="scripts/users.js" defer></script>
+
 <div class="flex-center">
     <?php if($isLoggedIn) { ?>
         <div>
             <h1><strong><i class="fa fa-check-circle text-primary"></i> Welcome!</strong></h1>
             <h3>Have you done something today?</h3>
             <h5>Why not start by checking what other people have been up to?</h5>
+            <input onkeyup=showSimilarUsers(this.value) type="text" placeholder="Search for a username here..." name="username" />
+            <div id="searchResults"></div>
         </div>
     <?php }
     else { ?>

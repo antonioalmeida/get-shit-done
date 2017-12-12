@@ -61,4 +61,14 @@ function updatePictureUser($username, $picture) {
   }
 }
 
+function getUsersWithNameLike($name) {
+    global $dbh;
+    $stmt = $dbh->prepare('SELECT username from User where username like ?');
+    $stmt->execute(array('%'.strtolower($name).'%'));
+    $names = $stmt->fetchAll();
+
+    echo json_encode($names);
+    return true;
+}
+
 ?>
