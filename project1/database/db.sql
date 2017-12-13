@@ -79,7 +79,7 @@ BEFORE UPDATE OF complete ON item
 FOR each ROW
 WHEN NEW.complete = 1 AND EXISTS (SELECT * FROM item WHERE priority > NEW.priority AND complete = 0 AND NEW.list = item.list)
 BEGIN
-SELECT raise(fail, 'item cannot be completed before higher priority items have been completed');
+SELECT raise(fail, 'Item cannot be completed before higher priority items have been completed!');
 END;
 
 --prevents user from changing item priority after it is complete
@@ -140,15 +140,15 @@ insert into Category (name, color) values ('Sports', '000000');
 insert into List (title, creationDate, category, creator) values ('Do LAIG', '2017-05-25', 2, 'antonioalmeida');
 insert into List (title, creationDate, category, creator) values ('Try to do RCOM', '2017-05-14', 1, 'antonioalmeida');
 insert into List (title, creationDate, category, creator) values ('Beautify PLOG', '2017-05-09', 5, 'antonioalmeida');
-insert into List (title, creationDate, category, creator) values ('Spit out regex', '2017-05-09', 5, 'antonioalmeida');
-insert into List (title, creationDate, category, creator) values ('Understand Hyper', '2017-05-09', 5, 'antonioalmeida');
-insert into List (title, creationDate, category, creator) values ('Go to ESOF', '2017-05-09', 5, 'antonioalmeida');
-insert into List (title, creationDate, category, creator) values ('Depress about RCOM', '2017-05-09', 5, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Spit out regex', '2017-05-09', 3, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Study Hyper', '2017-05-09', 4, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Go to ESOF', '2017-05-09', 2, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Depress about RCOM', '2017-05-09', 1, 'antonioalmeida');
 insert into List (title, creationDate, category, creator) values ('Drive', '2017-05-09', 5, 'antonioalmeida');
-insert into List (title, creationDate, category, creator) values ('Prepare that React WS', '2017-05-09', 5, 'antonioalmeida');
-insert into List (title, creationDate, category, creator) values ('Do RCOM homework', '2017-05-09', 5, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Study React', '2017-05-09', 5, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Do RCOM homework', '2017-05-09', 4, 'antonioalmeida');
 insert into List (title, creationDate, category, creator) values ('Rest In Peace', '2017-05-09', 5, 'antonioalmeida');
-insert into List (title, creationDate, category, creator) values ('Figure out titles', '2017-05-09', 5, 'antonioalmeida');
+insert into List (title, creationDate, category, creator) values ('Figure out titles', '2017-05-09', 4, 'antonioalmeida');
 insert into List (title, creationDate, category, creator) values ('Reason with sqlite', '2017-09-25', 3, 'cyrilico');
 insert into List (title, creationDate, category, creator) values ('Invent MOAR titles', '2017-06-28', 6, 'cyrilico');
 insert into List (title, creationDate, category, creator) values ('Figure out more hacks', '2017-11-26', 4, 'diogotorres97');
