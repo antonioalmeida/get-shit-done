@@ -13,6 +13,19 @@ function showSimilarUsers(name) {
     request.send();
 }
 
+function showSimilarUsersDiscover(name) {
+    if(name === '') {
+        showNoUsers();
+        return;
+    }
+
+    let request = new XMLHttpRequest();
+    let DOMString = './actions/action_get_similar_users.php?' + encodeForAjax({'name': name});
+    request.open('get', DOMString, true);
+    request.addEventListener('load', showSimilarUsersDiscoverFinished);
+    request.send();
+}
+
 function showNoUsers() {
     searchResults.innerHTML = '';
 }
@@ -24,6 +37,16 @@ function showSimilarUsersFinished() {
         let result = document.createElement('p');
         result.addEventListener('click', updateUsernameValue);
         result.innerHTML = '@'+allNames[id].username;
+        searchResults.append(result);
+    }
+}
+
+function showSimilarUsersDiscoverFinished() {
+    let allNames = JSON.parse(this.responseText);
+    showNoUsers();
+    for(let id in allNames) {
+        let result = document.createElement('p');
+        result.innerHTML = '<a href=/userprofile.php?username='+allNames[id].username+'>@'+allNames[id].username+'</a>';
         searchResults.append(result);
     }
 }

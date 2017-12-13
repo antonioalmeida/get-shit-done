@@ -14,6 +14,7 @@
 
                         <li><a href="mylists.php"><i class="fa fa-home"></i></a></li>
                         <li><a href="sharedwithme.php"><i class="fa fa-users"></i></a></li>
+                        <li><a href="discover.php"><i class="fa fa-search"></i></a></li>
                         <li><a href="myprofile.php"><i class="fa fa-user"></i></a></li>
                         <?php } else { ?>
                         <li><a href="login.php"><i class="fa fa-sign-in-alt"></i></a></li>

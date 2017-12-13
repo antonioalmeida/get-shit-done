@@ -79,7 +79,7 @@ $assignedItems = getUserAssignedItems($username);
           </div>
           <div>
             <?php $isCurrentListAdmin = isAdmin($_SESSION['username'], $currentItemListInfo['id']); ?>
-            <p><strong>Part of </strong><a href=<?= ($isCurrentListAdmin ? "./list.php?id=".$currentItemListInfo['id'] : "/404.php")?>><?=$currentItemListInfo['title']?></a></p>
+            <p><strong>Part of </strong><a href=<?= ($isCurrentListAdmin ? "./list.php?id=".$currentItemListInfo['id'] : "./404.php")?>><?=$currentItemListInfo['title']?></a></p>
             <p><strong>Owned by </strong><?=$_SESSION['username'] == $currentItemListInfo['creator'] ? 'you' : $currentItemListInfo['creator']?></p>
           </div>
         </div>
