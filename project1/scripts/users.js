@@ -46,7 +46,7 @@ function showSimilarUsersDiscoverFinished() {
     showNoUsers();
     for(let id in allNames) {
         let result = document.createElement('p');
-        result.innerHTML = '<a href=/userprofile.php?username='+allNames[id].username+'>@'+allNames[id].username+'</a>';
+        result.innerHTML = '<a href="./userprofile.php?username='+allNames[id].username+'">@'+allNames[id].username+'</a>';
         searchResults.append(result);
     }
 }

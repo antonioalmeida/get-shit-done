@@ -5,15 +5,15 @@ include_once('database/lists.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
 if(!$isLoggedIn){
-    header('Location: ' . './index.php');
+  header('Location: ' . './index.php');
 }
 
 if ( !preg_match ("/^[a-zA-Z][\w-]{1,18}(?![-_])\w$/", $_GET['username'])) {
-    die("ERROR: Username invalid");
+  die("ERROR: Username invalid");
 }
 
 if($_SESSION['username'] == $_GET['username']) {
-    header('Location: ' . './myprofile.php');
+  header('Location: ' . './myprofile.php');
 }
 
 include_once('templates/common/header.php');
@@ -42,36 +42,46 @@ $assignedItems = getUserAssignedItems($username);
 </div>
 
 <div>
-  <h4>Shit <?=$username?> Has To Do</h4>
+  <h4>Shit @<?=$username?> Has To Do</h4>
   <div>
-    <?php if(sizeof($assignedItems) > 0) {
+    <?php if(sizeof($assignedItems) > 0) { ?>
 
-      foreach ($assignedItems as $item) {
-          $currentItemListInfo = getListInfoFromItem($item['id']);
-          if($item['complete'] == 1) {
-            continue;
-          }?>
-      <div class="assigned-item flex-container">
+    <div class="assigned-header flex-container">
+      <p>Description</p>
+      <p>Due Date</p>
+      <p>Priority</p>
+      <p>List</p>
+      <p>Owner</p>
+    </div>
+
+    <?php 
+
+    foreach ($assignedItems as $item) {
+      $currentItemListInfo = getListInfoFromItem($item['id']);
+      if($item['complete'] == 1) {
+        continue;
+      }?>
+      <div class="assigned-items flex-container">
         <div>
           <p><?= $item['description']?></p>
         </div>
         <div>
-          <p><strong>Due </strong>
+          <p>
             <?= date('d M', strtotime($item['dueDate']))?></p>
           </div>
           <div>
-            <p><strong>Priority </strong>
+            <p>
               <?php switch ($item['priority']) {
                 case 1: ?>
-                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-low">Low</span>
+                <span id="item<?=$item['id']?>priority" class="itemPriority priority-low">Low</span>
                 <?php
                 break;
                 case 2:  ?>
-                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-medium">Med</span>
+                <span id="item<?=$item['id']?>priority" class="itemPriority priority-medium">Med</span>
                 <?php
                 break;
                 case 3: ?>
-                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-high">High</span>
+                <span id="item<?=$item['id']?>priority" class="itemPriority priority-high">High</span>
                 <?php
                 break;
               } ?>
@@ -79,11 +89,13 @@ $assignedItems = getUserAssignedItems($username);
           </div>
           <div>
             <?php $isCurrentListAdmin = isAdmin($_SESSION['username'], $currentItemListInfo['id']); ?>
-            <p><strong>Part of </strong><a href=<?= ($isCurrentListAdmin ? "./list.php?id=".$currentItemListInfo['id'] : "./404.php")?>><?=$currentItemListInfo['title']?></a></p>
-            <p><strong>Owned by </strong><?=$_SESSION['username'] == $currentItemListInfo['creator'] ? 'you' : $currentItemListInfo['creator']?></p>
+            <p><a href=<?= ($isCurrentListAdmin ? "./list.php?id=".$currentItemListInfo['id'] : "./404.php")?>><?=$currentItemListInfo['title']?></a></p>
+          </div>
+          <div>
+            <p><?=$_SESSION['username'] == $currentItemListInfo['creator'] ? 'you' : $currentItemListInfo['creator']?></p>
           </div>
         </div>
-      <?php }
+        <?php }
       } else { ?>
       <h6><?=$username?> doesn't have shit to do!</h6>
       <?php } ?>

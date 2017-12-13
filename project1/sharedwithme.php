@@ -4,7 +4,7 @@ include_once('database/user.php');
 include_once('database/lists.php');
 
 if($_SESSION['username'] == null){
-    header('Location: ' . './index.php');
+  header('Location: ' . './index.php');
 }
 
 include_once('templates/common/header.php');
@@ -36,16 +36,16 @@ $categoriesUser = getUserSharedCategories($user['username']);
 
    <div class="lists">
     <?php if ($isLoggedIn) { ?>
-    <h4> Shared With Me </h4>
+    <h4><strong>Shared With Me</strong></h4>
     <?php } ?>
 
     <div id="allLists" class="flex-container">
       <?php if(sizeof($lists) > 0) {
         foreach ($lists as $list) { ?>
         <div class="list">
-            <div class="title">
-              <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
-            </div>
+          <div class="title">
+            <h6> <a href="list.php?id=<?=$list['listId']?>"><?=$list['listName']?></a></h6>
+          </div>
           <p> <?=$list['creationDate']?></p>
           <p> <i style="color: #<?=$list['categoryColor']?>" class="fa fa-circle"></i> <?=$list['categoryName']?></p>
         </div>

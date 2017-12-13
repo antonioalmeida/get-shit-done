@@ -5,7 +5,7 @@ include_once('database/lists.php');
 
 $isLoggedIn = (isset($_SESSION['username']));
 if(!$isLoggedIn){
-    header('Location: ' . './index.php');
+  header('Location: ' . './index.php');
 }
 
 include_once('templates/common/header.php');
@@ -38,54 +38,65 @@ $assignedItems = getUserAssignedItems($username);
 <div>
   <h4>Shit To Do</h4>
   <div>
-    <?php if(sizeof($assignedItems) > 0) {
+    <?php if(sizeof($assignedItems) > 0) { ?>
 
+    <div class="assigned-header flex-container">
+      <p>Description</p>
+      <p>Due Date</p>
+      <p>Priority</p>
+      <p>List</p>
+      <p>Owner</p>
+    </div>
+
+    <?php 
       foreach ($assignedItems as $item) {
-          $currentItemListInfo = getListInfoFromItem($item['id']);
-          if($item['complete'] == 1) {
-            continue;
-          }?>
-      <div class="assigned-item flex-container">
-        <div>
-          <p><?= $item['description']?></p>
-        </div>
-        <div>
-          <p><strong>Due </strong>
-            <?= date('d M', strtotime($item['dueDate']))?></p>
+        $currentItemListInfo = getListInfoFromItem($item['id']);
+        if($item['complete'] == 1) {
+          continue;
+        }?>
+        <div class="assigned-items flex-container">
+          <div>
+            <p><?= $item['description']?></p>
           </div>
           <div>
-            <p><strong>Priority </strong>
-              <?php switch ($item['priority']) {
-                case 1: ?>
-                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-low">Low</span>
-                <?php
-                break;
-                case 2:  ?>
-                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-medium">Med</span>
-                <?php
-                break;
-                case 3: ?>
-                <span id="item<?=$item['id']?>priority" onclick="updateItemPriority(this)" class="itemPriority priority-high">High</span>
-                <?php
-                break;
-              } ?>
-            </p>
+            <p>
+              <?= date('d M', strtotime($item['dueDate']))?></p>
+            </div>
+            <div>
+              <p>
+                <?php switch ($item['priority']) {
+                  case 1: ?>
+                  <span id="item<?=$item['id']?>priority" class="itemPriority priority-low">Low</span>
+                  <?php
+                  break;
+                  case 2:  ?>
+                  <span id="item<?=$item['id']?>priority" class="itemPriority priority-medium">Med</span>
+                  <?php
+                  break;
+                  case 3: ?>
+                  <span id="item<?=$item['id']?>priority" class="itemPriority priority-high">High</span>
+                  <?php
+                  break;
+                } ?>
+              </p>
+            </div>
+            <div>
+              <p><a href="./list.php?id=<?=$currentItemListInfo['id']?>"><?=$currentItemListInfo['title']?></a></p>
+            </div>
+            <div>
+              <p><?=$_SESSION['username'] == $currentItemListInfo['creator'] ? 'you' : $currentItemListInfo['creator']?></p>
+            </div>
           </div>
-          <div>
-            <p><strong>Part of </strong><a href="./list.php?id=<?=$currentItemListInfo['id']?>"><?=$currentItemListInfo['title']?></a></p>
-            <p><strong>Owned by </strong><?=$_SESSION['username'] == $currentItemListInfo['creator'] ? 'you' : $currentItemListInfo['creator']?></p>
-          </div>
-        </div>
-        <?php }
-      } else { ?>
-      <h6>You don't have shit to do, congrats!</h6>
-      <?php } ?>
+          <?php }
+        } else { ?>
+        <h6>You don't have shit to do, congrats!</h6>
+        <?php } ?>
 
+      </div>
     </div>
   </div>
-</div>
 
 
-<?php
-include_once('templates/common/footer.php');
-?>
+  <?php
+  include_once('templates/common/footer.php');
+  ?>
