@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Getting Shit Done App</title>
+  <title>Get Shit Done</title>
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 

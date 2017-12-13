@@ -16,6 +16,7 @@ ctinman5 | Zy5%S!vRM3@t0
 
 Used libraries
 FontAwesome (fontawesome.com) - icons
+Sass (http://sass-lang.com/) - used to properly structure CSS by taking use of its core features, mostly by using variables and nesting (no need to compile it to run, resulting css file is already included and linked)
 
 Other used resources
 Animated checkbox based on https://codepen.io/daniandl/pen/OgbXzK
