@@ -1,7 +1,8 @@
-# LTW
-Repository to host Web Languages and Technologies [project](/Project%20Specification.pdf).
+# feup-ltw
+Made with [@cyrilico](https://github.com/cyrilico) and [@diogotorres97](https://github.com/diogotorres97).
+Repository to host Web Languages and Technologies' [project](/Project%20Specification.pdf). 
 
-LTW is a course given at FEUP in the third year of the MIEIC.
+LTW is a course given at FEUP, during MIEIC's third year.
  
 ## Goal
 Create a web application where users can store and share to-do lists. 
@@ -16,9 +17,9 @@ Create a web application where users can store and share to-do lists.
  * Manage your lists
  * Share ownership
  
-### Items
+### Items / Tasks
  * Create new items
- * Manage your items (set completed, priority, assign users...)
+ * Manage your items (set as completed, update priority, assign users...)
  
 ### Others
  * URIs to store the profile pics
@@ -26,9 +27,9 @@ Create a web application where users can store and share to-do lists.
  * Web attacks prevention (XSS, SQL injection, Path Traversal, Bcrypt,Session Fixation, etc)
 
 ## Technologies
-* SQLITE database where data about users and to-do lists is stored.
-* HTML and CSS to create the application design.
-* PHP as an intermediate bridge between the webpages and the data from the database.
+* SQLITE database where data about users and to-do lists is stored;
+* Sass as a CSS preprocessor;
+* PHP as an intermediate bridge between the webpages and the data from the database;
 * Javascript/AJAX to enhance the user experience.
 
 ## Gallery
@@ -41,28 +42,23 @@ Create a web application where users can store and share to-do lists.
 |:---:|:---:|:---:|
 | Items Page | Discover Page | Share Page |
 
-## How To Run
-
-Install:
+## Install development environment
+Requirements:
 * [NodeJS](https://nodejs.org/en/)
 
+Do the following inside of '/project1':
 
-Run: 
+#### 1 - Install Grunt globally:
 
     $ npm install -g grunt-cli
-
-Inside of project1:
+    
+#### 2 - Install other dependecies: 
 
     $ npm install
+#### 3 - Run Grunt to compile Sass:
 
     $ grunt
+#### 4 - Run PHP Server
 
-And run a php server
-
-## Team 
-[António Almeida](https://github.com/antonioalmeida)
-
-[João Damas](https://github.com/cyrilico)
-
-[Diogo Torres](https://github.com/diogotorres97)
-
+    $ php -S localhost:8080
+    
