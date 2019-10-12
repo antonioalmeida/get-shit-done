@@ -1,6 +1,6 @@
-# feup-ltw
+# Get Shit Done
 Made with [@cyrilico](https://github.com/cyrilico) and [@diogotorres97](https://github.com/diogotorres97).
-Repository to host Web Languages and Technologies' [project](/Project%20Specification.pdf). 
+Repository to host Web Languages and Technologies' [project](https://web.fe.up.pt/~arestivo/page/courses/2017/ltw/project/). 
 
 LTW is a course given at FEUP, during MIEIC's third year.
  
