@@ -1,11 +1,11 @@
-# Get Shit Done
+# get-shit-done 
 Made with [@cyrilico](https://github.com/cyrilico) and [@diogotorres97](https://github.com/diogotorres97).
 Repository to host Web Languages and Technologies' [project](https://web.fe.up.pt/~arestivo/page/courses/2017/ltw/project/). 
 
-LTW is a course given at FEUP, during MIEIC's third year.
+Work done for a subject in Web Languages and Technologies [LTW] in MIEIC @FEUP, in collaboration with [@cyrilico](https://github.com/cyrilico) and [@diogotorres97](https://github.com/diogotorres97).
  
 ## Goal
-Create a web application where users can store and share to-do lists. 
+Create a web application where users can [store and share to-do lists](https://web.fe.up.pt/~arestivo/page/courses/2017/ltw/project/).  
 
 ## Features
 ### Users
